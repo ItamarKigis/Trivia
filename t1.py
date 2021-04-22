@@ -10,7 +10,7 @@ def main(name):
         data = sock.recv(1024)
         print(data.decode())
         if data.decode() != "Hello":
-            sock.sendall("Hello".encode())
+            sock.send("Hello".encode())
     except:
         print("Could not connect to the server!")
 if __name__ == '__main__':
