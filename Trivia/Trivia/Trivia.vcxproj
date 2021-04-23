@@ -139,12 +139,14 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Communicator.cpp" />
     <ClCompile Include="Helper.cpp" />
     <ClCompile Include="Server.cpp" />
     <ClCompile Include="Source.cpp" />
     <ClCompile Include="WSAInitializer.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Communicator.h" />
     <ClInclude Include="Helper.h" />
     <ClInclude Include="IRequestHandler.h" />
     <ClInclude Include="LoginRequestHandler.h" />

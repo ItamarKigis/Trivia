@@ -13,7 +13,7 @@ int main()
 		WSAInitializer wsaInit;
 		Server myServer;
 
-		myServer.serve(port);
+		myServer.run();
 	}
 	catch (std::exception& e)
 	{
