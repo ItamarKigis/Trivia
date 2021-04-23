@@ -92,15 +92,10 @@ void Communicator::handleNewClient(SOCKET clientSocket)
 	{
 		char m[MAX_LEN] = { 0 };
 		std::string MsgToClient = "Hello";
-		std::string MsgFromClient;
 		send(clientSocket, MsgToClient.c_str(), MsgToClient.size(), 0);
 		recv(clientSocket, m, MAX_LEN - 1, 0);
-		MsgFromClient = m;
+		std::string MsgFromClient(m);
 		std::cout << "Client sended " << MsgFromClient << std::endl;
-		while (true)
-		{
-
-		}
 	}
 	catch (...)
 	{
