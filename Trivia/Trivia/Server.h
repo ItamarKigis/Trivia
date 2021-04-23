@@ -8,6 +8,7 @@
 #include <queue>
 #include <fstream>
 #include "Helper.h"
+#include "LoginRequestHandler.h"
 #define MAX_LEN 150
 #define ZERO 0
 #define THIRD_INDEX 2

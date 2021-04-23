@@ -63,16 +63,19 @@ void Server::accept()
 	// for the resolution of the function accept
 
 	// this accepts the client and create a specific socket from server to this client
-	SOCKET client_socket = ::accept(_serverSocket, NULL, NULL);
 
-	if (client_socket == INVALID_SOCKET)
-		throw std::exception(__FUNCTION__);
+		SOCKET client_socket = ::accept(_serverSocket, NULL, NULL);
 
-	std::cout << "Client accepted. Server and client can speak" << std::endl;
+		if (client_socket == INVALID_SOCKET && exit != true)
+			throw std::exception(__FUNCTION__);
+		else if(exit != true)
+		{
+			std::cout << "Client accepted. Server and client can speak" << std::endl;
 
-	// the function that handle the conversation with the client
-	std::thread t(&Server::clientHandler, this, client_socket);
-	t.detach();
+			// the function that handle the conversation with the client
+			std::thread t(&Server::clientHandler, this, client_socket);
+			t.detach();
+		}
 }
 
 
