@@ -36,7 +36,7 @@ void Communicator::bindAndListen()
 
 	struct sockaddr_in sa = { 0 };
 
-	sa.sin_port = htons(8989); // port that server will listen for
+	sa.sin_port = htons(PORT); // port that server will listen for
 	sa.sin_family = AF_INET;   // must be AF_INET
 	sa.sin_addr.s_addr = INADDR_ANY;    // when there are few ip's for the machine. We will use always "INADDR_ANY"
 
@@ -59,7 +59,10 @@ void Communicator::bindAndListen()
 		// and add then to the list of handlers
 		std::cout << "Waiting for client connection request" << std::endl;
 		startHandleRequests();
-
+	}
+	for (std::map<SOCKET, IRequestHandler*>::iterator it = m_clients.begin(); it != m_clients.end(); it++)
+	{
+		delete it->second; // wanted use smart pointers, probably use later
 	}
 }
 
@@ -74,7 +77,7 @@ void Communicator::startHandleRequests()
 
 	if (client_socket == INVALID_SOCKET && exit != true)
 		throw std::exception(__FUNCTION__);
-	else if (exit != true)
+	else if (!exit)
 	{
 		std::cout << "Client accepted. Server and client can speak" << std::endl;
 

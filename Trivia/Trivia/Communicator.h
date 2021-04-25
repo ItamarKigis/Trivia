@@ -10,6 +10,7 @@
 #define TEN 10
 #define LEN_OF_USERNAMES 5
 #define ONE 1
+#define PORT 8989
 
 class Communicator
 {

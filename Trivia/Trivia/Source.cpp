@@ -7,7 +7,6 @@
 #include "Helper.h"
 int main()
 {
-	int port = 8989;
 	try
 	{
 		WSAInitializer wsaInit;
