@@ -17,10 +17,16 @@ public:
 	Communicator();
 	~Communicator();
 	void startHandleRequests();
-	void startCommunicator();
+	void startCommunicator();	//function that starts bindAndListen, vecause it is a private function
 private:
 	void bindAndListen();
+	
+	//input: socket to the client, requests from the client
+	//output: responses to the client
+	//Function manages the conncetion and the converation with the client.
 	void handleNewClient(SOCKET);
+
+	//Function Gets commands from the user in the console application, if the command is "EXIT" - change the exit varaible so the program will end 
 	void checkExit();
 
 	SOCKET _serverSocket;
