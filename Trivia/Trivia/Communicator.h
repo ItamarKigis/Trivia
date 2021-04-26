@@ -4,12 +4,6 @@
 #include <map>
 #include <thread>
 #define MAX_LEN 150
-#define ZERO 0
-#define THIRD_INDEX 2
-#define ASCI_OF_ZERO 48
-#define TEN 10
-#define LEN_OF_USERNAMES 5
-#define ONE 1
 #define PORT 8989
 
 class Communicator

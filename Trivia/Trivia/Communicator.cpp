@@ -19,6 +19,10 @@ Communicator::~Communicator()
 {
 	try
 	{
+		for (std::map<SOCKET, IRequestHandler*>::iterator it = m_clients.begin(); it != m_clients.end(); it++)
+		{
+			delete it->second; // wanted use smart pointers, probably use later
+		}
 		// the only use of the destructor should be for freeing 
 		// resources that was allocated in the constructor
 		closesocket(_serverSocket);
@@ -59,10 +63,6 @@ void Communicator::bindAndListen()
 		// and add then to the list of handlers
 		std::cout << "Waiting for client connection request" << std::endl;
 		startHandleRequests();
-	}
-	for (std::map<SOCKET, IRequestHandler*>::iterator it = m_clients.begin(); it != m_clients.end(); it++)
-	{
-		delete it->second; // wanted use smart pointers, probably use later
 	}
 }
 
