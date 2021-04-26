@@ -3,7 +3,7 @@
 #include <fstream>
 #include <iomanip>
 #include <sstream>
-
+/*
 using std::string;
 
 // recieves the type code of the message from socket (3 bytes)
@@ -99,3 +99,4 @@ void Helper::sendData(SOCKET sc, std::string message)
 		throw std::exception("Error while sending message to client");
 	}
 }
+*/

@@ -1,5 +1,5 @@
 #pragma once
-
+/*
 #include <vector>
 #include <string>
 #include <WinSock2.h>
@@ -48,3 +48,4 @@ private:
 #define TRACE(msg, ...) printf(msg "\n", __VA_ARGS__);
 #define TRACE(msg, ...) // do nothing
 #endif
+*/
