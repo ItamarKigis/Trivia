@@ -141,6 +141,7 @@
   <ItemGroup>
     <ClCompile Include="Communicator.cpp" />
     <ClCompile Include="Helper.cpp" />
+    <ClCompile Include="Serializer.cpp" />
     <ClCompile Include="Server.cpp" />
     <ClCompile Include="Source.cpp" />
     <ClCompile Include="WSAInitializer.cpp" />
@@ -149,8 +150,11 @@
     <ClInclude Include="Communicator.h" />
     <ClInclude Include="Helper.h" />
     <ClInclude Include="IRequestHandler.h" />
+    <ClInclude Include="json.hpp" />
     <ClInclude Include="LoginRequestHandler.h" />
     <ClInclude Include="RecvMessage.h" />
+    <ClInclude Include="Response.h" />
+    <ClInclude Include="Serializer.h" />
     <ClInclude Include="Server.h" />
     <ClInclude Include="WSAInitializer.h" />
   </ItemGroup>
