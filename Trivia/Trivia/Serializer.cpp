@@ -1,16 +1,12 @@
 #include "Serializer.h"
 #include "json.hpp"
-#include "Response.h"
 #include <bitset>
-using json = nlohmann::json;
 
-std::vector<unsigned char> JsonResponsePacketSerializer::serializeResponse(ErrorResponse response)
+using json = nlohmann::json;
+#define FOUR_BYTES 32
+
+void JsonResponsePacketSerializer::pushValsToVector(std::vector<unsigned char>& pack, std::string& size)
 {
-    std::vector<unsigned char> pack;
-    json j;
-    j["message"] = response.message;
-    pack[0] = (int)CODES::ERROR;
-    std::string size = std::bitset<32>(sizeof(j)).to_string();
     for (unsigned char let : size)
     {
         pack.push_back(let);
@@ -20,6 +16,16 @@ std::vector<unsigned char> JsonResponsePacketSerializer::serializeResponse(Error
     {
         pack.push_back(let);
     }
+}
+
+std::vector<unsigned char> JsonResponsePacketSerializer::serializeResponse(ErrorResponse response)
+{
+    std::vector<unsigned char> pack;
+    json j;
+    j["message"] = response.message;
+    pack[0] = (int)CODES::ERROR;
+    std::string size = std::bitset<FOUR_BYTES>(sizeof(j)).to_string();
+    pushValsToVector(pack, size);
     return pack;
 }
 
@@ -29,16 +35,8 @@ std::vector<unsigned char> JsonResponsePacketSerializer::serializeResponse(Login
     json j;
     j["status"] = response.status;
     pack[0] = (int)CODES::LOGIN;
-    std::string size = std::bitset<32>(sizeof(j)).to_string();
-    for (unsigned char let : size)
-    {
-        pack.push_back(let);
-    }
-    std::string msg = j.dump();
-    for (unsigned char let : msg)
-    {
-        pack.push_back(let);
-    }
+    std::string size = std::bitset<FOUR_BYTES>(sizeof(j)).to_string();
+    pushValsToVector(pack, size);
     return pack;
 }
 
@@ -48,15 +46,7 @@ std::vector<unsigned char> JsonResponsePacketSerializer::serializeResponse(Signu
     json j;
     j["status"] = response.status;
     pack[0] = (int)CODES::SIGN_UP;
-    std::string size = std::bitset<32>(sizeof(j)).to_string();
-    for (unsigned char let : size)
-    {
-        pack.push_back(let);
-    }
-    std::string msg = j.dump();
-    for (unsigned char let : msg)
-    {
-        pack.push_back(let);
-    }
+    std::string size = std::bitset<FOUR_BYTES>(sizeof(j)).to_string();
+    pushValsToVector(pack, size);
     return pack;
 }
