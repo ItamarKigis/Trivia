@@ -5,14 +5,13 @@
 using json = nlohmann::json;
 #define FOUR_BYTES 32
 
-void JsonResponsePacketSerializer::pushValsToVector(std::vector<unsigned char>& pack, std::string& size)
+void JsonResponsePacketSerializer::pushValsToVector(std::vector<unsigned char>& pack, const std::string& jsonMsg,const std::string& json)
 {
-    for (unsigned char let : size)
+    for (unsigned char let : jsonMsg)
     {
         pack.push_back(let);
     }
-    std::string msg = j.dump();
-    for (unsigned char let : msg)
+    for (unsigned char let : json)
     {
         pack.push_back(let);
     }
@@ -24,8 +23,8 @@ std::vector<unsigned char> JsonResponsePacketSerializer::serializeResponse(Error
     json j;
     j["message"] = response.message;
     pack[0] = (int)CODES::ERROR;
-    std::string size = std::bitset<FOUR_BYTES>(sizeof(j)).to_string();
-    pushValsToVector(pack, size);
+    const std::string jsonMsg = std::bitset<FOUR_BYTES>(sizeof(j)).to_string();
+    pushValsToVector(pack, jsonMsg, j.dump());
     return pack;
 }
 
@@ -35,8 +34,8 @@ std::vector<unsigned char> JsonResponsePacketSerializer::serializeResponse(Login
     json j;
     j["status"] = response.status;
     pack[0] = (int)CODES::LOGIN;
-    std::string size = std::bitset<FOUR_BYTES>(sizeof(j)).to_string();
-    pushValsToVector(pack, size);
+    const std::string jsonMsg = std::bitset<FOUR_BYTES>(sizeof(j)).to_string();
+    pushValsToVector(pack, jsonMsg, j.dump());
     return pack;
 }
 
@@ -46,7 +45,7 @@ std::vector<unsigned char> JsonResponsePacketSerializer::serializeResponse(Signu
     json j;
     j["status"] = response.status;
     pack[0] = (int)CODES::SIGN_UP;
-    std::string size = std::bitset<FOUR_BYTES>(sizeof(j)).to_string();
-    pushValsToVector(pack, size);
+    const std::string jsonMsg = std::bitset<FOUR_BYTES>(sizeof(j)).to_string();
+    pushValsToVector(pack, jsonMsg, j.dump());
     return pack;
 }
