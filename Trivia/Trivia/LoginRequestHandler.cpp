@@ -2,11 +2,7 @@
 
 bool LoginRequestHandler::isRequestRelevant(RequestInfo request)
 {
-    if (request.RequestId != LOGIN)
-    {
-        return false;
-    }
-    return true;
+    return request.RequestId == LOGIN;
 }
 
 RequestResult LoginRequestHandler::handleRequest(RequestInfo request)
