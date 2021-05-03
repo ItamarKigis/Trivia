@@ -1,13 +1,15 @@
 #include "Serializer.h"
+#include "json.hpp"
+#include "Response.h"
 #include <bitset>
 using json = nlohmann::json;
 
-std::vector<unsigned char> JsonResponsePacketSerializer::serializeResponse(ErrorResponse res)
+std::vector<unsigned char> JsonResponsePacketSerializer::serializeResponse(ErrorResponse response)
 {
     std::vector<unsigned char> pack;
     json j;
-    j["message"] = res.message;
-    pack[0] = ERROR;
+    j["message"] = response.message;
+    pack[0] = (int)CODES::ERROR;
     std::string size = std::bitset<32>(sizeof(j)).to_string();
     for (unsigned char let : size)
     {
@@ -21,12 +23,12 @@ std::vector<unsigned char> JsonResponsePacketSerializer::serializeResponse(Error
     return pack;
 }
 
-std::vector<unsigned char> JsonResponsePacketSerializer::serializeResponse(LoginResponse res)
+std::vector<unsigned char> JsonResponsePacketSerializer::serializeResponse(LoginResponse response)
 {
     std::vector<unsigned char> pack;
     json j;
-    j["status"] = res.status;
-    pack[0] = LOGIN;
+    j["status"] = response.status;
+    pack[0] = (int)CODES::LOGIN;
     std::string size = std::bitset<32>(sizeof(j)).to_string();
     for (unsigned char let : size)
     {
@@ -40,12 +42,12 @@ std::vector<unsigned char> JsonResponsePacketSerializer::serializeResponse(Login
     return pack;
 }
 
-std::vector<unsigned char> JsonResponsePacketSerializer::serializeResponse(SignupResponse res)
+std::vector<unsigned char> JsonResponsePacketSerializer::serializeResponse(SignupResponse response)
 {
     std::vector<unsigned char> pack;
     json j;
-    j["status"] = res.status;
-    pack[0] = SIGN_UP;
+    j["status"] = response.status;
+    pack[0] = (int)CODES::SIGN_UP;
     std::string size = std::bitset<32>(sizeof(j)).to_string();
     for (unsigned char let : size)
     {
