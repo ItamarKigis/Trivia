@@ -1,21 +1,26 @@
+#pragma once
 #include <vector>
 #include <string>
-static class JsonRequestPacketDeserializer
-{
-public:
-	LoginRequest deserializeLoginRequest(std::vector<unsigned char>Buffer);
-	SignupRequest deserializeSignupRequest(std::vector<unsigned char>Buffer);
-};
-struct LoginRequest
+typedef struct LoginRequest
 {
 public:
 	std::string username;
 	std::string password;
-};
-struct SignupRequest
+}LoginRequest;
+
+typedef struct SignupRequest
 {
 public:
 	std::string username;
 	std::string password;
 	std::string email;
+}SignupRequest;
+
+class JsonRequestPacketDeserializer
+{
+public:
+	static LoginRequest deserializeLoginRequest(std::vector<unsigned char> Buffer);
+	static SignupRequest deserializeSignupRequest(std::vector<unsigned char> Buffer);
+private:
+	//int GetDataLenght(std::vector<unsigned char>Buffer);
 };
