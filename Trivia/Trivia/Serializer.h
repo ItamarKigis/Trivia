@@ -10,6 +10,6 @@ public:
 	static std::vector<unsigned char> serializeResponse(ErrorResponse response);
 	static std::vector<unsigned char> serializeResponse(LoginResponse response);
 	static std::vector<unsigned char> serializeResponse(SignupResponse response);
-
+	
 };
 

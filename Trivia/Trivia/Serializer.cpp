@@ -4,16 +4,19 @@
 
 using json = nlohmann::json;
 #define FOUR_BYTES 32
-
+#define BYTE 8
+#define BINARY 2
 void JsonResponsePacketSerializer::pushValsToVector(std::vector<unsigned char>& pack, const std::string& jsonMsg,const std::string& json)
 {
-    for (unsigned char let : jsonMsg)
+    for (int i = 0; i < jsonMsg.length(); i += BYTE)
     {
-        pack.push_back(let);
+        unsigned char byte = stoi(jsonMsg.substr(i, i + BYTE), 0, BINARY);
+        pack.push_back(byte);
     }
-    for (unsigned char let : json)
+    for (int i = 0; i < json.length(); i += BYTE)
     {
-        pack.push_back(let);
+        unsigned char byte = stoi(json.substr(i, i + BYTE), 0, BINARY);
+        pack.push_back(byte);
     }
 }
 
@@ -34,6 +37,7 @@ std::vector<unsigned char> JsonResponsePacketSerializer::serializeResponse(Login
     json j;
     j["status"] = response.status;
     pack[0] = (int)CODES::LOGIN;
+
     const std::string jsonMsg = std::bitset<FOUR_BYTES>(sizeof(j)).to_string();
     pushValsToVector(pack, jsonMsg, j.dump());
     return pack;
