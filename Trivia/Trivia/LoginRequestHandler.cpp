@@ -2,18 +2,30 @@
 
 bool LoginRequestHandler::isRequestRelevant(RequestInfo request)
 {
-    return request.RequestId == LOGIN;
+    return request.RequestId == LOGIN_CODE;
 }
 
 RequestResult LoginRequestHandler::handleRequest(RequestInfo request)
 {
-    if (isRequestRelevant(request)) 
+    JsonResponsePacketSerializer* serializer = new JsonResponsePacketSerializer();
+    RequestResult result;
+    std::vector<unsigned char> response;
+    if (isRequestRelevant(request)) //LOGIN
     {
-        //for now we reutrn a struct with empty fields.
-        RequestResult result;
-        result.newHandler = nullptr;
-        return result;
+        LoginResponse login = { 200 };
+        response = serializer->serializeResponse(login);
     }
-    //also here we return a struct without a fields for now.
-    return RequestResult();
+    else if (request.RequestId == int(CODES::SIGN_UP))//SIGN UP
+    {
+        SignupResponse signUp = { 210 };
+        response = serializer->serializeResponse(signUp);
+    }
+    else
+    {
+        ErrorResponse error = { "message" };
+        response = serializer->serializeResponse(error);
+    }
+    result.newHandler = nullptr;
+    result.response = response;
+    return result;
 }

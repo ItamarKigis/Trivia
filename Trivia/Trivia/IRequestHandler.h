@@ -1,6 +1,7 @@
 #pragma once
 #include <ctime>
 #include <vector>
+#include "Serializer.h"
 class IRequestHandler;
 typedef struct RequestResult
 {

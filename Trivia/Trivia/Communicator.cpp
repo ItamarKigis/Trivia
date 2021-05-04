@@ -94,11 +94,23 @@ void Communicator::handleNewClient(SOCKET clientSocket)
 	try
 	{
 		char m[MAX_LEN] = { 0 };
-		std::string MsgToClient = "Hello";
-		send(clientSocket, MsgToClient.c_str(), MsgToClient.size(), 0);
 		recv(clientSocket, m, MAX_LEN - 1, 0);
-		std::string MsgFromClient(m);
-		std::cout << "Client sended " << MsgFromClient << std::endl;
+		RequestInfo request = {int(m[0]), time(NULL), makeCharVector(m)};
+		RequestResult result = m_clients[clientSocket]->handleRequest(request);
+		m_clients[clientSocket] = result.newHandler;
+		for (int i = 0; i < MAX_LEN; i++)
+		{
+			m[i] = 0;
+		}
+		int temp = 0;
+		std::vector<unsigned char>::iterator it = result.response.begin();
+		while (it != result.response.end())
+		{
+			m[temp] = *it;
+			++it;
+			temp++;
+		}
+		send(clientSocket, m, MAX_LEN, 0);
 	}
 	catch (...)
 	{
@@ -115,4 +127,14 @@ void Communicator::checkExit()
 	}
 	closesocket(_serverSocket);
 	exit = true;
+}
+
+std::vector<unsigned char> Communicator::makeCharVector(char m[MAX_LEN])
+{
+	std::vector<unsigned char> data;
+	for (int i = 0; i < MAX_LEN; i++)
+	{
+		data.push_back(m[i]);
+	}
+	return data;
 }
