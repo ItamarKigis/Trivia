@@ -4,7 +4,7 @@
 #include <Windows.h>
 #include <map>
 #include <thread>
-#define MAX_LEN 150
+#define MAX_LEN 10000
 #define PORT 8989
 
 class Communicator

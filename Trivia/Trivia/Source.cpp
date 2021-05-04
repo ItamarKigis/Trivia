@@ -5,6 +5,7 @@
 #include <iostream>
 #include <exception>
 #include "Helper.h"
+#include <bitset>
 int main()
 {
 	try

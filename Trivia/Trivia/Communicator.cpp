@@ -132,9 +132,17 @@ void Communicator::checkExit()
 std::vector<unsigned char> Communicator::makeCharVector(char m[MAX_LEN])
 {
 	std::vector<unsigned char> data;
-	for (int i = 0; i < MAX_LEN; i++)
+	std::string mString(m);
+	int temp = 0;
+	for (int i = 0; i < MAX_LEN; i+=8)
 	{
-		data.push_back(m[i]);
+		for (int j = 0; j < 8; j++)
+		{
+			temp += m[i + j] - '0';
+			temp <<= 1;
+		}
+		
+		data.push_back((unsigned char)temp);
 	}
 	return data;
 }
