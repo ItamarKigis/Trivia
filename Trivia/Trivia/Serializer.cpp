@@ -6,16 +6,16 @@ using json = nlohmann::json;
 #define FOUR_BYTES 32
 #define BYTE 8
 #define BINARY 2
-void JsonResponsePacketSerializer::pushValsToVector(std::vector<unsigned char>& pack, const std::string& sizeOfData,const std::string& data)
+void JsonResponsePacketSerializer::pushValsToVector(std::vector<unsigned char>& pack, const std::string& sizeOfJsonMsg,const std::string& jsonMsg)
 {
-    for (int i = 0; i < sizeOfData.length(); i += BYTE)
+    for (int i = 0; i < sizeOfJsonMsg.length(); i += BYTE)
     {
-        unsigned char byte = stoi(sizeOfData.substr(i, i + BYTE), 0, BINARY);
+        unsigned char byte = stoi(sizeOfJsonMsg.substr(i, i + BYTE), 0, BINARY);
         pack.push_back(byte);
     }
-    for (int i = 0; i < data.length(); i += BYTE)
+    for (int i = 0; i < jsonMsg.length(); i += BYTE)
     {
-        unsigned char byte = stoi(data.substr(i, i + BYTE), 0, BINARY);
+        unsigned char byte = stoi(jsonMsg.substr(i, i + BYTE), 0, BINARY);
         pack.push_back(byte);
     }
 }
