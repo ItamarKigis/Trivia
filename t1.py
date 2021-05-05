@@ -9,11 +9,15 @@ LOGIN, SIGNUP = "login", "sign up"
 
 def login(sock):
     user_info = {'username': "user1", 'password': "1234"}
-    json_info = bytes(to_json(user_info).encode())
-    size_of_json = sys.getsizeof(json_info)
-    msg = (bytes((f'{LOGIN_CODE:08b}').encode())) + bytes(format(size_of_json, '032b').encode()) + json_info
+    json_string = json.dumps(user_info)
+    json_string = json_string.encode('ASCII')
+
+    size_of_json = len(json_string).to_bytes(4,'big')
+
+    msg = LOGIN_CODE.to_bytes(1,'big') + size_of_json + json_string
     print(msg)
     sock.sendall(msg)
+
 
 
 def sign_up(sock):

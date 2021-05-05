@@ -51,5 +51,5 @@ json JsonRequestPacketDeserializer::GetJson(std::vector<unsigned char> Buffer, i
         ++ptr;
         temp--;
     }
-    return json::parse(Bdata.begin(), Bdata.end());
+    return json::parse(Bdata);
 }
