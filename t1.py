@@ -12,6 +12,7 @@ def login(sock):
     json_info = bytes(to_json(user_info).encode())
     size_of_json = sys.getsizeof(json_info)
     msg = (bytes((f'{LOGIN_CODE:08b}').encode())) + bytes(format(size_of_json, '032b').encode()) + json_info
+    print(msg)
     sock.sendall(msg)
 
 

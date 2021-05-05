@@ -3,11 +3,11 @@
 LoginRequest JsonRequestPacketDeserializer::deserializeLoginRequest(std::vector<unsigned char> Buffer)
 {
     //getting the code
-    int code = int(Buffer[INDEX_OF_CODE]);
+    int code = int(*(Buffer.begin()));
     //getting the message lengh
     int dataLengh = GetDataLenght(Buffer);
     //put the data into json format
-    json j = GetJson(Buffer);
+    json j = GetJson(Buffer, dataLengh);
     //creating new struct with the json data
     LoginRequest newLogin;
     newLogin.username = j["username"];
@@ -18,12 +18,12 @@ LoginRequest JsonRequestPacketDeserializer::deserializeLoginRequest(std::vector<
 SignupRequest JsonRequestPacketDeserializer::deserializeSignupRequest(std::vector<unsigned char> Buffer)
 {
     //getting the code
-    int code = int(Buffer[INDEX_OF_CODE]);
+    int code = int(*(Buffer.begin()));
     //getting the message lengh
     int dataLengh = GetDataLenght(Buffer);
 
     //put the data into json format
-    json j = GetJson(Buffer);
+    json j = GetJson(Buffer, dataLengh);
     //creating new struct with the json data
     SignupRequest signUp;
     signUp.username = j["username"];
@@ -40,14 +40,16 @@ int JsonRequestPacketDeserializer::GetDataLenght(std::vector<unsigned char> Buff
         (unsigned char)(Buffer[4]));
 }
 
-json JsonRequestPacketDeserializer::GetJson(std::vector<unsigned char> Buffer)
+json JsonRequestPacketDeserializer::GetJson(std::vector<unsigned char> Buffer, int dataLengh)
 {
-    std::vector<unsigned char> Bdata;
+    std::vector<std::uint8_t> Bdata;
     std::vector<unsigned char>::iterator ptr = Buffer.begin() + START_DATA;
-    while (ptr != Buffer.end())
+    int temp = dataLengh;
+    while (temp > 0)
     {
-        Bdata.push_back(*ptr);
+        Bdata.push_back(std::uint8_t(*ptr));
         ++ptr;
+        temp--;
     }
-    return json::from_bson(Bdata);
+    return json::parse(Bdata.begin(), Bdata.end());
 }

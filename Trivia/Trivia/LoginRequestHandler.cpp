@@ -8,16 +8,23 @@ bool LoginRequestHandler::isRequestRelevant(RequestInfo request)
 RequestResult LoginRequestHandler::handleRequest(RequestInfo request)
 {
     JsonResponsePacketSerializer* serializer = new JsonResponsePacketSerializer();
+    JsonRequestPacketDeserializer* deserializer = new JsonRequestPacketDeserializer();
     RequestResult result;
     std::vector<unsigned char> response;
     if (isRequestRelevant(request)) //LOGIN
     {
-        LoginResponse login = { 200 };
+        //deserialize the request
+        LoginRequest loginStruct =  deserializer->deserializeLoginRequest(request.buffer);
+        //build response
+        LoginResponse login = { LOGIN_CODE };
         response = serializer->serializeResponse(login);
     }
     else if (request.RequestId == int(CODES::SIGN_UP))//SIGN UP
     {
-        SignupResponse signUp = { 210 };
+        //deserialize the request
+        SignupRequest signUpStruct = deserializer->deserializeSignupRequest(request.buffer);
+        //build response
+        SignupResponse signUp = { int(CODES::SIGN_UP) };
         response = serializer->serializeResponse(signUp);
     }
     else
