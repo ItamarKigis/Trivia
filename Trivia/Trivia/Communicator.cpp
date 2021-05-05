@@ -94,8 +94,9 @@ void Communicator::handleNewClient(SOCKET clientSocket)
 	try
 	{
 		char m[MAX_LEN] = { 0 };
-		recv(clientSocket, m, MAX_LEN - 1, 0);
-		RequestInfo request = {int(m[0]), time(NULL), makeCharVector(m)};
+		recv(clientSocket, m,  sizeof(m), 0);
+		std::vector<unsigned char> buffer = makeCharVector(m);
+		RequestInfo request = {int(*(buffer.begin())), time(NULL), buffer};
 		RequestResult result = m_clients[clientSocket]->handleRequest(request);
 		m_clients[clientSocket] = result.newHandler;
 		for (int i = 0; i < MAX_LEN; i++)
@@ -132,17 +133,21 @@ void Communicator::checkExit()
 std::vector<unsigned char> Communicator::makeCharVector(char m[MAX_LEN])
 {
 	std::vector<unsigned char> data;
-	std::string mString(m);
 	int temp = 0;
-	for (int i = 0; i < MAX_LEN; i+=8)
+	for (int i = 0; i < MAX_LEN; i++)
 	{
-		for (int j = 0; j < 8; j++)
+		data.push_back('0');
+	}
+	std::vector<unsigned char>::iterator it = data.begin();
+	for(int i = 0; i < MAX_LEN; i+=0)
+	{
+		for (int j = 7; j >= 0; j--)
 		{
-			temp += m[i + j] - '0';
-			temp <<= 1;
+			temp = m[i] - '0';
+			*it ^= (-temp ^ *it) & (1UL << j);
+			i++;
 		}
-		
-		data.push_back((unsigned char)temp);
+		++it;
 	}
 	return data;
 }

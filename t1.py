@@ -9,19 +9,18 @@ LOGIN, SIGNUP = "login", "sign up"
 
 def login(sock):
     user_info = {'username': "user1", 'password': "1234"}
-    json1 = bytes(to_json(user_info).encode())
-    size_of_json = sys.getsizeof(json1)
-
-    msg = (bytes((f'{LOGIN_CODE:08b}').encode())) + bytes(format(size_of_json, '032b').encode()) + json1
-
-    print(msg)
+    json_info = bytes(to_json(user_info).encode())
+    size_of_json = sys.getsizeof(json_info)
+    msg = (bytes((f'{LOGIN_CODE:08b}').encode())) + bytes(format(size_of_json, '032b').encode()) + json_info
     sock.sendall(msg)
 
 
 def sign_up(sock):
-    user_info = {'username': "user1", 'password': "1234", 'mail': "user1@gmail.com"}
-    msg = json.dumps(LOGIN_CODE) + json.dumps(len(user_info)) + json.dumps(user_info)
-    sock.sendall(msg.encode())
+    user_info = {'username': "user1", 'password': "1234", 'email': "user1@gmail.com"}
+    json_info = bytes(to_json(user_info).encode())
+    size_of_json = sys.getsizeof(json_info)
+    msg = (bytes((f'{SIGN_UP:08b}').encode())) + bytes(format(size_of_json, '032b').encode()) + json_info
+    sock.sendall(msg)
 
 def to_json(user_info):
     j_dump = json.dumps(user_info)
@@ -31,7 +30,11 @@ def main():
     try:
         sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         sock.connect((IP, SOCKET))
-        login(sock)
+        choice = input("Do you want to sign up or login? 1-Sign up, 2-Login")
+        if choice == "1":
+            sign_up(sock)
+        elif choice == "2":
+            login(sock)
     except:
         print("coundlnt connect server")
         sock.close()
