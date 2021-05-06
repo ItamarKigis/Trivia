@@ -91,34 +91,32 @@ void Communicator::startHandleRequests()
 
 void Communicator::handleNewClient(SOCKET clientSocket)
 {
-	//try
-	//{
-		char m[MAX_LEN] = { 0 };
-		recv(clientSocket, m,  sizeof(m), 0);
-		std::vector<unsigned char> buffer = makeCharVector(m);
-		RequestInfo request = {int(*(buffer.begin())), time(NULL), buffer};
-		RequestResult result = m_clients[clientSocket]->handleRequest(request);
-		m_clients[clientSocket] = result.newHandler;
-		for (int i = 0; i < MAX_LEN; i++)
-		{
-			m[i] = 0;
-		}
-		int temp = 0;
-		std::vector<unsigned char>::iterator it = result.response.begin();
-		while (it != result.response.end())
-		{
-			m[temp] = *it;
-			++it;
-			temp++;
-		}
-		send(clientSocket, m, MAX_LEN, 0);
-	//}
-	/*
+	try
+	{
+	char m[MAX_LEN] = { 0 };
+	recv(clientSocket, m, sizeof(m), 0);
+	std::vector<unsigned char> buffer = makeCharVector(m);
+	RequestInfo request = { int(*(buffer.begin())), time(NULL), buffer };
+	RequestResult result = m_clients[clientSocket]->handleRequest(request);
+	m_clients[clientSocket] = result.newHandler;
+	for (int i = 0; i < MAX_LEN; i++)
+	{
+		m[i] = 0;
+	}
+	int temp = 0;
+	std::vector<unsigned char>::iterator it = result.response.begin();
+	while (it != result.response.end())
+	{
+		m[temp] = *it;
+		++it;
+		temp++;
+	}
+	send(clientSocket, m, MAX_LEN, 0);
+	}
 	catch (...)
 	{
 		closesocket(clientSocket);
 	}
-	*/
 }
 
 void Communicator::checkExit()
@@ -135,21 +133,9 @@ void Communicator::checkExit()
 std::vector<unsigned char> Communicator::makeCharVector(char m[MAX_LEN])
 {
 	std::vector<unsigned char> data;
-	int temp = 0;
 	for (int i = 0; i < MAX_LEN; i++)
 	{
-		data.push_back('0');
-	}
-	std::vector<unsigned char>::iterator it = data.begin();
-	for(int i = 0; i < MAX_LEN; i+=0)
-	{
-		for (int j = 7; j >= 0; j--)
-		{
-			temp = m[i] - '0';
-			*it ^= (-temp ^ *it) & (1UL << j);
-			i++;
-		}
-		++it;
+		data.push_back(m[i]);
 	}
 	return data;
 }

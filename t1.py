@@ -15,21 +15,20 @@ def login(sock):
     size_of_json = len(json_string).to_bytes(4,'big')
 
     msg = LOGIN_CODE.to_bytes(1,'big') + size_of_json + json_string
-    print(msg)
     sock.sendall(msg)
 
 
 
 def sign_up(sock):
     user_info = {'username': "user1", 'password': "1234", 'email': "user1@gmail.com"}
-    json_info = bytes(to_json(user_info).encode())
-    size_of_json = sys.getsizeof(json_info)
-    msg = (bytes((f'{SIGN_UP:08b}').encode())) + bytes(format(size_of_json, '032b').encode()) + json_info
-    sock.sendall(msg)
+    json_string = json.dumps(user_info)
+    json_string = json_string.encode('ASCII')
 
-def to_json(user_info):
-    j_dump = json.dumps(user_info)
-    return ''.join(format(ord(letter), 'b') for letter in j_dump)
+    size_of_json = len(json_string).to_bytes(4,'big')
+
+    msg = SIGN_UP.to_bytes(1,'big') + size_of_json + json_string
+    print(msg)
+    sock.sendall(msg)
 
 def main():
     try:

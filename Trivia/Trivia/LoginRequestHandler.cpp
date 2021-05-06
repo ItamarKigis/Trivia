@@ -14,7 +14,7 @@ RequestResult LoginRequestHandler::handleRequest(RequestInfo request)
     if (isRequestRelevant(request)) //LOGIN
     {
         //deserialize the request
-        LoginRequest loginStruct =  deserializer->deserializeLoginRequest(request.buffer);
+        LoginRequest loginStruct = deserializer->deserializeLoginRequest(request.buffer);
         //build response
         LoginResponse login = { LOGIN_CODE };
         response = serializer->serializeResponse(login);
