@@ -25,7 +25,7 @@ std::vector<unsigned char> JsonResponsePacketSerializer::serializeResponse(Error
     std::vector<unsigned char> pack;
     json j;
     j["message"] = response.message;
-    pack[0] = (int)CODES::ERROR_CODE;
+    pack.push_back((int)CODES::ERROR_CODE);
     const std::string jsonMsg = std::bitset<FOUR_BYTES>(sizeof(j)).to_string();
     pushValsToVector(pack, jsonMsg, j.dump());
     return pack;
@@ -36,7 +36,7 @@ std::vector<unsigned char> JsonResponsePacketSerializer::serializeResponse(Login
     std::vector<unsigned char> pack;
     json j;
     j["status"] = response.status;
-    pack[0] = (int)CODES::LOGIN;
+    pack.push_back((int)CODES::LOGIN);
 
     const std::string jsonMsg = std::bitset<FOUR_BYTES>(sizeof(j)).to_string();
     pushValsToVector(pack, jsonMsg, j.dump());
@@ -48,7 +48,7 @@ std::vector<unsigned char> JsonResponsePacketSerializer::serializeResponse(Signu
     std::vector<unsigned char> pack;
     json j;
     j["status"] = response.status;
-    pack[0] = (int)CODES::SIGN_UP;
+    pack.push_back((int)CODES::SIGN_UP);
     const std::string jsonMsg = std::bitset<FOUR_BYTES>(sizeof(j)).to_string();
     pushValsToVector(pack, jsonMsg, j.dump());
     return pack;
