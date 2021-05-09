@@ -3,32 +3,32 @@
 LoginRequest JsonRequestPacketDeserializer::deserializeLoginRequest(std::vector<unsigned char> Buffer)
 {
     //getting the code
-    int code = int(Buffer[INDEX_OF_CODE]);
+    int code = int(Buffer[0]);
     //getting the message lengh
     int dataLengh = GetDataLenght(Buffer);
     //put the data into json format
-    json j = GetJson(Buffer);
+    json json_data = GetJson(Buffer, dataLengh);
     //creating new struct with the json data
     LoginRequest newLogin;
-    newLogin.username = j["username"];
-    newLogin.password = j["password"];
+    newLogin.username = json_data["username"];
+    newLogin.password = json_data["password"];
     return newLogin;
 }
 
 SignupRequest JsonRequestPacketDeserializer::deserializeSignupRequest(std::vector<unsigned char> Buffer)
 {
     //getting the code
-    int code = int(Buffer[INDEX_OF_CODE]);
+    int code = int(Buffer[0]);
     //getting the message lengh
     int dataLengh = GetDataLenght(Buffer);
 
     //put the data into json format
-    json j = GetJson(Buffer);
+    json json_data = GetJson(Buffer, dataLengh);
     //creating new struct with the json data
     SignupRequest signUp;
-    signUp.username = j["username"];
-    signUp.password = j["password"];
-    signUp.email = j["email"];
+    signUp.username = json_data["username"];
+    signUp.password = json_data["password"];
+    signUp.email = json_data["email"];
     return signUp;
 }
 
@@ -40,14 +40,9 @@ int JsonRequestPacketDeserializer::GetDataLenght(std::vector<unsigned char> Buff
         (unsigned char)(Buffer[4]));
 }
 
-json JsonRequestPacketDeserializer::GetJson(std::vector<unsigned char> Buffer)
+json JsonRequestPacketDeserializer::GetJson(std::vector<unsigned char> Buffer, int dataLengh)
 {
-    std::vector<unsigned char> Bdata;
-    std::vector<unsigned char>::iterator ptr = Buffer.begin() + START_DATA;
-    while (ptr != Buffer.end())
-    {
-        Bdata.push_back(*ptr);
-        ++ptr;
-    }
-    return json::from_bson(Bdata);
+    std::vector<unsigned char> Bdata(std::begin(Buffer) + START_DATA, std::end(Buffer));
+    return json::parse(Bdata);
 }
+

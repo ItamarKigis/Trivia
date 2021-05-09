@@ -28,5 +28,5 @@ public:
 	static SignupRequest deserializeSignupRequest(std::vector<unsigned char> Buffer);
 private:
 	static int GetDataLenght(std::vector<unsigned char>Buffer);
-	static json GetJson(std::vector<unsigned char>Buffer);
+	static json GetJson(std::vector<unsigned char>Buffer, int dataLengh);
 };

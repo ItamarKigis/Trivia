@@ -6,7 +6,7 @@ using json = nlohmann::json;
 #define FOUR_BYTES 32
 #define BYTE 8
 #define BINARY 2
-void JsonResponsePacketSerializer::pushValsToVector(std::vector<unsigned char>& pack, const std::string& sizeOfJsonMsg,const std::string& jsonMsg)
+void JsonResponsePacketSerializer::pushValsToVector(std::vector<unsigned char>& pack, const std::string& sizeOfJsonMsg, const std::string& jsonMsg)
 {
     for (int i = 0; i < sizeOfJsonMsg.length(); i += BYTE)
     {
@@ -25,9 +25,10 @@ std::vector<unsigned char> JsonResponsePacketSerializer::serializeResponse(Error
     std::vector<unsigned char> pack;
     json j;
     j["message"] = response.message;
-    pack[0] = (int)CODES::ERROR;
-    const std::string jsonMsg = std::bitset<FOUR_BYTES>(sizeof(j)).to_string();
-    pushValsToVector(pack, jsonMsg, j.dump());
+    pack.push_back((int)CODES::ERROR_CODE);
+    const std::string jsonMsgSize = std::bitset<FOUR_BYTES>(sizeof(j)).to_string();
+    const std::string jsonMsg = std::bitset<sizeof(j)>(j.dump()).to_string();
+    pushValsToVector(pack, jsonMsgSize, jsonMsg);
     return pack;
 }
 
@@ -36,10 +37,11 @@ std::vector<unsigned char> JsonResponsePacketSerializer::serializeResponse(Login
     std::vector<unsigned char> pack;
     json j;
     j["status"] = response.status;
-    pack[0] = (int)CODES::LOGIN;
+    pack.push_back((int)CODES::LOGIN);
 
-    const std::string jsonMsg = std::bitset<FOUR_BYTES>(sizeof(j)).to_string();
-    pushValsToVector(pack, jsonMsg, j.dump());
+    const std::string jsonMsgSize = std::bitset<FOUR_BYTES>(sizeof(j)).to_string();
+    const std::string jsonMsg = std::bitset<sizeof(j)>(j.dump()).to_string();
+    pushValsToVector(pack, jsonMsgSize, jsonMsg);
     return pack;
 }
 
@@ -48,8 +50,9 @@ std::vector<unsigned char> JsonResponsePacketSerializer::serializeResponse(Signu
     std::vector<unsigned char> pack;
     json j;
     j["status"] = response.status;
-    pack[0] = (int)CODES::SIGN_UP;
-    const std::string jsonMsg = std::bitset<FOUR_BYTES>(sizeof(j)).to_string();
-    pushValsToVector(pack, jsonMsg, j.dump());
+    pack.push_back((int)CODES::SIGN_UP);
+    const std::string jsonMsgSize = std::bitset<FOUR_BYTES>(sizeof(j)).to_string();
+    const std::string jsonMsg = std::bitset<sizeof(j)>(j.dump()).to_string();
+    pushValsToVector(pack, jsonMsgSize, jsonMsg);
     return pack;
 }
