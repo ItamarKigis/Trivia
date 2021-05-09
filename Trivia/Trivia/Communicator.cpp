@@ -91,8 +91,8 @@ void Communicator::startHandleRequests()
 
 void Communicator::handleNewClient(SOCKET clientSocket)
 {
-	//try
-	//{
+	try
+	{
 	char m[MAX_LEN] = { 0 };
 	recv(clientSocket, m, sizeof(m), 0);
 	std::vector<unsigned char> buffer(std::begin(m), std::end(m));
@@ -112,11 +112,11 @@ void Communicator::handleNewClient(SOCKET clientSocket)
 		temp++;
 	}
 	send(clientSocket, m, MAX_LEN, 0);
-	//}
-	/*catch (...)
+	}
+	catch (...)
 	{
 		closesocket(clientSocket);
-	}*/
+	}
 }
 
 void Communicator::checkExit()
