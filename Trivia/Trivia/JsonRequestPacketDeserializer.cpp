@@ -42,15 +42,7 @@ int JsonRequestPacketDeserializer::GetDataLenght(std::vector<unsigned char> Buff
 
 json JsonRequestPacketDeserializer::GetJson(std::vector<unsigned char> Buffer, int dataLengh)
 {
-    std::vector<std::uint8_t> Bdata;
-    auto ptr = Buffer.begin() + START_DATA;
-    int temp = dataLengh;
-    while (temp > 0)
-    {
-        Bdata.push_back(std::uint8_t(*ptr));
-        ++ptr;
-        temp--;
-    }
+    std::vector<unsigned char> Bdata(std::begin(Buffer) + START_DATA, std::end(Buffer));
     return json::parse(Bdata);
 }
 

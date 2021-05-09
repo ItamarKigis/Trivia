@@ -93,25 +93,26 @@ void Communicator::handleNewClient(SOCKET clientSocket)
 {
 	try
 	{
-	char m[MAX_LEN] = { 0 };
-	recv(clientSocket, m, sizeof(m), 0);
-	std::vector<unsigned char> buffer(std::begin(m), std::end(m));
+	char clientMsg[MAX_LEN] = { 0 };
+	recv(clientSocket, clientMsg, sizeof(clientMsg), 0);
+	//this vector is only for transforming the message from an array to a vector for handleRequest
+	std::vector<unsigned char> buffer(std::begin(clientMsg), std::end(clientMsg));
 	RequestInfo request = { int(buffer[0]), time(NULL), buffer };
 	RequestResult result = m_clients[clientSocket]->handleRequest(request);
 	m_clients[clientSocket] = result.newHandler;
 	for (int i = 0; i < MAX_LEN; i++)
 	{
-		m[i] = 0;
+		clientMsg[i] = 0;
 	}
 	int temp = 0;
 	std::vector<unsigned char>::iterator it = result.response.begin();
 	while (it != result.response.end())
 	{
-		m[temp] = *it;
+		clientMsg[temp] = *it;
 		++it;
 		temp++;
 	}
-	send(clientSocket, m, MAX_LEN, 0);
+	send(clientSocket, clientMsg, MAX_LEN, 0);
 	}
 	catch (...)
 	{

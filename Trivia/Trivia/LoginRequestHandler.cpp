@@ -7,8 +7,8 @@ bool LoginRequestHandler::isRequestRelevant(RequestInfo request)
 
 RequestResult LoginRequestHandler::handleRequest(RequestInfo request)
 {
-    std::unique_ptr<JsonResponsePacketSerializer> serializer(new JsonResponsePacketSerializer());
-    std::unique_ptr<JsonRequestPacketDeserializer> deserializer(new JsonRequestPacketDeserializer());
+    std::unique_ptr<JsonResponsePacketSerializer> serializer = std::make_unique<JsonResponsePacketSerializer>();
+    std::unique_ptr<JsonRequestPacketDeserializer> deserializer = std::make_unique<JsonRequestPacketDeserializer>();
     RequestResult result;
     std::vector<unsigned char> response;
     if (isRequestRelevant(request)) //LOGIN
