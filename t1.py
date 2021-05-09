@@ -27,7 +27,6 @@ def sign_up(sock):
     size_of_json = len(json_string).to_bytes(4,'big')
 
     msg = SIGN_UP.to_bytes(1,'big') + size_of_json + json_string
-    print(msg)
     sock.sendall(msg)
 
 def main():

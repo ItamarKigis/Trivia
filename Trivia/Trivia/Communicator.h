@@ -24,8 +24,6 @@ private:
 
 	//Function Gets commands from the user in the console application, if the command is "EXIT" - change the exit varaible so the program will end 
 	void checkExit();
-
-	std::vector<unsigned char>makeCharVector(char m[MAX_LEN]);
 	SOCKET _serverSocket;
 	std::map<SOCKET, IRequestHandler*> m_clients;
 	bool exit;

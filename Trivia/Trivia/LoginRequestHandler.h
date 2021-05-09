@@ -1,6 +1,6 @@
 #pragma once
 #include "IRequestHandler.h"
-#define LOGIN_CODE 200
+#include <memory>
 class LoginRequestHandler : public IRequestHandler
 {
 public:

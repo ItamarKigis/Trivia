@@ -2,13 +2,13 @@
 
 bool LoginRequestHandler::isRequestRelevant(RequestInfo request)
 {
-    return request.RequestId == LOGIN_CODE;
+    return request.RequestId == int(CODES::LOGIN);
 }
 
 RequestResult LoginRequestHandler::handleRequest(RequestInfo request)
 {
-    JsonResponsePacketSerializer* serializer = new JsonResponsePacketSerializer();
-    JsonRequestPacketDeserializer* deserializer = new JsonRequestPacketDeserializer();
+    std::unique_ptr<JsonResponsePacketSerializer> serializer(new JsonResponsePacketSerializer());
+    std::unique_ptr<JsonRequestPacketDeserializer> deserializer(new JsonRequestPacketDeserializer());
     RequestResult result;
     std::vector<unsigned char> response;
     if (isRequestRelevant(request)) //LOGIN
@@ -16,7 +16,7 @@ RequestResult LoginRequestHandler::handleRequest(RequestInfo request)
         //deserialize the request
         LoginRequest loginStruct = deserializer->deserializeLoginRequest(request.buffer);
         //build response
-        LoginResponse login = { LOGIN_CODE };
+        LoginResponse login = { int(CODES::LOGIN) };
         response = serializer->serializeResponse(login);
     }
     else if (request.RequestId == int(CODES::SIGN_UP))//SIGN UP

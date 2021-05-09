@@ -3,32 +3,32 @@
 LoginRequest JsonRequestPacketDeserializer::deserializeLoginRequest(std::vector<unsigned char> Buffer)
 {
     //getting the code
-    int code = int(*(Buffer.begin()));
+    int code = int(Buffer[0]);
     //getting the message lengh
     int dataLengh = GetDataLenght(Buffer);
     //put the data into json format
-    json j = GetJson(Buffer, dataLengh);
+    json json_data = GetJson(Buffer, dataLengh);
     //creating new struct with the json data
     LoginRequest newLogin;
-    newLogin.username = j["username"];
-    newLogin.password = j["password"];
+    newLogin.username = json_data["username"];
+    newLogin.password = json_data["password"];
     return newLogin;
 }
 
 SignupRequest JsonRequestPacketDeserializer::deserializeSignupRequest(std::vector<unsigned char> Buffer)
 {
     //getting the code
-    int code = int(*(Buffer.begin()));
+    int code = int(Buffer[0]);
     //getting the message lengh
     int dataLengh = GetDataLenght(Buffer);
 
     //put the data into json format
-    json j = GetJson(Buffer, dataLengh);
+    json json_data = GetJson(Buffer, dataLengh);
     //creating new struct with the json data
     SignupRequest signUp;
-    signUp.username = j["username"];
-    signUp.password = j["password"];
-    signUp.email = j["email"];
+    signUp.username = json_data["username"];
+    signUp.password = json_data["password"];
+    signUp.email = json_data["email"];
     return signUp;
 }
 
@@ -43,7 +43,7 @@ int JsonRequestPacketDeserializer::GetDataLenght(std::vector<unsigned char> Buff
 json JsonRequestPacketDeserializer::GetJson(std::vector<unsigned char> Buffer, int dataLengh)
 {
     std::vector<std::uint8_t> Bdata;
-    std::vector<unsigned char>::iterator ptr = Buffer.begin() + START_DATA;
+    auto ptr = Buffer.begin() + START_DATA;
     int temp = dataLengh;
     while (temp > 0)
     {
@@ -53,3 +53,4 @@ json JsonRequestPacketDeserializer::GetJson(std::vector<unsigned char> Buffer, i
     }
     return json::parse(Bdata);
 }
+
