@@ -12,4 +12,5 @@ bool SqliteDatabase::doesPasswordMatch(std::string, std::string)
 
 void SqliteDatabase::addNewUser(std::string, std::string, std::string)
 {
+
 }
