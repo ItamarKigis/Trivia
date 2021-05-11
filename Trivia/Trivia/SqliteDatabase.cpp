@@ -14,6 +14,10 @@ SqliteDatabase::~SqliteDatabase()
 
 bool SqliteDatabase::doesUserExists(std::string name)
 {
+    std::string sqlStatment = "SELECT * FROM USERS WHERE NAME = '" + name + "';";
+    bool exists = false;
+    char* errMsg = nullptr;
+    sqlite3_exec(_db, sqlStatment.c_str(), SqliteDatabase::getPasswordCallback, &exists, &errMsg);
     return false;
 }
 
@@ -37,6 +41,13 @@ int SqliteDatabase::getPasswordCallback(void* data, int argc, char** argv, char*
 {
     std::string* pass = (std::string*)data;
     *pass += argv[0];
+    return 0;
+}
+
+int SqliteDatabase::userExistsCallback(void* data, int argc, char** argv, char** azColName)
+{
+    bool* exists = (bool*)data;
+    argc < 0 ? *exists = false : *exists = true;
     return 0;
 }
 
