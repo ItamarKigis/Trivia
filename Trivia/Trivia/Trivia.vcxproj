@@ -142,7 +142,6 @@
     <ClCompile Include="..\..\..\db_labs\database\database\sqlite3.c" />
     <ClCompile Include="Communicator.cpp" />
     <ClCompile Include="Helper.cpp" />
-    <ClCompile Include="IDataBase.cpp" />
     <ClCompile Include="JsonRequestPacketDeserializer.cpp" />
     <ClCompile Include="LoginRequestHandler.cpp" />
     <ClCompile Include="Serializer.cpp" />
