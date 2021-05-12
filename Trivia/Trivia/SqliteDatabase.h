@@ -13,9 +13,9 @@ class SqliteDatabase : public IDataBase
 public:
 	SqliteDatabase(const std::string dbName);
 	~SqliteDatabase() override;
-	virtual bool doesUserExists(const std::string) const override;
-	virtual bool doesPasswordMatch(const std::string, const std::string) const override;
-	virtual void addNewUser( const std::string,const std::string,const std::string) override;
+	virtual bool doesUserExists(const std::string name) const override;
+	virtual bool doesPasswordMatch(const std::string name, const std::string pass) const override;
+	virtual void addNewUser(const std::string name, const std::string pass, const std::string email) override;
 	
 };
 
