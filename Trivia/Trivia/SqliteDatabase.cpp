@@ -29,7 +29,7 @@ bool SqliteDatabase::doesPasswordMatch(const std::string name, const std::string
     return pass == passFromDB;
 }
 
-void SqliteDatabase::addNewUser(const std::string name, const std::string pass, const std::string email) const
+void SqliteDatabase::addNewUser(const std::string name, const std::string pass, const std::string email) 
 {
     std::string sqlStatment = "INSERT INTO USERS (NAME,PASSWORD,EMAIL) VALUES ('" + name + "','" + pass + "','" + email + "');";
     char* errMsg = nullptr;
