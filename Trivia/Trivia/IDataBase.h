@@ -5,8 +5,8 @@ class IDataBase
 {
 public:
 	IDataBase();
-	~IDataBase();
-	virtual bool doesUserExists(std::string) = 0;
-	virtual bool doesPasswordMatch(std::string, std::string) = 0;
-	virtual void addNewUser(std::string, std::string, std::string) = 0;
+	virtual ~IDataBase();
+	virtual bool doesUserExists(const std::string) const = 0;
+	virtual bool doesPasswordMatch(const std::string,const  std::string) const = 0;
+	virtual void addNewUser(const std::string, const std::string,const std::string) const = 0;
 };
