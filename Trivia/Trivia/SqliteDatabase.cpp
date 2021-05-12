@@ -1,5 +1,4 @@
 #include "SqliteDatabase.h"
-#include "sqlite3.h"
 #include <iostream>
 
 SqliteDatabase::SqliteDatabase(const std::string dbName) : _dbName(dbName), IDataBase()
