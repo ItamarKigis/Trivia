@@ -2,9 +2,8 @@
  #include "json.hpp"
 
  using json = nlohmann::json;
- #define FIRST 1s
+ #define FIRST 1
  #define BYTE 8
- #define BINARY 2
 
  std::array<unsigned char, 4> JsonResponsePacketSerializer::intToBytes(int paramInt)
  {
@@ -26,7 +25,7 @@
      std::vector<unsigned char> pack;
      json j;
      j["message"] = response.message;
-     pack.push_back((int)CODES::ERROR_CODE);
+     pack.push_back((unsigned char)CODES::ERROR_CODE);
      valsToVector(pack, j.size(), j.dump());
      return pack;
  }
@@ -36,7 +35,7 @@
      std::vector<unsigned char> pack;
      json j;
      j["status"] = response.status;
-     pack.push_back((int)CODES::LOGIN);
+     pack.push_back((unsigned char)CODES::LOGIN);
      valsToVector(pack, j.size(), j.dump());
      return pack;
  }
@@ -46,7 +45,7 @@
      std::vector<unsigned char> pack;
      json j;
      j["status"] = response.status;
-     pack.push_back((int)CODES::SIGN_UP);
+     pack.push_back((unsigned char)CODES::SIGN_UP);
      valsToVector(pack, j.size(), j.dump());
      return pack;
  }
