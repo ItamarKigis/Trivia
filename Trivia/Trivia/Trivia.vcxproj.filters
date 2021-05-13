@@ -11,6 +11,8 @@
     <ClCompile Include="WSAInitializer.cpp" />
     <ClCompile Include="LoggedUser.cpp" />
     <ClCompile Include="RequestHandlerFactory.cpp" />
+    <ClCompile Include="SqliteDatabase.cpp" />
+    <ClCompile Include="sqlite3 .c" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Communicator.h" />
@@ -28,5 +30,11 @@
     <ClInclude Include="LoginManager.h" />
     <ClInclude Include="LoggedUser.h" />
     <ClInclude Include="MenuRequestHandler.h" />
+    <ClInclude Include="IDataBase.h" />
+    <ClInclude Include="SqliteDatabase.h" />
+    <ClInclude Include="sqlite3 .h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="triviaDB.sqlite" />
   </ItemGroup>
 </Project>
