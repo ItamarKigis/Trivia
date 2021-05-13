@@ -5,6 +5,7 @@
 #include "IRequestHandler.h"
 #include <memory>
 #include "RequestHandlerFactory.h"
+#include "MenuRequestHandler.h"
 class RequestHandlerFactory;
 class LoginManager;
 class LoginRequestHandler : public IRequestHandler

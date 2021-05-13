@@ -27,5 +27,6 @@
     <ClInclude Include="RequestHandlerFactory.h" />
     <ClInclude Include="LoginManager.h" />
     <ClInclude Include="LoggedUser.h" />
+    <ClInclude Include="MenuRequestHandler.h" />
   </ItemGroup>
 </Project>
