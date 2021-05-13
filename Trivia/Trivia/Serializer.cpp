@@ -1,5 +1,5 @@
  #include "Serializer.h"
- #include <bitset>
+ #include "json.hpp"
 
  using json = nlohmann::json;
  #define FOUR_BYTES 32
@@ -14,10 +14,10 @@
      return arrayOfByte;
  }
 
- void JsonResponsePacketSerializer::valsToVector(std::vector<unsigned char>& pack, json& j)
+ void JsonResponsePacketSerializer::valsToVector(std::vector<unsigned char>& pack, const int size, const int data)
  {
-     std::array<unsigned char, 4> sizeOfJson = intToBytes(sizeof(j));
-     std::array<unsigned char, 4> jsonMsg = intToBytes(stoi(j.dump()));
+     std::array<unsigned char, 4> sizeOfJson = intToBytes(size);
+     std::array<unsigned char, 4> jsonMsg = intToBytes(data);
      pack.insert(pack.begin(), sizeOfJson.begin(), sizeOfJson.end());
      pack.insert(pack.begin(), jsonMsg.begin(), jsonMsg.end());
  }
@@ -28,7 +28,7 @@
      json j;
      j["message"] = response.message;
      pack.push_back((int)CODES::ERROR_CODE);
-     valsToVector(pack, j);
+     valsToVector(pack, sizeof(j), stoi(j.dump()));
      return pack;
  }
 
@@ -38,7 +38,7 @@
      json j;
      j["status"] = response.status;
      pack.push_back((int)CODES::LOGIN);
-     valsToVector(pack, j);
+     valsToVector(pack, sizeof(j), stoi(j.dump()));
      return pack;
  }
 
@@ -48,6 +48,6 @@
      json j;
      j["status"] = response.status;
      pack.push_back((int)CODES::SIGN_UP);
-     valsToVector(pack, j);
+     valsToVector(pack, sizeof(j), stoi(j.dump()));
      return pack;
  }
