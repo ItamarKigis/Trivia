@@ -13,7 +13,7 @@
      return arrayOfByte;
  }
 
- void JsonResponsePacketSerializer::valsToVector(std::vector<unsigned char>& pack, const int size, const std::string jsonData)
+ void JsonResponsePacketSerializer::addToPack(std::vector<unsigned char>& pack, const int size, const std::string jsonData)
  {
      std::array<unsigned char, 4> sizeOfJson = intToBytes(size);
      pack.insert(pack.begin() + 1, sizeOfJson.begin(), sizeOfJson.end()); //start at sec place
@@ -26,7 +26,7 @@
      json j;
      j["message"] = response.message;
      pack.push_back((unsigned char)CODES::ERROR_CODE);
-     valsToVector(pack, j.size(), j.dump());
+     addToPack(pack, j.size(), j.dump());
      return pack;
  }
 
@@ -36,7 +36,7 @@
      json j;
      j["status"] = response.status;
      pack.push_back((unsigned char)CODES::LOGIN);
-     valsToVector(pack, j.size(), j.dump());
+     addToPack(pack, j.size(), j.dump());
      return pack;
  }
 
@@ -46,6 +46,6 @@
      json j;
      j["status"] = response.status;
      pack.push_back((unsigned char)CODES::SIGN_UP);
-     valsToVector(pack, j.size(), j.dump());
+     addToPack(pack, j.size(), j.dump());
      return pack;
  }
