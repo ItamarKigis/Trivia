@@ -2,7 +2,6 @@
  #include "json.hpp"
 
  using json = nlohmann::json;
- #define FIRST 1
  #define BYTE 8
 
  std::array<unsigned char, 4> JsonResponsePacketSerializer::intToBytes(int paramInt)
