@@ -6,5 +6,5 @@ public:
 	void run();
 private:
 	Communicator m_communicator;
-
+	RequestHandlerFactory m_handlerFactory;
 };
