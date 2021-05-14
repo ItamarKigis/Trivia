@@ -11,6 +11,7 @@
     <ClCompile Include="WSAInitializer.cpp" />
     <ClCompile Include="SqliteDatabase.cpp" />
     <ClCompile Include="..\..\..\db_labs\database\database\sqlite3.c" />
+    <ClCompile Include="LoginManager.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Communicator.h" />
@@ -27,6 +28,7 @@
     <ClInclude Include="IDataBase.h" />
     <ClInclude Include="SqliteDatabase.h" />
     <ClInclude Include="..\..\..\db_labs\database\database\sqlite3.h" />
+    <ClInclude Include="LoginManager.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="triviaDB.sqlite" />
