@@ -23,9 +23,8 @@ RequestResult LoginRequestHandler::handleRequest(RequestInfo request)
     {
         std::vector<unsigned char> response;
         RequestResult result;
-        std::unique_ptr<JsonResponsePacketSerializer> serializer = std::make_unique<JsonResponsePacketSerializer>();
         ErrorResponse error = { "message" };
-        response = serializer->serializeResponse(error);
+        response = JsonResponsePacketSerializer::serializeResponse(error);
         result.newHandler = nullptr;
         result.response = response;
         return result;
@@ -35,13 +34,11 @@ RequestResult LoginRequestHandler::handleRequest(RequestInfo request)
 RequestResult LoginRequestHandler::login(RequestInfo request)
 {
     RequestResult result;
-    std::unique_ptr<JsonResponsePacketSerializer> serializer = std::make_unique<JsonResponsePacketSerializer>();
-    std::unique_ptr<JsonRequestPacketDeserializer> deserializer = std::make_unique<JsonRequestPacketDeserializer>();
     //deserialize the request
-    LoginRequest loginStruct = deserializer->deserializeLoginRequest(request.buffer);
+    LoginRequest loginStruct = JsonRequestPacketDeserializer::deserializeLoginRequest(request.buffer);
     //build response
     LoginResponse login = { int(CODES::LOGIN) };
-    std::vector<unsigned char> response = serializer->serializeResponse(login);
+    std::vector<unsigned char> response = JsonResponsePacketSerializer::serializeResponse(login);
     
     result.response = response;
     result.newHandler = nullptr;
@@ -51,13 +48,11 @@ RequestResult LoginRequestHandler::login(RequestInfo request)
 RequestResult LoginRequestHandler::signup(RequestInfo request)
 {
     RequestResult result;
-    std::unique_ptr<JsonResponsePacketSerializer> serializer = std::make_unique<JsonResponsePacketSerializer>();
-    std::unique_ptr<JsonRequestPacketDeserializer> deserializer = std::make_unique<JsonRequestPacketDeserializer>();
     //deserialize the request
-    SignupRequest signUpStruct = deserializer->deserializeSignupRequest(request.buffer);
+    SignupRequest signUpStruct = JsonRequestPacketDeserializer::deserializeSignupRequest(request.buffer);
     //build response
     SignupResponse signUp = { int(CODES::SIGN_UP) };
-    std::vector<unsigned char> response = serializer->serializeResponse(signUp);
+    std::vector<unsigned char> response = JsonResponsePacketSerializer::serializeResponse(signUp);
     
     result.response = response;
     result.newHandler = nullptr;

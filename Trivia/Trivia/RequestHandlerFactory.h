@@ -1,6 +1,4 @@
 #pragma once
-#ifndef REQUESTHANDLERFACTORY_H
-#define REQUESTHANDLERFACTORY_H
 
 #include "LoginRequestHandler.h"
 #include "LoginManager.h"
@@ -14,4 +12,3 @@ public:
 private:
 	LoginManager m_loginManager;
 };
-#endif

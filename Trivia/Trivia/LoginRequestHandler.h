@@ -1,7 +1,4 @@
 #pragma once
-#ifndef LOGINREQUESTHANDLER_H
-#define LOGINREQUESTHANDLER_H
-
 #include "IRequestHandler.h"
 #include <memory>
 #include "RequestHandlerFactory.h"
@@ -21,4 +18,3 @@ private:
 	RequestResult login(RequestInfo request);
 	RequestResult signup(RequestInfo request);
 };
-#endif
