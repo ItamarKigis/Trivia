@@ -3,14 +3,11 @@
 #include <iostream>
 #include <string>
 
-Communicator::Communicator()
+Communicator::Communicator() : exit(false), _serverSocket(socket(AF_INET, SOCK_STREAM, IPPROTO_TCP)),
+	m_handlerFactory(*(new RequestHandlerFactory()))
 {
-
 	// this server use TCP. that why SOCK_STREAM & IPPROTO_TCP
 	// if the server use UDP we will use: SOCK_DGRAM & IPPROTO_UDP
-	exit = false;
-	_serverSocket = socket(AF_INET, SOCK_STREAM, IPPROTO_TCP);
-
 	if (_serverSocket == INVALID_SOCKET)
 		throw std::exception(__FUNCTION__ " - socket");
 }
@@ -81,7 +78,7 @@ void Communicator::startHandleRequests()
 	{
 		std::cout << "Client accepted. Server and client can speak" << std::endl;
 
-		m_clients[client_socket] = new LoginRequestHandler();
+		m_clients[client_socket] = new LoginRequestHandler(m_handlerFactory.getLoginManager(), m_handlerFactory);
 
 		// the function that handle the conversation with the client
 		std::thread t(&Communicator::handleNewClient, this, client_socket);

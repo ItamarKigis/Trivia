@@ -143,10 +143,13 @@
     <ClCompile Include="Communicator.cpp" />
     <ClCompile Include="Helper.cpp" />
     <ClCompile Include="JsonRequestPacketDeserializer.cpp" />
+    <ClCompile Include="LoggedUser.cpp" />
     <ClCompile Include="LoginRequestHandler.cpp" />
+    <ClCompile Include="RequestHandlerFactory.cpp" />
     <ClCompile Include="Serializer.cpp" />
     <ClCompile Include="Server.cpp" />
     <ClCompile Include="Source.cpp" />
+    <ClCompile Include="sqlite3 .c" />
     <ClCompile Include="SqliteDatabase.cpp" />
     <ClCompile Include="WSAInitializer.cpp" />
   </ItemGroup>
@@ -158,11 +161,16 @@
     <ClInclude Include="IRequestHandler.h" />
     <ClInclude Include="json.hpp" />
     <ClInclude Include="JsonRequestPacketDeserializer.h" />
+    <ClInclude Include="LoggedUser.h" />
+    <ClInclude Include="LoginManager.h" />
     <ClInclude Include="LoginRequestHandler.h" />
+    <ClInclude Include="MenuRequestHandler.h" />
     <ClInclude Include="RecvMessage.h" />
+    <ClInclude Include="RequestHandlerFactory.h" />
     <ClInclude Include="Response.h" />
     <ClInclude Include="Serializer.h" />
     <ClInclude Include="Server.h" />
+    <ClInclude Include="sqlite3 .h" />
     <ClInclude Include="SqliteDatabase.h" />
     <ClInclude Include="WSAInitializer.h" />
   </ItemGroup>
