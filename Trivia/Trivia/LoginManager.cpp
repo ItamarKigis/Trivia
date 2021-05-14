@@ -15,7 +15,9 @@ LoginManager::~LoginManager()
 
 void LoginManager::signUp(const std::string name, const std::string pass, const std::string email)
 {
-	m_database->addNewUser(name, pass, email);
+	bool userExists = m_database->doesUserExists(name);
+	if (!userExists)
+		m_database->addNewUser(name, pass, email);
 }
 
 void LoginManager::login(const std::string name, const std::string pass)
@@ -28,5 +30,12 @@ void LoginManager::login(const std::string name, const std::string pass)
 
 void LoginManager::logOut(const std::string name)
 {
-
+	for (auto it = m_loggedUsers.begin(); it != m_loggedUsers.end(); it++)
+	{
+		if (it->getUsername() == name)
+		{
+			m_loggedUsers.erase(it);
+			break;
+		}
+	}
 }
