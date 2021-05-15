@@ -43,7 +43,7 @@ RequestResult LoginRequestHandler::login(RequestInfo request)
         code = int(CODES::LOGIN);
         result.newHandler = new MenuRequestHandler();
     }
-    catch(...)
+    catch(const std::exception&)
     {
         code = int(CODES::ERROR_CODE);
         result.newHandler = nullptr;
@@ -67,7 +67,7 @@ RequestResult LoginRequestHandler::signup(RequestInfo request)
         result.newHandler = new MenuRequestHandler();
         code = int(CODES::SIGN_UP);
     }
-    catch (...)
+    catch (const std::exception&)
     {
         result.newHandler = nullptr;
         code = int(CODES::ERROR_CODE);

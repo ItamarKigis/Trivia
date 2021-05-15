@@ -149,7 +149,6 @@
     <ClCompile Include="Serializer.cpp" />
     <ClCompile Include="Server.cpp" />
     <ClCompile Include="Source.cpp" />
-    <ClCompile Include="sqlite3 .c" />
     <ClCompile Include="SqliteDatabase.cpp" />
     <ClCompile Include="WSAInitializer.cpp" />
   </ItemGroup>
@@ -169,7 +168,6 @@
     <ClInclude Include="Response.h" />
     <ClInclude Include="Serializer.h" />
     <ClInclude Include="Server.h" />
-    <ClInclude Include="sqlite3 .h" />
     <ClInclude Include="SqliteDatabase.h" />
     <ClInclude Include="WSAInitializer.h" />
   </ItemGroup>

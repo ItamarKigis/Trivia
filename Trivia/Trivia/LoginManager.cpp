@@ -20,7 +20,7 @@ void LoginManager::signUp(const std::string name, const std::string pass, const 
 		m_database->addNewUser(name, pass, email);
 	else
 	{
-		throw;
+		throw std::exception();
 	}
 }
 
@@ -32,7 +32,7 @@ void LoginManager::login(const std::string name, const std::string pass)
 		m_loggedUsers.push_back(LoggedUser(name));
 	else
 	{
-		throw;
+		throw std::exception();
 	}
 }
 
