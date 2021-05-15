@@ -139,7 +139,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\..\db_labs\database\database\sqlite3.c" />
     <ClCompile Include="Communicator.cpp" />
     <ClCompile Include="Helper.cpp" />
     <ClCompile Include="JsonRequestPacketDeserializer.cpp" />
@@ -149,6 +148,7 @@
     <ClCompile Include="Serializer.cpp" />
     <ClCompile Include="Server.cpp" />
     <ClCompile Include="Source.cpp" />
+    <ClCompile Include="sqlite3 .c" />
     <ClCompile Include="SqliteDatabase.cpp" />
     <ClCompile Include="WSAInitializer.cpp" />
   </ItemGroup>

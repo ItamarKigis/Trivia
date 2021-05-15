@@ -11,8 +11,8 @@
     <ClCompile Include="WSAInitializer.cpp" />
     <ClCompile Include="RequestHandlerFactory.cpp" />
     <ClCompile Include="SqliteDatabase.cpp" />
-    <ClCompile Include="..\..\..\db_labs\database\database\sqlite3.c" />
     <ClCompile Include="LoginManager.cpp" />
+    <ClCompile Include="sqlite3 .c" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Communicator.h" />
