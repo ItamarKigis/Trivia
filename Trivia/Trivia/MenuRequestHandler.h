@@ -1,5 +1,7 @@
 #include "IRequestHandler.h"
-class MenuRequestHandler : IRequestHandler
+class MenuRequestHandler : public IRequestHandler
 {
 public:
+	bool isRequestRelevant(RequestInfo request) { return true; };
+	RequestResult handleRequest(RequestInfo request) { return RequestResult(); };
 };
