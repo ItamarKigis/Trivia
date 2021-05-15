@@ -1,6 +1,6 @@
 #pragma once
 #include "IDataBase.h"
-#include "sqlite3.h"
+#include "sqlite3 .h"
 
 class SqliteDatabase : public IDataBase
 {

@@ -1,5 +1,6 @@
 #include "LoginRequestHandler.h"
 #include "JsonRequestPacketDeserializer.h"
+#include "RequestHandlerFactory.h"
 #include <WinSock2.h>
 #include <Windows.h>
 #include <map>
@@ -27,4 +28,6 @@ private:
 	SOCKET _serverSocket;
 	std::map<SOCKET, IRequestHandler*> m_clients;
 	bool exit;
+
+	RequestHandlerFactory& m_handlerFactory;
 };
