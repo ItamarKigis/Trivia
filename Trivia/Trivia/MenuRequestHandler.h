@@ -2,6 +2,6 @@
 class MenuRequestHandler : public IRequestHandler
 {
 public:
-	bool isRequestRelevant(RequestInfo request) { return true; };
-	RequestResult handleRequest(RequestInfo request) { return RequestResult(); };
+	bool isRequestRelevant(RequestInfo request) override { return true; };
+	RequestResult handleRequest(RequestInfo request) override { return RequestResult(); };
 };
