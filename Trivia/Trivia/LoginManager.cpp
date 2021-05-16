@@ -18,6 +18,10 @@ void LoginManager::signUp(const std::string name, const std::string pass, const 
 	bool userExists = m_database->doesUserExists(name);
 	if (!userExists)
 		m_database->addNewUser(name, pass, email);
+	else
+	{
+		throw std::exception();
+	}
 }
 
 void LoginManager::login(const std::string name, const std::string pass)
@@ -26,6 +30,10 @@ void LoginManager::login(const std::string name, const std::string pass)
 	bool correctPass = m_database->doesPasswordMatch(name, pass);
 	if (correctPass && userExists)
 		m_loggedUsers.push_back(LoggedUser(name));
+	else
+	{
+		throw std::exception();
+	}
 }
 
 void LoginManager::logOut(const std::string name)

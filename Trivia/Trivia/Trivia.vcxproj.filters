@@ -9,11 +9,10 @@
     <ClCompile Include="Server.cpp" />
     <ClCompile Include="Source.cpp" />
     <ClCompile Include="WSAInitializer.cpp" />
-    <ClCompile Include="LoggedUser.cpp" />
     <ClCompile Include="RequestHandlerFactory.cpp" />
     <ClCompile Include="SqliteDatabase.cpp" />
-    <ClCompile Include="..\..\..\db_labs\database\database\sqlite3.c" />
     <ClCompile Include="LoginManager.cpp" />
+    <ClCompile Include="sqlite3 .c" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Communicator.h" />
@@ -29,7 +28,6 @@
     <ClInclude Include="WSAInitializer.h" />
     <ClInclude Include="RequestHandlerFactory.h" />
     <ClInclude Include="LoginManager.h" />
-    <ClInclude Include="LoggedUser.h" />
     <ClInclude Include="MenuRequestHandler.h" />
     <ClInclude Include="IDataBase.h" />
     <ClInclude Include="SqliteDatabase.h" />

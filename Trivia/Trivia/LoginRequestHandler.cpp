@@ -34,27 +34,47 @@ RequestResult LoginRequestHandler::handleRequest(RequestInfo request)
 RequestResult LoginRequestHandler::login(RequestInfo request)
 {
     RequestResult result;
+    int code = 0;
     //deserialize the request
     LoginRequest loginStruct = JsonRequestPacketDeserializer::deserializeLoginRequest(request.buffer);
+    try
+    {
+        m_loginManager.login(loginStruct.username, loginStruct.password);
+        code = int(CODES::LOGIN);
+        result.newHandler = new MenuRequestHandler();
+    }
+    catch(const std::exception&)
+    {
+        code = int(CODES::ERROR_CODE);
+        result.newHandler = nullptr;
+    }
     //build response
-    LoginResponse login = { int(CODES::LOGIN) };
-    std::vector<unsigned char> response = JsonResponsePacketSerializer::serializeResponse(login);
-    
+    LoginResponse login = { code };
+    std::vector<unsigned char> response = JsonResponsePacketSerializer::serializeResponse(login);    
     result.response = response;
-    result.newHandler = nullptr;
     return result;
 }
 
 RequestResult LoginRequestHandler::signup(RequestInfo request)
 {
     RequestResult result;
+    int code = 0;
     //deserialize the request
     SignupRequest signUpStruct = JsonRequestPacketDeserializer::deserializeSignupRequest(request.buffer);
+    try
+    {
+        m_loginManager.signUp(signUpStruct.username, signUpStruct.password, signUpStruct.email);
+        result.newHandler = new MenuRequestHandler();
+        code = int(CODES::SIGN_UP);
+    }
+    catch (const std::exception&)
+    {
+        result.newHandler = nullptr;
+        code = int(CODES::ERROR_CODE);
+    }
     //build response
-    SignupResponse signUp = { int(CODES::SIGN_UP) };
+    SignupResponse signUp = { code };
     std::vector<unsigned char> response = JsonResponsePacketSerializer::serializeResponse(signUp);
-    
     result.response = response;
-    result.newHandler = nullptr;
     return result;
 }
