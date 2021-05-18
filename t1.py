@@ -17,10 +17,13 @@ def login(sock):
     msg = LOGIN_CODE.to_bytes(1,'big') + size_of_json + json_string
     sock.sendall(msg)
 
+    response = str(sock.recv(MAX_LEN))
 
+    temp = response.split("{")[1]
+    print(temp.split("}")[0])
 
 def sign_up(sock):
-    user_info = {'username': "user1", 'password': "1234", 'email': "user1@gmail.com"}
+    user_info = {'username': "user2", 'password': "12345", 'email': "user1@gmail.com"}
     json_string = json.dumps(user_info)
     json_string = json_string.encode('ASCII')
 
@@ -29,21 +32,25 @@ def sign_up(sock):
     msg = SIGN_UP.to_bytes(1,'big') + size_of_json + json_string
     sock.sendall(msg)
 
+    response = str(sock.recv(MAX_LEN))
+
+    temp = response.split("{")[1]
+    print(temp.split("}")[0])
+
 def main():
-    try:
-        sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-        sock.connect((IP, SOCKET))
-        choice = input("Do you want to sign up or login? 1-Sign up, 2-Login")
-        if choice == "1":
-            sign_up(sock)
-        elif choice == "2":
-            login(sock)
-    except:
-        print("coundlnt connect server")
-        sock.close()
 
-
+    sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    sock.connect((IP, SOCKET))
+    choice = input("Do you want to sign up or login? 1-Sign up, 2-Login")
+    if choice == "1":
+          sign_up(sock)
+    elif choice == "2":
+        login(sock)
+    #print("coundlnt connect server")
     sock.close()
+
+
+    #sock.close()
 
 
 if __name__ == '__main__':

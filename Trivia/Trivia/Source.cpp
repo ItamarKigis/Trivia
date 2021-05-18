@@ -4,14 +4,18 @@
 #include "Server.h"
 #include <iostream>
 #include <exception>
-#include "Helper.h"
+#include "SqliteDatabase.h"
 #include <bitset>
 int main()
 {
 	try
 	{
 		WSAInitializer wsaInit;
-		Server myServer;
+
+		SqliteDatabase* dataBase = new SqliteDatabase("triviaDB.sqlite");
+		LoginManager* manager = new LoginManager(dataBase);
+		RequestHandlerFactory* factoryHandler = new RequestHandlerFactory(*manager, *dataBase);
+		Server myServer(*factoryHandler, *dataBase);
 
 		myServer.run();
 	}

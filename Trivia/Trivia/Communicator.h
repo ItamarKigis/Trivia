@@ -11,7 +11,7 @@
 class Communicator
 {
 public:
-	Communicator();
+	Communicator(RequestHandlerFactory& handler);
 	~Communicator();
 	void startHandleRequests();
 	void startCommunicator();	//function that starts bindAndListen, vecause it is a private function
