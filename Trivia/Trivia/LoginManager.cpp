@@ -28,7 +28,7 @@ void LoginManager::login(const std::string name, const std::string pass)
 {
 	bool userExists = m_database->doesUserExists(name);
 	bool correctPass = m_database->doesPasswordMatch(name, pass);
-	if (correctPass && userExists)
+	if (correctPass && userExists && !IsUserConnected(name))
 		m_loggedUsers.push_back(LoggedUser(name));
 	else
 	{
@@ -46,4 +46,18 @@ void LoginManager::logOut(const std::string name)
 			break;
 		}
 	}
+}
+
+bool LoginManager::IsUserConnected(const std::string name)
+{
+	std::vector<LoggedUser>::iterator it = m_loggedUsers.begin();
+	while (it != m_loggedUsers.end())
+	{
+		if (name == it->getUsername())
+		{
+			return true;
+		}
+		++it;
+	}
+	return false;
 }
