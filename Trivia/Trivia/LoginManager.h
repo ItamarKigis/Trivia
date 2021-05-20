@@ -13,6 +13,6 @@ public:
 	void signUp(const std::string name, const std::string pass, const std::string email);
 	void login(const std::string name, const std::string pass);
 	void logOut(const std::string name);
-	const bool IsUserConnected(const std::string name);
+	bool IsUserConnected(const std::string name) const;
 };
 
