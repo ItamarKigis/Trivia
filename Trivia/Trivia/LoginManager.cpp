@@ -1,5 +1,6 @@
 #include "LoginManager.h"
 #include <iostream>
+#include <algorithm>
 
 LoginManager::LoginManager(IDataBase* DB)
 {
@@ -28,7 +29,7 @@ void LoginManager::login(const std::string name, const std::string pass)
 {
 	bool userExists = m_database->doesUserExists(name);
 	bool correctPass = m_database->doesPasswordMatch(name, pass);
-	if (correctPass && userExists)
+	if (correctPass && userExists && !IsUserConnected(name))
 		m_loggedUsers.push_back(LoggedUser(name));
 	else
 	{
@@ -46,4 +47,10 @@ void LoginManager::logOut(const std::string name)
 			break;
 		}
 	}
+}
+
+bool LoginManager::IsUserConnected(const std::string name) const
+{
+	return std::any_of(m_loggedUsers.begin(), m_loggedUsers.end(),
+		[=](const LoggedUser& e) {return e.getUsername() == name; });
 }
