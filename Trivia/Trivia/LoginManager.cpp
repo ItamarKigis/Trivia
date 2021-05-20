@@ -49,16 +49,8 @@ void LoginManager::logOut(const std::string name)
 	}
 }
 
-bool LoginManager::IsUserConnected(const std::string name)
+const bool LoginManager::IsUserConnected(const std::string name)
 {
-	std::vector<LoggedUser>::iterator it = m_loggedUsers.begin();
-	while (it != m_loggedUsers.end())
-	{
-		if (name == it->getUsername())
-		{
-			return true;
-		}
-		++it;
-	}
-	return false;
+	return std::any_of(m_loggedUsers.begin(), m_loggedUsers.end(),
+		[=](const LoggedUser& e) {return e.getUsername() == name; });
 }
