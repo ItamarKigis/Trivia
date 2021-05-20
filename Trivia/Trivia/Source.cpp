@@ -18,6 +18,10 @@ int main()
 		Server myServer(*factoryHandler, *dataBase);
 
 		myServer.run();
+
+		delete(dataBase);
+		delete(manager);
+		delete(factoryHandler);
 	}
 	catch (std::exception& e)
 	{

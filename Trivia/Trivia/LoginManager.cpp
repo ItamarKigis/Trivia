@@ -1,5 +1,6 @@
 #include "LoginManager.h"
 #include <iostream>
+#include <algorithm>
 
 LoginManager::LoginManager(IDataBase* DB)
 {

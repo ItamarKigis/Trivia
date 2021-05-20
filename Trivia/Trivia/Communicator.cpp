@@ -97,10 +97,7 @@ void Communicator::handleNewClient(SOCKET clientSocket)
 		RequestInfo request = { int(buffer[0]), time(NULL), buffer };
 		RequestResult result = m_clients[clientSocket]->handleRequest(request);
 		m_clients[clientSocket] = result.newHandler;
-		for (int i = 0; i < MAX_LEN; i++)
-		{
-			clientMsg[i] = 0;
-		}
+		std::fill(std::begin(clientMsg),std::end(clientMsg), 0);
 
 		int index = 0;
 		char ch = 'A';
