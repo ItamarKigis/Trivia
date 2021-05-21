@@ -8,4 +8,5 @@ public:
 	LoggedUser(const std::string name);
 	~LoggedUser();
 	std::string getUsername() const;
+	bool operator==(LoggedUser other);
 };
