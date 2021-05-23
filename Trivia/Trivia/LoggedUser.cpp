@@ -13,7 +13,7 @@ std::string LoggedUser::getUsername() const
 	return m_username;
 }
 
-bool LoggedUser::operator==(LoggedUser other)
+bool LoggedUser::operator==(const LoggedUser other)
 {
 	return other.m_username == m_username;
 }

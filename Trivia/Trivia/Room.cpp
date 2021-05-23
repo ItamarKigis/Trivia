@@ -12,7 +12,7 @@ void Room::addUser(LoggedUser user)
 
 void Room::removeUser(LoggedUser user)
 {
-	std::remove(m_users.begin(), m_users.end(), user);
+	m_users.erase(std::remove(m_users.begin(), m_users.end(), user), m_users.end());
 }
 
 std::vector<std::string> Room::getAllUsers() const

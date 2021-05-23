@@ -12,7 +12,14 @@ void RoomManager::deleteRoom(int ID)
 
 unsigned int RoomManager::getRoomState(int ID)
 {
-	return m_rooms[ID].getRoomState();
+	try
+	{
+		return m_rooms[ID].getRoomState();
+	}
+	catch (std::exception& e)
+	{
+		return NULL;
+	}
 }
 
 std::vector<RoomData> RoomManager::getRooms()
