@@ -16,7 +16,7 @@ class Room
 public:
 	Room(LoggedUser user, RoomData data);
 	void addUser(LoggedUser user);
-	void removeUser(LoggedUser user);
+	void removeUser(LoggedUser& user);
 	std::vector<std::string> getAllUsers() const;
 	unsigned int getRoomState() const;
 	RoomData getRoomData() const;

@@ -10,7 +10,7 @@ void Room::addUser(LoggedUser user)
 	m_users.push_back(user);
 }
 
-void Room::removeUser(LoggedUser user)
+void Room::removeUser(LoggedUser& user)
 {
 	m_users.erase(std::remove(m_users.begin(), m_users.end(), user), m_users.end());
 }
