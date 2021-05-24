@@ -5,7 +5,7 @@ def dataToDB(db,data):
     con = sqlite3.connect(db)
     cur = con.cursor()
     try:
-        createDB(con.cur)
+        createDB(con,cur)
         createTable(con,cur)
     except:
         print("table already exists")
