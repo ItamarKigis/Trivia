@@ -5,6 +5,7 @@ def dataToDB(db,data):
     con = sqlite3.connect(db)
     cur = con.cursor()
     try:
+        createDB(con,cur)
         createTable(con,cur)
     except:
         print("table already exists")
@@ -20,6 +21,12 @@ def dataToDB(db,data):
     con.commit()
     con.close()
 
+def createDB(con,cur):
+    cur.execute("""CREATE TABLE USERS (
+                NAME TEXT PRIMARY KEY NOT NULL,
+                PASSWORD TEXT NOT NULL,
+                EMAIL TEXT NOT NULL)""")
+    con.commit()
 def createTable(con,cur):
     cur.execute('''CREATE TABLE QUESTIONS (
                 ID INT INCREMENT PRIMARY KEY NOT NULL,
