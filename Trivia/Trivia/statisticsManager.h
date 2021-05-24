@@ -7,7 +7,7 @@ class statisticsManager
 {
 	IDataBase* m_database;
 public:
-	statisticsManager();
+	statisticsManager(IDataBase* DB);
 	~statisticsManager();
 	std::vector<std::string> getStatistics() const;
 	std::vector<std::string> getHighScore() const;
