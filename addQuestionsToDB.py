@@ -21,7 +21,7 @@ def dataToDB(db,data):
 
 def createTable(con,cur):
     cur.execute('''CREATE TABLE QUESTIONS IF NOT EXISTS (
-                ID INT INCREMENT PRIMARY KEY,
+                ID INT INCREMENT PRIMARY KEY NOT NULL,
                 DATA TEXT NOT NULL,
                 CORRECT_ANSWER TEXT NOT NULL,
                 ANS2 TEXT NOT NULL,
