@@ -32,6 +32,51 @@ SignupRequest JsonRequestPacketDeserializer::deserializeSignupRequest(std::vecto
     return signUp;
 }
 
+GetPlayersInRoomRequest JsonRequestPacketDeserializer::deserializeGetPlayersRequest(std::vector<unsigned char> Buffer)
+{
+    //getting the code
+    int code = int(Buffer[0]);
+    //getting the message lengh
+    int dataLengh = GetDataLenght(Buffer);
+    //put the data into json format
+    json json_data = GetJson(Buffer, dataLengh);
+    //creating new struct with the json data
+    GetPlayersInRoomRequest request;
+    request.roomId = json_data["roomId"];
+    return request;
+}
+
+JoinRoomRequest JsonRequestPacketDeserializer::deserializeJoinRoomRequest(std::vector<unsigned char> Buffer)
+{
+    //getting the code
+    int code = int(Buffer[0]);
+    //getting the message lengh
+    int dataLengh = GetDataLenght(Buffer);
+    //put the data into json format
+    json json_data = GetJson(Buffer, dataLengh);
+    //creating new struct with the json data
+    JoinRoomRequest request;
+    request.roomId = json_data["roomId"];
+    return request;
+}
+
+CreateRoomRequest JsonRequestPacketDeserializer::deserializeCreateRoomRequest(std::vector<unsigned char> Buffer)
+{
+    //getting the code
+    int code = int(Buffer[0]);
+    //getting the message lengh
+    int dataLengh = GetDataLenght(Buffer);
+    //put the data into json format
+    json json_data = GetJson(Buffer, dataLengh);
+    //creating new struct with the json data
+    CreateRoomRequest request;
+    request.roomName = json_data["roomName"];
+    request.maxUsers = json_data["maxUsers"];
+    request.questionCount = json_data["questionCount"];
+    request.answerTimeout = json_data["answerTimeout"];
+    return request;
+}
+
 int JsonRequestPacketDeserializer::GetDataLenght(std::vector<unsigned char> Buffer)
 {
     return int((unsigned char)(Buffer[1]) << 24 |

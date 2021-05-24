@@ -21,11 +21,35 @@ public:
 	std::string email;
 }SignupRequest;
 
+typedef struct GetPlayersInRoomRequest
+{
+public:
+	unsigned int roomId;
+}GetPlayersInRoomRequest;
+
+typedef struct JoinRoomRequest
+{
+public:
+	unsigned int roomId;
+}JoinRoomRequest;
+
+typedef struct CreateRoomRequest
+{
+public:
+	std::string roomName;
+	unsigned int maxUsers;
+	unsigned int questionCount;
+	unsigned int answerTimeout;
+}CreateRoomRequest;
+
 class JsonRequestPacketDeserializer
 {
 public:
 	static LoginRequest deserializeLoginRequest(std::vector<unsigned char> Buffer);
 	static SignupRequest deserializeSignupRequest(std::vector<unsigned char> Buffer);
+	static GetPlayersInRoomRequest deserializeGetPlayersRequest(std::vector<unsigned char> Buffer);
+	static JoinRoomRequest deserializeJoinRoomRequest(std::vector<unsigned char> Buffer);
+	static CreateRoomRequest deserializeCreateRoomRequest(std::vector<unsigned char> Buffer);
 private:
 	static int GetDataLenght(std::vector<unsigned char>Buffer);
 	static json GetJson(std::vector<unsigned char>Buffer, int dataLengh);
