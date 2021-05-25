@@ -11,12 +11,6 @@ statisticsManager::~statisticsManager()
 {
 }
 
-std::vector<std::string> statisticsManager::getStatistics() const
-{
-
-	return std::vector<std::string>();
-}
-
 std::vector<std::string> statisticsManager::getHighScore() const
 {
 	return std::vector<std::string>();

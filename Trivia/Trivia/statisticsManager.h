@@ -9,7 +9,6 @@ class statisticsManager
 public:
 	statisticsManager(IDataBase* DB);
 	~statisticsManager();
-	std::vector<std::string> getStatistics() const;
 	std::vector<std::string> getHighScore() const;
 	std::vector<std::string> getUserStatistics(const std::string name) const;
 };

@@ -36,6 +36,31 @@ void SqliteDatabase::addNewUser(const std::string name, const std::string pass, 
     sqlite3_exec(_db, sqlStatment.c_str(), nullptr, nullptr, &errMsg);
 }
 
+std::list<Question> SqliteDatabase::getQuestions(const int num) const
+{
+    return std::list<Question>();
+}
+
+float SqliteDatabase::getPlayerAvgAnsTime(const std::string name) const
+{
+    return 0.0f;
+}
+
+int SqliteDatabase::getNumOfCorrectAnswers(const std::string username) const
+{
+    return 0;
+}
+
+int SqliteDatabase::getNumOfTotalAnswers(const std::string username) const
+{
+    return 0;
+}
+
+int SqliteDatabase::getNumOfPlayerGames(const std::string username) const
+{
+    return 0;
+}
+
 int SqliteDatabase::getPasswordCallback(void* data, int argc, char** argv, char** azColName)
 {
     std::string* pass = (std::string*)data;
