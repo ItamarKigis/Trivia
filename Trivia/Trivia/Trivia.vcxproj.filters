@@ -40,6 +40,7 @@
     <ClInclude Include="LoggedUser.h" />
     <ClInclude Include="Room.h" />
     <ClInclude Include="RoomManager.h" />
+    <ClInclude Include="RoomData.h" />
     <ClInclude Include="statisticsManager.h" />
     <ClInclude Include="Question.h" />
   </ItemGroup>
