@@ -171,6 +171,7 @@
     <ClInclude Include="RequestHandlerFactory.h" />
     <ClInclude Include="Response.h" />
     <ClInclude Include="Room.h" />
+    <ClInclude Include="RoomData.h" />
     <ClInclude Include="RoomManager.h" />
     <ClInclude Include="Serializer.h" />
     <ClInclude Include="Server.h" />

@@ -39,6 +39,7 @@
     <ClInclude Include="LoggedUser.h" />
     <ClInclude Include="Room.h" />
     <ClInclude Include="RoomManager.h" />
+    <ClInclude Include="RoomData.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="triviaDB.sqlite" />

@@ -69,7 +69,8 @@
  std::vector<unsigned char> JsonResponsePacketSerializer::serializeResponse(GetRoomsResponse response)
  {
      std::vector<unsigned char> pack;
-     json j, rooms = response.rooms;
+     json j;
+     json rooms = response.rooms;
      j["status"] = response.status;
      j["rooms"] = rooms;
      pack.push_back((unsigned char)CODES::GET_ROOMS_REQUEST);
@@ -80,7 +81,8 @@
  std::vector<unsigned char> JsonResponsePacketSerializer::serializeResponse(GetPlayersInRoomResponse response)
  {
      std::vector<unsigned char> pack;
-     json j, players = response.players;
+     json j;
+     json players = response.players;
      j["players"] = players;
      pack.push_back((unsigned char)CODES::GET_PLAYERS_IN_ROOM_REQUEST);
      addToPack(pack, j.size(), j.dump());
@@ -90,7 +92,8 @@
  std::vector<unsigned char> JsonResponsePacketSerializer::serializeResponse(GetHighScoreResponse response)
  {
      std::vector<unsigned char> pack;
-     json j, stats = response.stats;
+     json j;
+     json stats = response.stats;
      j["status"] = response.status;
      j["statistics"] = stats;
      pack.push_back((unsigned char)CODES::HIGH_SCORE_REQUSET);
@@ -101,7 +104,8 @@
  std::vector<unsigned char> JsonResponsePacketSerializer::serializeResponse(GetPersonalStatsResponse response)
  {
      std::vector<unsigned char> pack;
-     json j, stats = response.stats;
+     json j;
+     json stats = response.stats;
      j["status"] = response.status;
      j["statistics"] = stats;
      pack.push_back((unsigned char)CODES::GET_STATISTICS_REQUEST);
