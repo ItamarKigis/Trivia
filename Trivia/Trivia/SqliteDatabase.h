@@ -21,5 +21,6 @@ public:
 	virtual int getNumOfCorrectAnswers(const std::string username) const override;
 	virtual int getNumOfTotalAnswers(const std::string username) const override;
 	virtual int getNumOfPlayerGames(const std::string username) const override;
+	virtual std::vector<std::string> getHighScore() const override;
 };
 

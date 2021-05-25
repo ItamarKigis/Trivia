@@ -2,6 +2,8 @@
 #include "Question.h"
 #include <string>
 #include <list>
+#include <vector>
+
 class IDataBase
 {
 public:
@@ -15,4 +17,5 @@ public:
 	virtual int getNumOfCorrectAnswers(const std::string username) const = 0;
 	virtual int getNumOfTotalAnswers(const std::string username) const = 0;
 	virtual int getNumOfPlayerGames(const std::string username) const = 0;
+	virtual std::vector<std::string> getHighScore() const = 0;
 };

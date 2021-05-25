@@ -61,6 +61,11 @@ int SqliteDatabase::getNumOfPlayerGames(const std::string username) const
     return 0;
 }
 
+std::vector<std::string> SqliteDatabase::getHighScore() const
+{
+    return std::vector<std::string>();
+}
+
 int SqliteDatabase::getPasswordCallback(void* data, int argc, char** argv, char** azColName)
 {
     std::string* pass = (std::string*)data;

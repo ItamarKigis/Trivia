@@ -14,7 +14,7 @@ statisticsManager::~statisticsManager()
 
 std::vector<std::string> statisticsManager::getHighScore() const
 {
-	return std::vector<std::string>();
+	return m_database->getHighScore();
 }
 
 std::vector<std::string> statisticsManager::getUserStatistics(const std::string name) const
