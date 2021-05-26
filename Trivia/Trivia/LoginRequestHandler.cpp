@@ -1,10 +1,10 @@
 #include "LoginRequestHandler.h"
-LoginRequestHandler::LoginRequestHandler(LoginManager& loginManager, RequestHandlerFactory& handlerFactory)
+LoginRequestHandler::LoginRequestHandler(LoginManager& loginManager, RequestHandlerFactory& handlerFactory) 
     : m_loginManager(loginManager), m_handlerFactory(handlerFactory)
 {
 }
 
-bool LoginRequestHandler::isRequestRelevant(RequestInfo request)
+bool LoginRequestHandler::isRequestRelevant(RequestInfo request) const
 {
     return request.RequestId == int(CODES::LOGIN);
 }
@@ -41,7 +41,8 @@ RequestResult LoginRequestHandler::login(RequestInfo request)
     {
         m_loginManager.login(loginStruct.username, loginStruct.password);
         code = int(CODES::LOGIN);
-        result.newHandler = new MenuRequestHandler();
+        result.newHandler = new MenuRequestHandler(LoggedUser(loginStruct.username), m_handlerFactory.getRoomManager(),
+            m_handlerFactory.getStatisticsManager() ,m_handlerFactory);
     }
     catch(const std::exception&)
     {
@@ -64,7 +65,8 @@ RequestResult LoginRequestHandler::signup(RequestInfo request)
     try
     {
         m_loginManager.signUp(signUpStruct.username, signUpStruct.password, signUpStruct.email);
-        result.newHandler = new MenuRequestHandler();
+        result.newHandler = new MenuRequestHandler(LoggedUser(signUpStruct.username), m_handlerFactory.getRoomManager(),
+            m_handlerFactory.getStatisticsManager(), m_handlerFactory);
         code = int(CODES::SIGN_UP);
     }
     catch (const std::exception&)

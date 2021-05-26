@@ -14,7 +14,8 @@ int main()
 
 		SqliteDatabase* dataBase = new SqliteDatabase("triviaDB.sqlite");
 		LoginManager* manager = new LoginManager(dataBase);
-		RequestHandlerFactory* factoryHandler = new RequestHandlerFactory(*manager, *dataBase);
+		statisticsManager* statsManager = new statisticsManager(dataBase);
+		RequestHandlerFactory* factoryHandler = new RequestHandlerFactory(*manager, *dataBase, *statsManager);
 		Server myServer(*factoryHandler, *dataBase);
 
 		myServer.run();

@@ -3,6 +3,7 @@
 void RoomManager::createRoom(LoggedUser user, RoomData data)
 {
 	m_rooms[data.id] = Room(user, data);
+	CurrentRoomId++;
 }
 
 void RoomManager::deleteRoom(int ID)
@@ -32,4 +33,19 @@ std::vector<RoomData> RoomManager::getRooms()
 		++it;
 	}
 	return data;
+}
+
+Room RoomManager::getRoom(int ID)
+{
+	return m_rooms[ID];
+}
+
+void RoomManager::deleteUser(LoggedUser user)
+{
+	std::map<unsigned int, Room>::iterator it = m_rooms.begin();
+	while (it != m_rooms.end())
+	{
+		it->second.removeUser(user);
+		++it;
+	}
 }
