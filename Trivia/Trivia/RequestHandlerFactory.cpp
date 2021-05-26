@@ -3,13 +3,14 @@
 RequestHandlerFactory::RequestHandlerFactory(LoginManager& manager, IDataBase& DB, statisticsManager& stats)
     : m_loginManager(manager), m_dataBase(&DB), m_StatisticsManager(stats)
 {
+    RoomManager m_roomManager;
 }
 
 MenuRequestHandler* RequestHandlerFactory::createMenuRequestHandler()
 {
     RoomManager& temp = m_roomManager;
     statisticsManager& tempStats = m_StatisticsManager;
-    return new MenuRequestHandler(temp, tempStats, *this);
+    return new MenuRequestHandler(LoggedUser(""), temp, tempStats, *this);
 }
 
 statisticsManager& RequestHandlerFactory::getStatisticsManager()

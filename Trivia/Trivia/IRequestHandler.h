@@ -21,6 +21,6 @@ class IRequestHandler
 public:
 	virtual ~IRequestHandler() = default;
 	IRequestHandler() = default;
-	virtual bool isRequestRelevant(RequestInfo request) = 0;
+	virtual bool isRequestRelevant(RequestInfo request) const = 0;
 	virtual RequestResult handleRequest(RequestInfo request) = 0;
 };

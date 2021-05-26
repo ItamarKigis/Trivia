@@ -1,11 +1,11 @@
 #include "MenuRequestHandler.h"
 
-MenuRequestHandler::MenuRequestHandler(RoomManager& manager, statisticsManager& stats, RequestHandlerFactory& factoryHandler) :
-    m_roomManager(manager), m_statisticsManager(stats), m_handlerFactory(m_handlerFactory), m_user("")
+MenuRequestHandler::MenuRequestHandler(LoggedUser user, RoomManager& manager, 
+    statisticsManager& stats, RequestHandlerFactory& factoryHandler) : m_roomManager(manager),
+    m_statisticsManager(stats), m_handlerFactory(m_handlerFactory), m_user(user)
 {
 }
-
-bool MenuRequestHandler::isRequestRelevant(RequestInfo request)
+bool MenuRequestHandler::isRequestRelevant(RequestInfo request) const
 {
     return request.RequestId == int(CODES::CREATE_ROOM_REQUEST) ||
         request.RequestId == int(CODES::GET_ROOMS_REQUEST) ||
@@ -75,6 +75,7 @@ RequestResult MenuRequestHandler::getRooms(RequestInfo request)
     response.status = code;
 
     result.response = JsonResponsePacketSerializer::serializeResponse(response);
+    //newHandler is MenuRequestHandler. So there is no need to set this field
     return result;
 }
 
@@ -94,6 +95,7 @@ RequestResult MenuRequestHandler::getPlayersInRoom(RequestInfo request)
 
     }
     result.response = JsonResponsePacketSerializer::serializeResponse(response);
+    //newHandler is MenuRequestHandler. So there is no need to set this field
     return result;
 }
 
@@ -113,6 +115,7 @@ RequestResult MenuRequestHandler::getPersonalStats(RequestInfo request)
     }
     response.status = code;
     result.response = JsonResponsePacketSerializer::serializeResponse(response);
+    //newHandler is MenuRequestHandler. So there is no need to set this field
     return result;
 }
 
@@ -133,6 +136,7 @@ RequestResult MenuRequestHandler::getHighScore(RequestInfo request)
     response.status = code;
 
     result.response = JsonResponsePacketSerializer::serializeResponse(response);
+    //newHandler is MenuRequestHandler. So there is no need to set this field
     return result;
 }
 
@@ -151,6 +155,7 @@ RequestResult MenuRequestHandler::joinRoom(RequestInfo request)
         response.status = int(CODES::ERROR_CODE);
     }
     result.response = JsonResponsePacketSerializer::serializeResponse(response);
+    //newHandler is MenuRequestHandler. So there is no need to set this field
     return result;
 }
 
@@ -171,6 +176,7 @@ RequestResult MenuRequestHandler::createRoom(RequestInfo request)
         response.status = int(CODES::ERROR_CODE);
     }
     result.response = JsonResponsePacketSerializer::serializeResponse(response);
+    //newHandler is MenuRequestHandler. So there is no need to set this field
     return result;
 }
 
@@ -189,6 +195,6 @@ RequestResult MenuRequestHandler::signout(RequestInfo request)
         response.status = int(CODES::ERROR_CODE);
     }
     result.response = JsonResponsePacketSerializer::serializeResponse(response);
-    result.newHandler = nullptr;
+    result.newHandler = nullptr; //here the newHandler is nullptr because the user is logging out
     return result;
 }

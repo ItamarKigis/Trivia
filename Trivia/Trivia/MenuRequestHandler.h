@@ -8,10 +8,10 @@ class LoginManager;
 class MenuRequestHandler : public IRequestHandler
 {
 public:
-	MenuRequestHandler(RoomManager& manager, statisticsManager& stats, RequestHandlerFactory& factoryHandler);
+	MenuRequestHandler(LoggedUser user, RoomManager& manager, statisticsManager& stats, RequestHandlerFactory& factoryHandler);
 	~MenuRequestHandler() override = default;
-	bool isRequestRelevant(RequestInfo request);
-	RequestResult handleRequest(RequestInfo request);
+	bool isRequestRelevant(RequestInfo request) const override;
+	RequestResult handleRequest(RequestInfo request) override;
 private:
 	LoggedUser m_user;
 	RoomManager& m_roomManager;
