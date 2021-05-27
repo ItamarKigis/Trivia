@@ -119,7 +119,7 @@ int SqliteDatabase::getQuestionsCallback(void* data, int argc, char** argv, char
 {
     std::list<Question>* questions = (std::list<Question>*)data;
     Question q;
-    for (int i, j = 0; i < argc; i++)
+    for (int i = 0, j = 0; i < argc; i++)
     {
         if (std::string(azColName[i]) == "CORRECT_ANSWER")
             q.correctAns = argv[i];
