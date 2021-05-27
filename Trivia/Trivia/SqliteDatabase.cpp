@@ -39,7 +39,11 @@ void SqliteDatabase::addNewUser(const std::string name, const std::string pass, 
 
 std::list<Question> SqliteDatabase::getQuestions(const int num) const
 {
-    return std::list<Question>();
+    std::string sqlStatment = "SELECT * FROM QUESTIONS LIMIT " + std::to_string(num) + ";";
+    std::list<Question> questions;
+    char* errMsg = nullptr;
+    sqlite3_exec(_db, sqlStatment.c_str(), SqliteDatabase::getNumberCallback, &questions, &errMsg);
+    return questions;
 }
 
 float SqliteDatabase::getPlayerAvgAnsTime(const std::string name) const
@@ -111,6 +115,26 @@ int SqliteDatabase::getNumberCallback(void* data, int argc, char** argv, char** 
     return 0;
 }
 
+int SqliteDatabase::getQuestionsCallback(void* data, int argc, char** argv, char** azColName)
+{
+    std::list<Question>* questions = (std::list<Question>*)data;
+    Question q;
+    for (int i, j = 0; i < argc; i++)
+    {
+        if (std::string(azColName[i]) == "CORRECT_ANSWER")
+            q.correctAns = argv[i];
+        else if (std::string(azColName[i]) == "DATA")
+            q.question = argv[i];
+        else if (std::string(azColName[i]) == "ANS2" || std::string(azColName[i]) == "ANS3" || std::string(azColName[i]) == "ANS2")
+        {
+            q.wrongAnswers[j] = argv[i];
+            j++;
+        }
+    }
+    questions->push_back(q);
+    return 0;
+}
+
 void SqliteDatabase::createTable(const char* sql)
 {
     const char* sqlStatement = sql;
@@ -135,6 +159,7 @@ void SqliteDatabase::open()
     if (doesDBExists == 0) //doesnt exists
     {
         createTable("CREATE TABLE USERS (NAME TEXT PRIMARY KEY NOT NULL, PASSWORD TEXT NOT NULL, EMAIL TEXT NOT NULL);");
+        createTable("CREATE TABLE QUESTIONS (ID INT INCREMENT PRIMARY KEY NOT NULL, DATA TEXT NOT NULL, CORRECT_ANSWER TEXT NOT NULL, ANS2 TEXT NOT NULL, ANS3 TEXT NOT NULL, ANS4 TEXT NOT NULL)");
         createTable("CREATE TABLE STATISTICS (USERNAME TEXT NOT NULL UNIQUE, AVERAGE_ANS_TIME FLOAT, NUM_OF_CORRECT_ANSWERS INT, NUM_OF_TOTAL_ANSWERS INT, NUM_OF_GAMES INT,FOREIGN KEY (USERNAME) REFERENCES USERS(NAME));");
     }
 }
