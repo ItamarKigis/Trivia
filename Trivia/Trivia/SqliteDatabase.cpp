@@ -1,5 +1,6 @@
 #include "SqliteDatabase.h"
 #include <iostream>
+#include <io.h>
 
 SqliteDatabase::SqliteDatabase(const std::string dbName) : _dbName(dbName), IDataBase()
 {
@@ -80,12 +81,31 @@ int SqliteDatabase::userExistsCallback(void* data, int argc, char** argv, char**
     return 0;
 }
 
+void SqliteDatabase::createTable(const char* sql)
+{
+    const char* sqlStatement = sql;
+
+    char* errMessage = nullptr;
+    int res = sqlite3_exec(_db, sqlStatement, nullptr, nullptr, &errMessage);
+    if (res != SQLITE_OK)
+    {
+        std::cout << res << std::endl;
+    }
+}
+
 void SqliteDatabase::open()
 {
+    int doesDBExists = _access(_dbName.c_str(), 0);
+
     int res = sqlite3_open(_dbName.c_str(), &_db);
     if (res != SQLITE_OK) {
         _db = nullptr;
         std::cout << "Failed to open DB" << std::endl;
+    }
+    if (doesDBExists == 0) //doesnt exists
+    {
+        createTable("CREATE TABLE USERS (NAME TEXT PRIMARY KEY NOT NULL, PASSWORD TEXT NOT NULL, EMAIL TEXT NOT NULL);");
+        createTable("CREATE TABLE STATISTICS (USERNAME TEXT NOT NULL, AVERAGE_ANS_TIME FLOAT, NUM_OF_CORRECT_ANSWERS INT, NUM_OF_TOTAL_ASNWERS INT, NUM_OF_GAMES INT,FOREIGN KEY (USERNAME) REFERENCES USERS(NAME));");
     }
 }
 
