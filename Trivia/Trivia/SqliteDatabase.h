@@ -10,6 +10,8 @@ class SqliteDatabase : public IDataBase
 	void close();
 	static int getPasswordCallback(void* data, int argc, char** argv, char** azColName);
 	static int userExistsCallback(void* data, int argc, char** argv, char** azColName);
+	static int avgAnsTimeCallback(void* data, int argc, char** argv, char** azColName);
+	static int getNumberCallback(void* data, int argc, char** argv, char** azColName);
 	void createTable(const char* sqlStatment);
 public:
 	SqliteDatabase(const std::string dbName);

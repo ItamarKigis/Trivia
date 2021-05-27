@@ -44,22 +44,38 @@ std::list<Question> SqliteDatabase::getQuestions(const int num) const
 
 float SqliteDatabase::getPlayerAvgAnsTime(const std::string name) const
 {
-    return 0.0f;
+    std::string sqlStatment = "SELECT AVERAGE_ANS_TIME FROM STATISTICS WHERE USERNAME = '" + name + "';";
+    float avgAnsTime = 0;
+    char* errMsg = nullptr;
+    sqlite3_exec(_db, sqlStatment.c_str(), SqliteDatabase::avgAnsTimeCallback, &avgAnsTime, &errMsg);
+    return avgAnsTime;
 }
 
 int SqliteDatabase::getNumOfCorrectAnswers(const std::string username) const
 {
-    return 0;
+    std::string sqlStatment = "SELECT NUM_OF_CORRECT_ANSWERS FROM STATISTICS WHERE USERNAME = '" + username + "';";
+    int correctAnswers = 0;
+    char* errMsg = nullptr;
+    sqlite3_exec(_db, sqlStatment.c_str(), SqliteDatabase::getNumberCallback, &correctAnswers, &errMsg);
+    return correctAnswers;
 }
 
 int SqliteDatabase::getNumOfTotalAnswers(const std::string username) const
 {
-    return 0;
+    std::string sqlStatment = "SELECT NUM_OF_TOTAL_ANSWERS FROM STATISTICS WHERE USERNAME = '" + username + "';";
+    int totalAnswers = 0;
+    char* errMsg = nullptr;
+    sqlite3_exec(_db, sqlStatment.c_str(), SqliteDatabase::getNumberCallback, &totalAnswers, &errMsg);
+    return totalAnswers;
 }
 
 int SqliteDatabase::getNumOfPlayerGames(const std::string username) const
 {
-    return 0;
+    std::string sqlStatment = "SELECT NUM_OF_GAMES FROM STATISTICS WHERE USERNAME = '" + username + "';";
+    int numOfGames = 0;
+    char* errMsg = nullptr;
+    sqlite3_exec(_db, sqlStatment.c_str(), SqliteDatabase::getNumberCallback, &numOfGames, &errMsg);
+    return numOfGames;
 }
 
 std::vector<std::string> SqliteDatabase::getHighScore() const
@@ -78,6 +94,20 @@ int SqliteDatabase::userExistsCallback(void* data, int argc, char** argv, char**
 {
     bool* exists = (bool*)data;
     argc < 0 ? *exists = false : *exists = true;
+    return 0;
+}
+
+int SqliteDatabase::avgAnsTimeCallback(void* data, int argc, char** argv, char** azColName)
+{
+    float* avgAnsTime = (float*)data;
+    *avgAnsTime += std::stof(argv[0]);
+    return 0;
+}
+
+int SqliteDatabase::getNumberCallback(void* data, int argc, char** argv, char** azColName)
+{
+    int* num = (int*)data;
+    *num += atoi(argv[0]);
     return 0;
 }
 
@@ -105,7 +135,7 @@ void SqliteDatabase::open()
     if (doesDBExists == 0) //doesnt exists
     {
         createTable("CREATE TABLE USERS (NAME TEXT PRIMARY KEY NOT NULL, PASSWORD TEXT NOT NULL, EMAIL TEXT NOT NULL);");
-        createTable("CREATE TABLE STATISTICS (USERNAME TEXT NOT NULL, AVERAGE_ANS_TIME FLOAT, NUM_OF_CORRECT_ANSWERS INT, NUM_OF_TOTAL_ASNWERS INT, NUM_OF_GAMES INT,FOREIGN KEY (USERNAME) REFERENCES USERS(NAME));");
+        createTable("CREATE TABLE STATISTICS (USERNAME TEXT NOT NULL UNIQUE, AVERAGE_ANS_TIME FLOAT, NUM_OF_CORRECT_ANSWERS INT, NUM_OF_TOTAL_ANSWERS INT, NUM_OF_GAMES INT,FOREIGN KEY (USERNAME) REFERENCES USERS(NAME));");
     }
 }
 
