@@ -5,5 +5,5 @@
 typedef struct Question {
 	std::string question;
 	std::string correctAns;
-	std::array<std::string, 3> wrongAnwers;
+	std::array<std::string, 3> wrongAnswers;
 } Question;
