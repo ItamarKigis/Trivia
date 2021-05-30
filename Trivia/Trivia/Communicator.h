@@ -5,6 +5,7 @@
 #include <Windows.h>
 #include <map>
 #include <thread>
+#include <mutex>
 #define MAX_LEN 10000
 #define PORT 8989
 
@@ -28,6 +29,7 @@ private:
 	SOCKET _serverSocket;
 	std::map<SOCKET, IRequestHandler*> m_clients;
 	bool exit;
-
+	std::mutex _clientsMutex;
+	std::unique_lock<std::mutex> _clientsLocker;
 	RequestHandlerFactory& m_handlerFactory;
 };
