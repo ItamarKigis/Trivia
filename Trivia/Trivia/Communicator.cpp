@@ -10,7 +10,7 @@ _serverSocket(socket(AF_INET, SOCK_STREAM, IPPROTO_TCP)), m_handlerFactory(handl
 	// if the server use UDP we will use: SOCK_DGRAM & IPPROTO_UDP
 	if (_serverSocket == INVALID_SOCKET)
 		throw std::exception(__FUNCTION__ " - socket");
-	_locker = std::unique_lock<std::mutex>(_mu, std::defer_lock);
+	_clientsLocker = std::unique_lock<std::mutex>(_clientsMutex, std::defer_lock);
 }
 
 Communicator::~Communicator()

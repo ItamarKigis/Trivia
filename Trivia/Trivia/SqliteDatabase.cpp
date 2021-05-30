@@ -4,6 +4,7 @@
 
 SqliteDatabase::SqliteDatabase(const std::string dbName) : _dbName(dbName), IDataBase()
 {
+    _DBLocker = std::unique_lock<std::mutex>(_DBMutex, std::defer_lock);
     open();
 }
 
@@ -34,7 +35,9 @@ void SqliteDatabase::addNewUser(const std::string name, const std::string pass, 
 {
     std::string sqlStatment = "INSERT INTO USERS (NAME,PASSWORD,EMAIL) VALUES ('" + name + "','" + pass + "','" + email + "');";
     char* errMsg = nullptr;
+    _DBLocker.lock();
     sqlite3_exec(_db, sqlStatment.c_str(), nullptr, nullptr, &errMsg);
+    _DBLocker.unlock();
 }
 
 std::list<Question> SqliteDatabase::getQuestions(const int num) const
