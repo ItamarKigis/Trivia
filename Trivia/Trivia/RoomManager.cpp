@@ -1,14 +1,27 @@
 #include "RoomManager.h"
 
+RoomManager::RoomManager()
+{
+	_roomsLocker = std::unique_lock<std::mutex>(_roomsMutex, std::defer_lock);
+}
+
+RoomManager::~RoomManager()
+{
+}
+
 void RoomManager::createRoom(LoggedUser user, RoomData data)
 {
+	_roomsLocker.lock();
 	m_rooms[data.id] = Room(user, data);
 	CurrentRoomId++;
+	_roomsLocker.unlock();
 }
 
 void RoomManager::deleteRoom(int ID)
 {
+	_roomsLocker.lock();
 	m_rooms.erase(ID);
+	_roomsLocker.unlock();
 }
 
 unsigned int RoomManager::getRoomState(int ID)
@@ -45,7 +58,9 @@ void RoomManager::deleteUser(LoggedUser user)
 	std::map<unsigned int, Room>::iterator it = m_rooms.begin();
 	while (it != m_rooms.end())
 	{
+		_roomsLocker.lock();
 		it->second.removeUser(user);
+		_roomsLocker.unlock();
 		++it;
 	}
 }
