@@ -1,9 +1,12 @@
 #pragma once
+#include <mutex>
 #include "IDataBase.h"
 #include "sqlite3 .h"
 
 class SqliteDatabase : public IDataBase
 {
+	std::mutex _DBMutex;
+	std::unique_lock<std::mutex> _DBLocker;
 	std::string _dbName;
 	sqlite3* _db;
 	void open();

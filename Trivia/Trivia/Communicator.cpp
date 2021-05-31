@@ -10,6 +10,7 @@ _serverSocket(socket(AF_INET, SOCK_STREAM, IPPROTO_TCP)), m_handlerFactory(handl
 	// if the server use UDP we will use: SOCK_DGRAM & IPPROTO_UDP
 	if (_serverSocket == INVALID_SOCKET)
 		throw std::exception(__FUNCTION__ " - socket");
+	_clientsLocker = std::unique_lock<std::mutex>(_clientsMutex, std::defer_lock);
 }
 
 Communicator::~Communicator()
@@ -96,7 +97,9 @@ void Communicator::handleNewClient(SOCKET clientSocket)
 		std::vector<unsigned char> buffer(std::begin(clientMsg), std::end(clientMsg));
 		RequestInfo request = { int(buffer[0]), time(NULL), buffer };
 		RequestResult result = m_clients[clientSocket]->handleRequest(request);
+		_clientsLocker.lock();
 		m_clients[clientSocket] = result.newHandler;
+		_clientsLocker.unlock();
 		std::fill(std::begin(clientMsg),std::end(clientMsg), 0);
 
 		int index = 0;
