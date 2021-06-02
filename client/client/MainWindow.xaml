@@ -6,6 +6,7 @@
         xmlns:navigation="SignUp:System.Windows.Controls;assembly=System.Windows.Controls.Navigation"
         xmlns:local="clr-namespace:client"
         mc:Ignorable="d"
+        xmlns:fw="clr-namespace:SourceChord.FluentWPF;assembly=FluentWPF"
         Title="Login" Height="700" Width="1300">
     <Grid>
         <Image Source="C:\Users\משתמש\trivia\client\client\Resources\welcome.jpg" Width="400" Height="400" Margin="-800,-350,0,0"/>
@@ -14,26 +15,26 @@
 
         <Image Source="C:\Users\משתמש\trivia\client\client\Resources\trivia.jpg" Width="400" Height="400" Margin="600,-200,0,0"/>
 
-        <Button Name="Cancel" Content="Cancel" HorizontalAlignment="Left" Margin="300,550,0,0" VerticalAlignment="Top" Width="150" Height="50"/>
+        <Button Name="Cancel" Content="Cancel" HorizontalAlignment="Left" Margin="324,519,0,0" VerticalAlignment="Top" Width="150" Height="50"/>
 
         <TextBox AcceptsReturn="True" TextWrapping="Wrap" HorizontalAlignment="Left"
-         MaxHeight="20" Width="150" Margin="150,150,0,0" x:Name="username"
-         ScrollViewer.VerticalScrollBarVisibility="Auto"/>
+         MaxHeight="30" Width="250" Margin="150,150,0,0" x:Name="username"
+         ScrollViewer.VerticalScrollBarVisibility="Auto" Style="{StaticResource TextBoxRevealStyle}"/>
 
-        <TextBox AcceptsReturn="True" TextWrapping="Wrap" HorizontalAlignment="Left"
-         MaxHeight="20" Width="150" Margin="150,250,0,0" x:Name="password"
-         ScrollViewer.VerticalScrollBarVisibility="Auto" Text="{Binding MyValue}"/>
-        <Button Name="Enter" Content="Enter" HorizontalAlignment="Left" Margin="50,550,0,0" VerticalAlignment="Top" Width="150" Height="50"
-                Click="Button_Click"/>
+        <PasswordBox HorizontalAlignment="Left"
+         MaxHeight="30" Width="250" Margin="150,250,0,0" x:Name="password"
+         ScrollViewer.VerticalScrollBarVisibility="Auto" Style="{StaticResource PasswordBoxRevealStyle}"/>
+        <Button Name="Enter" Content="Enter" HorizontalAlignment="Left" Margin="70,519,0,0" VerticalAlignment="Top" Width="150" Height="50"
+                Click="Button_Click" />
 
         <TextBlock Text="password" HorizontalAlignment="Left" Margin="20, 450,0,0"/>
         <TextBlock Text="username" HorizontalAlignment="Left" Margin="20,400,0,0"/>
 
         <TextBlock Text="Don't have an account? Sign up!" HorizontalAlignment="Left" Margin="20,625,0,0"/>
-        <Button Name="SignUp" Content="SignUp" HorizontalAlignment="Left" Margin="205,625,0,0" VerticalAlignment="Top" Width="50" Height="20"
+        <Button Name="SignUp" Content="SignUp" HorizontalAlignment="Left" Margin="216,625,0,0" VerticalAlignment="Top" Width="82" Height="34"
                 Click="SignUp_Click"/>
 
-        <Button Name="Quit" Content="Quit" HorizontalAlignment="Left" Margin="375,625,0,0" VerticalAlignment="Top" Width="50" Height="20"
+        <Button Name="Quit" Content="Quit" HorizontalAlignment="Left" Margin="374,625,0,0" VerticalAlignment="Top" Width="100" Height="32"
                 Click="Quit_Click"/>
     </Grid>
 </Window>

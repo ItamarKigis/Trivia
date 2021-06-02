@@ -9,9 +9,9 @@
       Title="Page1">
 
     <Grid>
-        <TextBox Margin="583,-242,0,0" Width="100" Height="20" Name="PasswordInput"/>
-        <TextBox Margin="583,-354,0,0" Width="100" Height="20" Name="UsernameInput"/>
-        <TextBox Margin="583,-135,0,0" Width="100" Height="20" Name="EmailInput"/>
+        <TextBox Margin="583,-242,0,0" Width="100" Height="25" Name="PasswordInput"/>
+        <TextBox Margin="583,-354,0,0" Width="100" Height="25" Name="UsernameInput"/>
+        <TextBox Margin="583,-135,0,0" Width="100" Height="25" Name="EmailInput"/>
 
         <TextBlock Text="Username" Margin="370,163"/>
         <TextBlock Text="Password" Margin="370,220"/>
