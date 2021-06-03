@@ -18,7 +18,7 @@ namespace client
     /// <summary>
     /// Interaction logic for Page2.xaml
     /// </summary>
-    public partial class CreateRoom : Page
+    public partial class CreateRoom : UserControl
     {
         public CreateRoom()
         {

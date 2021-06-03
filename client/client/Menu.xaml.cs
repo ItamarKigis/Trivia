@@ -24,9 +24,15 @@ namespace client
 
         private void ButtonPopUpLogout_Click(object sender, RoutedEventArgs e)
         {
+            MainWindow mainWindow = Application.Current.MainWindow as MainWindow;
+            mainWindow.Visibility = Visibility.Visible;
+            Window win = (Window)this.Parent;
+            win.Close();
+        }
+        private void ButtonQuit_Click(object sender, RoutedEventArgs e)
+        {
             Application.Current.Shutdown();
         }
-
         private void ButtonOpenMenu_Click(object sender, RoutedEventArgs e)
         {
             ButtonOpenMenu.Visibility = Visibility.Collapsed;
@@ -37,6 +43,11 @@ namespace client
         {
             ButtonOpenMenu.Visibility = Visibility.Visible;
             ButtonCloseMenu.Visibility = Visibility.Collapsed;
+        }
+
+        private void CreateRoomClick(object sender, MouseButtonEventArgs e)
+        {
+            this.Control.Content = new CreateRoom();
         }
     }
 }
