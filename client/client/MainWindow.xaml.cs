@@ -55,7 +55,7 @@ namespace client
 
         private void SignUp_Click(object sender, RoutedEventArgs e)
         {
-            this.Content = new SignUp(clientStream);        
+            this.Content = new Menu();        
         }
         private void Button_Click(object sender, RoutedEventArgs e)
         {
