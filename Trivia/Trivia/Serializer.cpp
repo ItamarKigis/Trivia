@@ -132,3 +132,47 @@
      addToPack(pack, j.size(), j.dump());
      return pack;
  }
+
+ std::vector<unsigned char> JsonResponsePacketSerializer::serializeResponse(CloseRoomResponse response)
+ {
+     std::vector<unsigned char> pack;
+     json j;
+     j["status"] = response.status;
+     pack.push_back((unsigned char)CODES::CLOSE_ROOM_REQUEST);
+     addToPack(pack, j.size(), j.dump());
+     return pack;
+ }
+
+ std::vector<unsigned char> JsonResponsePacketSerializer::serializeResponse(StartGameResponse response)
+ {
+     std::vector<unsigned char> pack;
+     json j;
+     j["status"] = response.status;
+     pack.push_back((unsigned char)CODES::START_GAME_REQUEST);
+     addToPack(pack, j.size(), j.dump());
+     return pack;
+ }
+
+ std::vector<unsigned char> JsonResponsePacketSerializer::serializeResponse(LeaveRoomResponse response)
+ {
+     std::vector<unsigned char> pack;
+     json j;
+     j["status"] = response.status;
+     pack.push_back((unsigned char)CODES::LEAVE_ROOM_REQUEST);
+     addToPack(pack, j.size(), j.dump());
+     return pack;
+ }
+
+ std::vector<unsigned char> JsonResponsePacketSerializer::serializeResponse(GetRoomStateResponse response)
+ {
+     std::vector<unsigned char> pack;
+     json j;
+     j["status"] = response.status;
+     j["hasGameBegun"] = response.hasGameBegun;
+     j["players"] = response.players;
+     j["questionCount"] = response.questionCount;
+     j["answerTimeOut"] = response.answerTimeOut;
+     pack.push_back((unsigned char)CODES::GET_ROOM_STATE_REQUEST);
+     addToPack(pack, j.size(), j.dump());
+     return pack;
+ }
