@@ -49,5 +49,9 @@ namespace client
         {
             this.Control.Content = new CreateRoom();
         }
+        private void temp(object sender, MouseButtonEventArgs e)
+        {
+            this.Control.Content = new temp();
+        }
     }
 }

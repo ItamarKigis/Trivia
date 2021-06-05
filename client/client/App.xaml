@@ -6,6 +6,9 @@
              StartupUri="MainWindow.xaml">
     <Application.Resources>
         <ResourceDictionary>
+            <BitmapImage x:Key="welcome" UriSource="Resources\welcome.jpg"></BitmapImage>
+            <BitmapImage x:Key="to" UriSource="Resources\to.png"></BitmapImage>
+            <BitmapImage x:Key="trivia" UriSource="Resources\trivia.jpg"></BitmapImage>
             <ResourceDictionary.MergedDictionaries>
                 <!--  FluentWPF Controls  -->
                 <ResourceDictionary Source="pack://application:,,,/FluentWPF;component/Styles/Controls.xaml" />
