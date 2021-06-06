@@ -8,6 +8,7 @@ class Room
 {
 public:
 	Room();
+	Room(const Room& room);
 	~Room();
 	Room(LoggedUser user, RoomData data);
 	void addUser(LoggedUser user);

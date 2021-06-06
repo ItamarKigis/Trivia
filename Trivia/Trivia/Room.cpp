@@ -5,6 +5,12 @@ Room::Room()
 	_usersLocker = std::unique_lock<std::mutex>(_usersMutex, std::defer_lock);
 }
 
+Room::Room(const Room& other)
+{
+	m_metadata = other.m_metadata;
+	m_users = other.m_users;
+}
+
 Room::~Room()
 {
 }
