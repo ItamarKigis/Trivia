@@ -23,6 +23,16 @@ RoomManager& RequestHandlerFactory::getRoomManager()
     return m_roomManager;
 }
 
+RoomAdminRequestHandler* RequestHandlerFactory::createRoomAdminRequestHandler()
+{
+    return new RoomAdminRequestHandler(Room(), LoggedUser(""), m_roomManager, *this);
+}
+
+RoomAdminRequestHandler* RequestHandlerFactory::createRoomAdminMemberRequestHandler()
+{
+    //TODO
+}
+
 LoginRequestHandler* RequestHandlerFactory::createLoginRequestHandler()
 {
     LoginManager& temp = m_loginManager;
