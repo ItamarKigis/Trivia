@@ -16,6 +16,7 @@ typedef struct RequestInfo
 	time_t recivaltime;
 	std::vector<unsigned char>buffer;
 }RequestInfo;
+
 class IRequestHandler
 {
 public:

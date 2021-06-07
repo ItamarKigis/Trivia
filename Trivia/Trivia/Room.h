@@ -1,3 +1,4 @@
+#pragma once
 #include <string>
 #include <vector>
 #include <mutex>
@@ -8,7 +9,7 @@ class Room
 {
 public:
 	Room();
-	Room(const Room& room);
+	Room(const Room& other);
 	~Room();
 	Room(LoggedUser user, RoomData data);
 	void addUser(LoggedUser user);
@@ -16,6 +17,7 @@ public:
 	std::vector<std::string> getAllUsers() const;
 	unsigned int getRoomState() const;
 	RoomData getRoomData() const;
+	Room& operator=(const Room& other);
 private:
 	RoomData m_metadata;
 	std::vector<LoggedUser> m_users;

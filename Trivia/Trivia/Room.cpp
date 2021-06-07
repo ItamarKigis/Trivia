@@ -7,8 +7,7 @@ Room::Room()
 
 Room::Room(const Room& other)
 {
-	m_metadata = other.m_metadata;
-	m_users = other.m_users;
+	*this = other;
 }
 
 Room::~Room()
@@ -56,4 +55,11 @@ unsigned int Room::getRoomState() const
 RoomData Room::getRoomData() const
 {
 	return m_metadata;
+}
+
+Room& Room::operator=(const Room& other)
+{
+	m_metadata = other.m_metadata;
+	m_users = other.m_users;
+	return *this;
 }
