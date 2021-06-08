@@ -42,7 +42,6 @@ RequestResult RoomAdminRequestHandler::closeRoom(RequestInfo request) const
 {
 	RequestResult result;
 	unsigned int code = 0;
-	LeaveRoomResponse leaveRoom = { (unsigned char)CODES::LEAVE_ROOM_REQUEST };
 	try
 	{
 		result.newHandler = new MenuRequestHandler(m_user, m_handlerFactory.getRoomManager(),
@@ -54,7 +53,10 @@ RequestResult RoomAdminRequestHandler::closeRoom(RequestInfo request) const
 		result.newHandler = nullptr;
 		code = (unsigned int)(CODES::ERROR_CODE);
 	}
-	return RequestResult();
+	StartGameResponse leaveRoom = { code };
+	std::vector<unsigned char> response = JsonResponsePacketSerializer::serializeResponse(leaveRoom);
+	result.response = response;
+	return result;
 }
 
 RequestResult RoomAdminRequestHandler::startGame(RequestInfo request) const

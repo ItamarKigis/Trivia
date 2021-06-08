@@ -37,6 +37,7 @@ RequestResult RoomMemberRequestHandler::handleRequest(RequestInfo request)
 
 RequestResult RoomMemberRequestHandler::leaveRoom(RequestInfo request) const
 {
+
 	return RequestResult();
 }
 
