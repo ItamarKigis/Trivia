@@ -43,7 +43,17 @@ RequestResult RoomAdminRequestHandler::closeRoom(RequestInfo request) const
 	RequestResult result;
 	unsigned int code = 0;
 	LeaveRoomResponse leaveRoom = { (unsigned char)CODES::LEAVE_ROOM_REQUEST };
-	
+	try
+	{
+		result.newHandler = new MenuRequestHandler(m_user, m_handlerFactory.getRoomManager(),
+			m_handlerFactory.getStatisticsManager(), m_handlerFactory);
+		code = (unsigned char)CODES::LEAVE_ROOM_REQUEST;
+	}
+	catch (const std::exception&)
+	{
+		result.newHandler = nullptr;
+		code = (unsigned int)(CODES::ERROR_CODE);
+	}
 	return RequestResult();
 }
 
@@ -53,7 +63,7 @@ RequestResult RoomAdminRequestHandler::startGame(RequestInfo request) const
 	unsigned int code = 0;
 	try 
 	{
-		result.newHandler = nullptr; //SOMETHING ELSE IDK WHAT
+		result.newHandler = nullptr; //GAME REQ HANDLER - V4.0.0
 		code = (unsigned int)(CODES::START_GAME_REQUEST);
 	}
 	catch (const std::exception&)
@@ -75,10 +85,8 @@ RequestResult RoomAdminRequestHandler::getRoomState(RequestInfo request) const
 
 	try
 	{
-
-		m_roomManager.getRoomState();
-		result.newHandler = nullptr;
-		code = (unsigned int)(CODES::GET_ROOM_STATE_REQUEST);
+		code = m_roomManager.getRoomState(m_room.getRoomData().id);
+		result.newHandler = new RoomAdminRequestHandler(m_room, m_user, m_roomManager, m_handlerFactory);
 	}
 	catch (const std::exception&)
 	{
