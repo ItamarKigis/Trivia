@@ -11,12 +11,12 @@ class RoomMemberRequestHandler : public IRequestHandler
 	LoggedUser m_user;
 	RoomManager& m_roomManager;
 	RequestHandlerFactory& m_handlerFactory;
-	RequestResult leaveRoom(RequestInfo request) const;
-	RequestResult getRoomState(RequestInfo request) const;
+	RequestResult leaveRoom(const RequestInfo request) const;
+	RequestResult getRoomState(const RequestInfo request) const;
 public:
 	RoomMemberRequestHandler(const Room room, const LoggedUser user, RoomManager& manager, RequestHandlerFactory& handlerFactory);
 	~RoomMemberRequestHandler();
-	bool isRequestRelevant(RequestInfo request) const override;
-	RequestResult handleRequest(RequestInfo request);
+	bool isRequestRelevant(const RequestInfo request) const override;
+	RequestResult handleRequest(const RequestInfo request);
 };
 

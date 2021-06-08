@@ -14,13 +14,13 @@ class RoomAdminRequestHandler : public IRequestHandler
 	LoggedUser m_user;
 	RoomManager& m_roomManager;
 	RequestHandlerFactory& m_handlerFactory;
-	RequestResult closeRoom(RequestInfo request) const;
-	RequestResult startGame(RequestInfo request) const;
-	RequestResult getRoomState(RequestInfo request) const;
+	RequestResult closeRoom(const RequestInfo request) const;
+	RequestResult startGame(const RequestInfo request) const;
+	RequestResult getRoomState(const RequestInfo request) const;
 public:
 	RoomAdminRequestHandler(const Room room, const LoggedUser user, RoomManager& manager, RequestHandlerFactory& handlerFactory);
 	~RoomAdminRequestHandler();
-	bool isRequestRelevant(RequestInfo request) const override;
-	RequestResult handleRequest(RequestInfo request);
+	bool isRequestRelevant(const RequestInfo request) const override;
+	RequestResult handleRequest(const RequestInfo request);
 };
 

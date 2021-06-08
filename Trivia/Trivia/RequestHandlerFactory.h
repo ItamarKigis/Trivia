@@ -15,10 +15,10 @@ class RoomMemberRequestHandler;
 class RequestHandlerFactory
 {
 public:
+
 	LoginRequestHandler* createLoginRequestHandler();
 	LoginManager& getLoginManager();
 	RequestHandlerFactory(LoginManager& manager, IDataBase& DB, statisticsManager& stats);
-
 	MenuRequestHandler* createMenuRequestHandler();
 	statisticsManager& getStatisticsManager();
 	RoomManager& getRoomManager();

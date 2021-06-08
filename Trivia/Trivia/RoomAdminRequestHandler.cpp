@@ -9,13 +9,13 @@ RoomAdminRequestHandler::~RoomAdminRequestHandler()
 {
 }
 
-bool RoomAdminRequestHandler::isRequestRelevant(RequestInfo request) const
+bool RoomAdminRequestHandler::isRequestRelevant(const RequestInfo request) const
 {
 	return request.RequestId == int(CODES::START_GAME_REQUEST) || request.RequestId == int(CODES::CLOSE_ROOM_REQUEST)
 		|| request.RequestId == int(CODES::GET_ROOM_STATE_REQUEST);
 }
 
-RequestResult RoomAdminRequestHandler::handleRequest(RequestInfo request)
+RequestResult RoomAdminRequestHandler::handleRequest(const RequestInfo request)
 {
 	if (!isRequestRelevant(request))
 	{
@@ -38,7 +38,7 @@ RequestResult RoomAdminRequestHandler::handleRequest(RequestInfo request)
 	}
 }
 
-RequestResult RoomAdminRequestHandler::closeRoom(RequestInfo request) const
+RequestResult RoomAdminRequestHandler::closeRoom(const RequestInfo request) const
 {
 	RequestResult result;
 	unsigned int code = 0;
@@ -59,7 +59,7 @@ RequestResult RoomAdminRequestHandler::closeRoom(RequestInfo request) const
 	return result;
 }
 
-RequestResult RoomAdminRequestHandler::startGame(RequestInfo request) const
+RequestResult RoomAdminRequestHandler::startGame(const RequestInfo request) const
 {
 	RequestResult result;
 	unsigned int code = 0;
@@ -80,7 +80,7 @@ RequestResult RoomAdminRequestHandler::startGame(RequestInfo request) const
 	return result;
 }
 
-RequestResult RoomAdminRequestHandler::getRoomState(RequestInfo request) const
+RequestResult RoomAdminRequestHandler::getRoomState(const RequestInfo request) const
 {
 	RequestResult result;
 	unsigned int code = 0;

@@ -9,12 +9,12 @@ RoomMemberRequestHandler::~RoomMemberRequestHandler()
 {
 }
 
-bool RoomMemberRequestHandler::isRequestRelevant(RequestInfo request) const
+bool RoomMemberRequestHandler::isRequestRelevant(const RequestInfo request) const
 {
 	return request.RequestId == (int)CODES::LEAVE_ROOM_REQUEST || request.RequestId == (int)CODES::GET_ROOM_STATE_REQUEST;
 }
 
-RequestResult RoomMemberRequestHandler::handleRequest(RequestInfo request)
+RequestResult RoomMemberRequestHandler::handleRequest(const RequestInfo request)
 {
 	if (!isRequestRelevant(request))
 	{
@@ -35,7 +35,7 @@ RequestResult RoomMemberRequestHandler::handleRequest(RequestInfo request)
 	}
 }
 
-RequestResult RoomMemberRequestHandler::leaveRoom(RequestInfo request) const
+RequestResult RoomMemberRequestHandler::leaveRoom(const RequestInfo request) const
 {
 	RequestResult result;
 	unsigned int code = 0;
@@ -56,7 +56,7 @@ RequestResult RoomMemberRequestHandler::leaveRoom(RequestInfo request) const
 	return result;
 }
 
-RequestResult RoomMemberRequestHandler::getRoomState(RequestInfo request) const
+RequestResult RoomMemberRequestHandler::getRoomState(const RequestInfo request) const
 {
 	RequestResult result;
 	unsigned int code = 0;
