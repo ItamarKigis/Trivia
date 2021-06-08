@@ -2,6 +2,10 @@
 #include <iostream>
 #include <algorithm>
 
+LoginManager::LoginManager()
+{
+}
+
 LoginManager::LoginManager(IDataBase* DB)
 {
 	if (DB == nullptr)
