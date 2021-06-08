@@ -4,11 +4,13 @@
 #include "RoomManager.h"
 #include "statisticsManager.h"
 #include "RoomAdminRequestHandler.h"
+#include "RoomMemberRequestHandler.h"
 
 class LoginRequestHandler;
 class LoginManager;
 class MenuRequestHandler;
 class RoomAdminRequestHandler;
+class RoomMemberRequestHandler;
 
 class RequestHandlerFactory
 {
@@ -22,7 +24,7 @@ public:
 	RoomManager& getRoomManager();
 
 	RoomAdminRequestHandler* createRoomAdminRequestHandler();
-	RoomAdminRequestHandler* createRoomAdminMemberRequestHandler();
+	RoomMemberRequestHandler* createRoomAdminMemberRequestHandler();
 
 private:
 	LoginManager m_loginManager;

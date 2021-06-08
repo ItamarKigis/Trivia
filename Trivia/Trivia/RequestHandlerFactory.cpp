@@ -28,9 +28,9 @@ RoomAdminRequestHandler* RequestHandlerFactory::createRoomAdminRequestHandler()
     return new RoomAdminRequestHandler(Room(), LoggedUser(""), m_roomManager, *this);
 }
 
-RoomAdminRequestHandler* RequestHandlerFactory::createRoomAdminMemberRequestHandler()
+RoomMemberRequestHandler* RequestHandlerFactory::createRoomAdminMemberRequestHandler()
 {
-    //TODO
+    return new RoomMemberRequestHandler(Room(), LoggedUser(""), m_roomManager, *this);
 }
 
 LoginRequestHandler* RequestHandlerFactory::createLoginRequestHandler()
