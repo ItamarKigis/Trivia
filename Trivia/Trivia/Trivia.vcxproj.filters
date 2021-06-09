@@ -50,7 +50,4 @@
     <ClInclude Include="Requests.h" />
     <ClInclude Include="RoomMemberRequestHandler.h" />
   </ItemGroup>
-  <ItemGroup>
-    <None Include="triviaDB.sqlite" />
-  </ItemGroup>
 </Project>
