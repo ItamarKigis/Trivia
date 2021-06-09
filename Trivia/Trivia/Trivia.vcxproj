@@ -187,9 +187,6 @@
     <ClInclude Include="statisticsManager.h" />
     <ClInclude Include="WSAInitializer.h" />
   </ItemGroup>
-  <ItemGroup>
-    <None Include="triviaDB.sqlite" />
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
