@@ -79,6 +79,9 @@
     <Compile Include="Menu.xaml.cs">
       <DependentUpon>Menu.xaml</DependentUpon>
     </Compile>
+    <Compile Include="RoomData.xaml.cs">
+      <DependentUpon>RoomData.xaml</DependentUpon>
+    </Compile>
     <Compile Include="SignUp.xaml.cs">
       <DependentUpon>SignUp.xaml</DependentUpon>
     </Compile>
@@ -108,6 +111,10 @@
     <Page Include="Menu.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="RoomData.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="SignUp.xaml">
       <Generator>MSBuild:Compile</Generator>
