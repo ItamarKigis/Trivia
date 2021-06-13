@@ -27,7 +27,8 @@ namespace client
 
         private void OpenRoomData_Click(object sender, RoutedEventArgs e)
         {
-            this.Content = new RoomData();
+            RoomData Room = new RoomData();
+            Room.Show();
         }
     }
 }

@@ -18,7 +18,7 @@ namespace client
     /// <summary>
     /// Interaction logic for RoomData.xaml
     /// </summary>
-    public partial class RoomData : Page
+    public partial class RoomData : Window
     {
         public RoomData()
         {
