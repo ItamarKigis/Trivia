@@ -16,18 +16,17 @@ using System.Windows.Shapes;
 namespace client
 {
     /// <summary>
-    /// Interaction logic for JoinRoom.xaml
+    /// Interaction logic for RoomData.xaml
     /// </summary>
-    public partial class JoinRoom : Page
+    public partial class RoomData : Page
     {
-        public JoinRoom()
+        public RoomData()
         {
             InitializeComponent();
         }
-
-        private void OpenRoomData_Click(object sender, RoutedEventArgs e)
+        private void Quit_Click(object sender, RoutedEventArgs e)
         {
-            this.Content = new RoomData();
+            this.Close();
         }
     }
 }

@@ -31,31 +31,35 @@
                 </LinearGradientBrush>
             </TextBlock.Foreground>
         </TextBlock>
-        <Button Margin="326,10.333,10,9.667" Grid.Column="2" Grid.Row="4" Height="Auto" Background="#FF1AD3E6" BorderBrush="#FF3AACB7" Foreground="#FF10ECEC">
+        <Button Content ="Join" Margin="326,10,10,10" Grid.Column="2" Grid.Row="1" Height="Auto" Background="{x:Null}" BorderBrush="#FF3AACB7" Foreground="#FF10ECEC" TextOptions.TextHintingMode="Fixed" FontSize="50" FontFamily="Nirmala UI" FontWeight="Bold"
+                Click="OpenRoomData_Click">
             <Button.Effect>
                 <DropShadowEffect/>
             </Button.Effect>
         </Button>
-        <Button Margin="326,10,10,10.667" Grid.Column="2" Grid.Row="3" Height="Auto" Background="#FF1AD3E6" BorderBrush="#FF3AACB7" Foreground="#FF10ECEC">
+        <Button Content ="Join" Margin="326,10,10,10" Grid.Column="2" Grid.Row="2" Height="Auto" Background="{x:Null}" BorderBrush="#FF3AACB7" Foreground="#FF10ECEC" TextOptions.TextHintingMode="Fixed" FontSize="50" FontFamily="Nirmala UI" FontWeight="Bold"
+                Click="OpenRoomData_Click">
             <Button.Effect>
                 <DropShadowEffect/>
             </Button.Effect>
         </Button>
-        <Button Margin="326,11,10,10" Grid.Column="2" Grid.Row="2" Height="Auto" Background="#FF1AD3E6" BorderBrush="#FF3AACB7" Foreground="#FF10ECEC">
+        <Button Content ="Join" Margin="326,10,10,9.667" Grid.Column="2" Grid.Row="3" Height="Auto" Background="{x:Null}" BorderBrush="#FF3AACB7" Foreground="#FF10ECEC" TextOptions.TextHintingMode="Fixed" FontSize="50" FontFamily="Nirmala UI" FontWeight="Bold"
+                Click="OpenRoomData_Click">
             <Button.Effect>
                 <DropShadowEffect/>
             </Button.Effect>
         </Button>
-        <Button Margin="326,10,10,11" Grid.Column="2" Grid.Row="1" Height="Auto" Background="#FF1AD3E6" BorderBrush="#FF3AACB7" Foreground="#FF10ECEC">
+        <Button Content ="Join" Margin="326,10.333,10,9.667" Grid.Column="2" Grid.Row="4" Height="Auto" Background="{x:Null}" BorderBrush="#FF3AACB7" Foreground="#FF10ECEC" TextOptions.TextHintingMode="Fixed" FontSize="50" FontFamily="Nirmala UI" FontWeight="Bold"
+                Click="OpenRoomData_Click">
             <Button.Effect>
                 <DropShadowEffect/>
             </Button.Effect>
         </Button>
-        <Button Margin="326,10.333,10,10.333" Grid.Column="2" Grid.Row="5" Height="Auto" Background="#FF1AD3E6" BorderBrush="#FF3AACB7" Foreground="#FF10ECEC">
+        <Button Content ="Join" Margin="326,10.333,10,9.333" Grid.Column="2" Grid.Row="5" Height="Auto" Background="{x:Null}" BorderBrush="#FF3AACB7" Foreground="#FF10ECEC" TextOptions.TextHintingMode="Fixed" FontSize="50" FontFamily="Nirmala UI" FontWeight="Bold"
+                Click="OpenRoomData_Click">
             <Button.Effect>
                 <DropShadowEffect/>
             </Button.Effect>
         </Button>
-
     </Grid>
 </Page>
