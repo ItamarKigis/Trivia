@@ -24,9 +24,9 @@ namespace client
         {
             InitializeComponent();
         }
-        private void Quit_Click(object sender, RoutedEventArgs e)
+        private void Close_Click(object sender, RoutedEventArgs e)
         {
-            this.Close();
+            //close it this.Close(); //would work only if window
         }
     }
 }

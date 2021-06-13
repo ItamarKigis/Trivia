@@ -17,14 +17,13 @@
                 </LinearGradientBrush>
             </TextBlock.Foreground>
         </TextBlock>
-        <TextBlock Text="admin name" FontSize="50" FontFamily="Segoe UI Black" Margin="60,175,785,425" FontWeight="Bold" HorizontalAlignment="Center" Width="455">
+        <TextBlock FontSize="50" FontFamily="Segoe UI Black" Margin="60,175,785,425" FontWeight="Bold" HorizontalAlignment="Center" Width="455">
             <TextBlock.Foreground>
                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                    <GradientStop Color="Black" Offset="0"/>
-                    <GradientStop Color="#FF210F0F" Offset="1"/>
+                    <GradientStop Color="White" Offset="0"/>
+                    <GradientStop Color="#FFF0DDDD" Offset="1"/>
                 </LinearGradientBrush>
-            </TextBlock.Foreground>
-        </TextBlock>
+            </TextBlock.Foreground><Run Foreground="#FFF1DFDF" Text="admin "/><Run Foreground="#FFEAD9D9" Text="name"/></TextBlock>
         <TextBlock Text="Members:" FontSize="70" FontFamily="Segoe UI Black" Margin="10,275,944,317" FontWeight="Bold" HorizontalAlignment="Center">
             <TextBlock.Foreground>
                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
@@ -34,7 +33,14 @@
             </TextBlock.Foreground>
         </TextBlock>
 
-        <Button Height="Auto" Margin="1100,589,70,50" Background="#FFA5CCD3" FontFamily="Segoe UI Black" Content="close" FontSize="40"
-                Click="Quit_Click"/>
+        <Button Height="Auto" Margin="1100,589,70,50" FontFamily="Segoe UI Black" Content="close" FontSize="40"
+                Click="Close_Click" Background="#FF94D4D2"/>
+        <ListView HorizontalAlignment="Left" Height="262" Margin="60,388,0,0" VerticalAlignment="Top" Width="296" Foreground="#DDC4E6EE" BorderBrush="#89C8E1E8" Background="#FFC9D7DE">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn/>
+                </GridView>
+            </ListView.View>
+        </ListView>
     </Grid>
 </Page>
