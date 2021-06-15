@@ -8,58 +8,11 @@
       d:DesignHeight="450" d:DesignWidth="800"
       Height="700" Width="1300">
 
-    <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="0.5*"/>
-            <ColumnDefinition Width="1*"/>
-            <ColumnDefinition Width="1*"/>
-        </Grid.ColumnDefinitions>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="1*"/>
-            <RowDefinition Height="1*"/>
-            <RowDefinition Height="1*"/>
-            <RowDefinition Height="1*"/>
-            <RowDefinition Height="1*"/>
-            <RowDefinition Height="1*"/>
-        </Grid.RowDefinitions>
-        <Image Source="./resources/cyan.png" Grid.RowSpan="6" Grid.ColumnSpan="3" Stretch="Fill" Margin="60,60,0,0.333"/>
-        <TextBlock Text="Rooms" FontSize="70" FontFamily="Segoe UI Black" Margin="60,41,484,76" Grid.RowSpan="2" FontWeight="Bold" HorizontalAlignment="Center" Grid.ColumnSpan="2">
-            <TextBlock.Foreground>
-                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                    <GradientStop Color="Black" Offset="0"/>
-                    <GradientStop Color="#FF210F0F" Offset="1"/>
-                </LinearGradientBrush>
-            </TextBlock.Foreground>
-        </TextBlock>
-        <Button Content ="Join" Margin="326,10,10,10" Grid.Column="1" Grid.Row="1" Height="Auto" Background="{x:Null}" BorderBrush="#FF3AACB7" Foreground="#FF10ECEC" TextOptions.TextHintingMode="Fixed" FontSize="50" FontFamily="Nirmala UI" FontWeight="Bold"
-                Click="OpenRoomData_Click">
-            <Button.Effect>
-                <DropShadowEffect/>
-            </Button.Effect>
-        </Button>
-        <Button Content ="Join" Margin="326,10,10,10" Grid.Column="1" Grid.Row="2" Height="Auto" Background="{x:Null}" BorderBrush="#FF3AACB7" Foreground="#FF10ECEC" TextOptions.TextHintingMode="Fixed" FontSize="50" FontFamily="Nirmala UI" FontWeight="Bold"
-                Click="OpenRoomData_Click">
-            <Button.Effect>
-                <DropShadowEffect/>
-            </Button.Effect>
-        </Button>
-        <Button Content ="Join" Margin="326,10,10,9.667" Grid.Column="1" Grid.Row="3" Height="Auto" Background="{x:Null}" BorderBrush="#FF3AACB7" Foreground="#FF10ECEC" TextOptions.TextHintingMode="Fixed" FontSize="50" FontFamily="Nirmala UI" FontWeight="Bold"
-                Click="OpenRoomData_Click">
-            <Button.Effect>
-                <DropShadowEffect/>
-            </Button.Effect>
-        </Button>
-        <Button Content ="Join" Margin="326,10.333,10,9.667" Grid.Column="1" Grid.Row="4" Height="Auto" Background="{x:Null}" BorderBrush="#FF3AACB7" Foreground="#FF10ECEC" TextOptions.TextHintingMode="Fixed" FontSize="50" FontFamily="Nirmala UI" FontWeight="Bold"
-                Click="OpenRoomData_Click">
-            <Button.Effect>
-                <DropShadowEffect/>
-            </Button.Effect>
-        </Button>
-        <Button Content ="Join" Margin="326,10.333,10,9.333" Grid.Column="1" Grid.Row="5" Height="Auto" Background="{x:Null}" BorderBrush="#FF3AACB7" Foreground="#FF10ECEC" TextOptions.TextHintingMode="Fixed" FontSize="50" FontFamily="Nirmala UI" FontWeight="Bold"
-                Click="OpenRoomData_Click">
-            <Button.Effect>
-                <DropShadowEffect/>
-            </Button.Effect>
-        </Button>
+    <Grid Background="LightGray">
+        <Grid Height="60" VerticalAlignment="Top" Background="#FF2F58C5">
+            <TextBlock Text=" AVAILABLE ROOMS" HorizontalAlignment="Center" VerticalAlignment="TOP" FontSize="30" FontWeight="Bold"/>
+        </Grid>
+        <ComboBox HorizontalAlignment="Left" Margin="200,160,0,0" VerticalAlignment="Top" Width="875" Height="400" Foreground="{x:Null}" Background="#FF2E2828"/>
+        
     </Grid>
 </UserControl>
