@@ -85,8 +85,8 @@
     <Compile Include="SignUp.xaml.cs">
       <DependentUpon>SignUp.xaml</DependentUpon>
     </Compile>
-    <Compile Include="temp.xaml.cs">
-      <DependentUpon>temp.xaml</DependentUpon>
+    <Compile Include="BestScores.xaml.cs">
+      <DependentUpon>BestScores.xaml</DependentUpon>
     </Compile>
     <Page Include="CreateRoom.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -120,7 +120,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="temp.xaml">
+    <Page Include="BestScores.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
