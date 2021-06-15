@@ -47,7 +47,7 @@ RequestResult LoginRequestHandler::login(const RequestInfo request)
     catch(const std::exception&)
     {
         code = int(CODES::ERROR_CODE);
-        result.newHandler = nullptr;
+        result.newHandler = this;
     }
     //build response
     LoginResponse login = { code };
@@ -71,7 +71,7 @@ RequestResult LoginRequestHandler::signup(const RequestInfo request)
     }
     catch (const std::exception&)
     {
-        result.newHandler = nullptr;
+        result.newHandler = this;
         code = int(CODES::ERROR_CODE);
     }
     //build response

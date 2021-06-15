@@ -22,19 +22,30 @@ namespace client
     /// <summary>
     /// Interaction logic for Page1.xaml
     /// </summary>
+    /// 
     public partial class SignUp : Page
     {
-        NetworkStream sock;
-        public class responseFromServer
+        public class Account
         {
-            int code;
+            public string username;
+            public string password;
+            public string email;
         }
+        NetworkStream sock;
         public SignUp(NetworkStream clientStream)
         {
             sock = clientStream;
             InitializeComponent();
         }
-        private void SignUpToServer(object sender, RoutedEventArgs e)
+        private void Quit_Click(object sender, RoutedEventArgs e)
+        {
+            System.Windows.Application.Current.Shutdown();
+        }
+        private void SignUp1_Click(object sender, RoutedEventArgs e)
+        {
+            LoginToServer();
+        }
+        private void LoginToServer()
         {
             Account account = new Account();
             account.password = PasswordInput.Text;
@@ -55,10 +66,10 @@ namespace client
             int byteRead = sock.Read(msg, 0, 4096);
 
             string response = System.Text.Encoding.UTF8.GetString(msg);
-            string status = response.Substring(15,3);
-            if(status == "210")
+            string status = response.Substring(15, 3);
+            if (status == "210")
             {
-                this.Content = new Menu();
+                this.SignUpFrame.Navigate(new Menu());
             }
         }
         public static byte[] Combine(byte[] first, byte[] second)
@@ -74,13 +85,6 @@ namespace client
             bArray.CopyTo(newArray, 1);
             newArray[0] = newByte;
             return newArray;
-        }
-        private void Quit_Click(object sender, RoutedEventArgs e)
-        {
-            System.Windows.Application.Current.Shutdown();
-        }
-        private void CallMenu(object sender, RoutedEventArgs e)
-        {
         }
     }
 }
