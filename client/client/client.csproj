@@ -88,6 +88,9 @@
     <Compile Include="BestScores.xaml.cs">
       <DependentUpon>BestScores.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UserStatistics.xaml.cs">
+      <DependentUpon>UserStatistics.xaml</DependentUpon>
+    </Compile>
     <Page Include="CreateRoom.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -121,6 +124,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="BestScores.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserStatistics.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
