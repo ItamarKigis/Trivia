@@ -16,11 +16,12 @@ typedef struct RequestInfo
 	time_t recivaltime;
 	std::vector<unsigned char>buffer;
 }RequestInfo;
+
 class IRequestHandler
 {
 public:
 	virtual ~IRequestHandler() = default;
 	IRequestHandler() = default;
-	virtual bool isRequestRelevant(RequestInfo request) const = 0;
-	virtual RequestResult handleRequest(RequestInfo request) = 0;
+	virtual bool isRequestRelevant(const RequestInfo request) const = 0;
+	virtual RequestResult handleRequest(const RequestInfo request) = 0;
 };
