@@ -18,7 +18,7 @@ namespace client
     /// <summary>
     /// Interaction logic for JoinRoom.xaml
     /// </summary>
-    public partial class JoinRoom : Page
+    public partial class JoinRoom : UserControl
     {
         public JoinRoom()
         {

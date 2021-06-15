@@ -67,7 +67,7 @@
                         </StackPanel>
                     </ListViewItem>
 
-                    <ListViewItem Height="60" PreviewMouseLeftButtonUp="temp">
+                    <ListViewItem Height="60" PreviewMouseLeftButtonUp="JoinRoomClick">
                         <StackPanel Orientation="Horizontal">
                             <materialDesign:PackIcon Kind="Pencil" Margin="10" Width="25" Height="25" VerticalAlignment="Center"/>
                             <TextBlock Text="Join Room" VerticalAlignment="Center" Margin="20 10"/>
