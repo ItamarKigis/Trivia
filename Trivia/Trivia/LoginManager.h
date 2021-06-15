@@ -8,6 +8,7 @@ class LoginManager
 	IDataBase* m_database;
 	std::vector<LoggedUser> m_loggedUsers;
 public:
+	LoginManager() = default;
 	LoginManager(IDataBase* DB);
 	~LoginManager();
 	void signUp(const std::string name, const std::string pass, const std::string email);

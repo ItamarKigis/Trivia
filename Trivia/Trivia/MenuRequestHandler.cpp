@@ -5,7 +5,7 @@ MenuRequestHandler::MenuRequestHandler(LoggedUser user, RoomManager& manager,
     m_statisticsManager(stats), m_handlerFactory(m_handlerFactory), m_user(user)
 {
 }
-bool MenuRequestHandler::isRequestRelevant(RequestInfo request) const
+bool MenuRequestHandler::isRequestRelevant(const RequestInfo request) const
 {
     return request.RequestId == int(CODES::CREATE_ROOM_REQUEST) ||
         request.RequestId == int(CODES::GET_ROOMS_REQUEST) ||
@@ -15,7 +15,7 @@ bool MenuRequestHandler::isRequestRelevant(RequestInfo request) const
         request.RequestId == int(CODES::LOG_OUT_REQUEST);
 }
 
-RequestResult MenuRequestHandler::handleRequest(RequestInfo request)
+RequestResult MenuRequestHandler::handleRequest(const RequestInfo request)
 {
     if (!(this->isRequestRelevant(request)))
     {
@@ -58,7 +58,7 @@ RequestResult MenuRequestHandler::handleRequest(RequestInfo request)
     }
 }
 
-RequestResult MenuRequestHandler::getRooms(RequestInfo request)
+RequestResult MenuRequestHandler::getRooms(const RequestInfo request)
 {
     RequestResult result;
     GetRoomsResponse response;
@@ -79,7 +79,7 @@ RequestResult MenuRequestHandler::getRooms(RequestInfo request)
     return result;
 }
 
-RequestResult MenuRequestHandler::getPlayersInRoom(RequestInfo request)
+RequestResult MenuRequestHandler::getPlayersInRoom(const RequestInfo request)
 {
     RequestResult result;
     GetPlayersInRoomResponse response;
@@ -99,7 +99,7 @@ RequestResult MenuRequestHandler::getPlayersInRoom(RequestInfo request)
     return result;
 }
 
-RequestResult MenuRequestHandler::getPersonalStats(RequestInfo request)
+RequestResult MenuRequestHandler::getPersonalStats(const RequestInfo request)
 {
     RequestResult result;
     GetPersonalStatsResponse response;
@@ -119,7 +119,7 @@ RequestResult MenuRequestHandler::getPersonalStats(RequestInfo request)
     return result;
 }
 
-RequestResult MenuRequestHandler::getHighScore(RequestInfo request)
+RequestResult MenuRequestHandler::getHighScore(const RequestInfo request)
 {
     RequestResult result;
     GetHighScoreResponse response;
@@ -140,7 +140,7 @@ RequestResult MenuRequestHandler::getHighScore(RequestInfo request)
     return result;
 }
 
-RequestResult MenuRequestHandler::joinRoom(RequestInfo request)
+RequestResult MenuRequestHandler::joinRoom(const RequestInfo request)
 {
     RequestResult result;
     JoinRoomRequest requestStruct = JsonRequestPacketDeserializer::deserializeJoinRoomRequest(request.buffer);
@@ -159,7 +159,7 @@ RequestResult MenuRequestHandler::joinRoom(RequestInfo request)
     return result;
 }
 
-RequestResult MenuRequestHandler::createRoom(RequestInfo request)
+RequestResult MenuRequestHandler::createRoom(const RequestInfo request)
 {
     RequestResult result;
     CreateRoomRequest requestStruct = JsonRequestPacketDeserializer::deserializeCreateRoomRequest(request.buffer);
@@ -181,7 +181,7 @@ RequestResult MenuRequestHandler::createRoom(RequestInfo request)
 }
 
 
-RequestResult MenuRequestHandler::signout(RequestInfo request)
+RequestResult MenuRequestHandler::signout(const RequestInfo request)
 {
     RequestResult result;
     LogOutResponse response;

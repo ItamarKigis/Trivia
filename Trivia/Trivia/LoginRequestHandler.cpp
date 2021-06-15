@@ -4,12 +4,12 @@ LoginRequestHandler::LoginRequestHandler(LoginManager& loginManager, RequestHand
 {
 }
 
-bool LoginRequestHandler::isRequestRelevant(RequestInfo request) const
+bool LoginRequestHandler::isRequestRelevant(const RequestInfo request) const
 {
     return request.RequestId == int(CODES::LOGIN);
 }
 
-RequestResult LoginRequestHandler::handleRequest(RequestInfo request)
+RequestResult LoginRequestHandler::handleRequest(const RequestInfo request)
 {
     if (isRequestRelevant(request)) //LOGIN
     {
@@ -31,7 +31,7 @@ RequestResult LoginRequestHandler::handleRequest(RequestInfo request)
     }
 }
 
-RequestResult LoginRequestHandler::login(RequestInfo request)
+RequestResult LoginRequestHandler::login(const RequestInfo request)
 {
     RequestResult result;
     int code = 0;
@@ -56,7 +56,7 @@ RequestResult LoginRequestHandler::login(RequestInfo request)
     return result;
 }
 
-RequestResult LoginRequestHandler::signup(RequestInfo request)
+RequestResult LoginRequestHandler::signup(const RequestInfo request)
 {
     RequestResult result;
     int code = 0;

@@ -18,6 +18,8 @@
     <ClCompile Include="RoomManager.cpp" />
     <ClCompile Include="statisticsManager.cpp" />
     <ClCompile Include="MenuRequestHandler.cpp" />
+    <ClCompile Include="RoomAdminRequestHandler.cpp" />
+    <ClCompile Include="RoomMemberRequestHandler.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Communicator.h" />
@@ -44,8 +46,8 @@
     <ClInclude Include="RoomData.h" />
     <ClInclude Include="statisticsManager.h" />
     <ClInclude Include="Question.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="triviaDB.sqlite" />
+    <ClInclude Include="RoomAdminRequestHandler.h" />
+    <ClInclude Include="Requests.h" />
+    <ClInclude Include="RoomMemberRequestHandler.h" />
   </ItemGroup>
 </Project>
