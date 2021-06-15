@@ -62,35 +62,35 @@
                 <ListView Foreground="#FF2F58C5" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
                     <ListViewItem Height="60" PreviewMouseLeftButtonUp="CreateRoomClick">
                         <StackPanel Orientation="Horizontal">
-                            <materialDesign:PackIcon Kind="ViewDashboard" Width="25" Height="25" Margin="10" VerticalAlignment="Center"/>
+                            <materialDesign:PackIcon Kind="Plus" Width="25" Height="25" Margin="10" VerticalAlignment="Center"/>
                             <TextBlock Text="Create Room" VerticalAlignment="Center" Margin="20 10"/>
                         </StackPanel>
                     </ListViewItem>
 
                     <ListViewItem Height="60" PreviewMouseLeftButtonUp="JoinRoomClick">
                         <StackPanel Orientation="Horizontal">
-                            <materialDesign:PackIcon Kind="Pencil" Margin="10" Width="25" Height="25" VerticalAlignment="Center"/>
+                            <materialDesign:PackIcon Kind="ArrowRightBoldBox" Margin="10" Width="25" Height="25" VerticalAlignment="Center"/>
                             <TextBlock Text="Join Room" VerticalAlignment="Center" Margin="20 10"/>
                         </StackPanel>
                     </ListViewItem>
 
-                    <ListViewItem Height="60">
+                    <ListViewItem Height="60" PreviewMouseLeftButtonUp="StatisticsClick">
                         <StackPanel Orientation="Horizontal">
-                            <materialDesign:PackIcon Kind="Ticket" Margin="10" Width="25" Height="25" VerticalAlignment="Center"/>
+                            <materialDesign:PackIcon Kind="AlignVerticalBottom" Margin="10" Width="25" Height="25" VerticalAlignment="Center"/>
                             <TextBlock Text="Statistics" VerticalAlignment="Center" Margin="20 10"/>
                         </StackPanel>
                     </ListViewItem>
 
                     <ListViewItem Height="60" PreviewMouseLeftButtonUp="BestScoresClick">
                         <StackPanel Orientation="Horizontal">
-                            <materialDesign:PackIcon Kind="Github" Width="25" Margin="10" Height="25" VerticalAlignment="Center"/>
+                            <materialDesign:PackIcon Kind="Trophy" Width="25" Margin="10" Height="25" VerticalAlignment="Center"/>
                             <TextBlock Text="Best Scores" VerticalAlignment="Center" Margin="20 10"/>
                         </StackPanel>
                     </ListViewItem>
 
                     <ListViewItem Height="60" PreviewMouseLeftButtonUp="ButtonQuit_Click">
                         <StackPanel Orientation="Horizontal">
-                            <materialDesign:PackIcon Kind="Message" Margin="10" Width="25" Height="25" VerticalAlignment="Center"/>
+                            <materialDesign:PackIcon Kind="CloseBox" Margin="10" Width="25" Height="25" VerticalAlignment="Center"/>
                             <TextBlock Text="Quit" VerticalAlignment="Center" Margin="20 10"/>
                         </StackPanel>
                     </ListViewItem>

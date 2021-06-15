@@ -11,10 +11,10 @@
         <TextBlock Text="The best score is - " Margin="200,200,0,0" Foreground="DarkKhaki" FontSize="40"/>
         <TextBlock Text="{Binding Path=First}" Margin="530,200,0,0" Foreground="DarkKhaki" FontSize="40"/>
 
-        <TextBlock Text="The second best score is - " Margin="200,300,0,0" Foreground="DarkKhaki" FontSize="40"/>
-        <TextBlock Text="{Binding Path=Second}" Margin="670,300,0,0" Foreground="DarkKhaki" FontSize="40"/>
+        <TextBlock Text="The second best score is - " Margin="200,300,0,0" Foreground="Gray" FontSize="40"/>
+        <TextBlock Text="{Binding Path=Second}" Margin="670,300,0,0" Foreground="Gray" FontSize="40"/>
 
-        <TextBlock Text="The third best score is - " Margin="200,400,0,0" Foreground="DarkKhaki" FontSize="40"/>
-        <TextBlock Text="{Binding Path=Third}" Margin="630,400,0,0" Foreground="DarkKhaki" FontSize="40"/>
+        <TextBlock Text="The third best score is - " Margin="200,400,0,0" Foreground="SaddleBrown" FontSize="40"/>
+        <TextBlock Text="{Binding Path=Third}" Margin="630,400,0,0" Foreground="SaddleBrown" FontSize="40"/>
     </Grid>
 </UserControl>

@@ -53,6 +53,10 @@ namespace client
         {
             this.Control.Content = new JoinRoom();
         }
+        private void StatisticsClick(object sender, MouseButtonEventArgs e)
+        {
+            this.Control.Content = new Statistics();
+        }
         private void BestScoresClick(object sender, MouseButtonEventArgs e)
         {
             this.Control.Content = new temp();

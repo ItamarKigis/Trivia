@@ -1,10 +1,11 @@
-﻿<UserControl x:Class="client.Statistics"
+﻿<UserControl x:Class="client.Statistics" DataContext="{RelativeSource Self}"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:client"
              mc:Ignorable="d" 
+             xmlns:System="clr-namespace:System;assembly=mscorlib" 
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid Margin="200,200,0 ,0">
@@ -25,14 +26,14 @@
             <materialDesign:PackIcon Kind="MicrosoftXboxGamepad" Margin="10,10,0,10" Width="50" Height="35" VerticalAlignment="Center"
                                      Foreground="Black"/>
         </StackPanel>
-        
+
         <StackPanel Grid.Column="1">
             <TextBlock Text="Number of right answers" Foreground="Gray" FontSize="17"/>
             <TextBlock></TextBlock>
             <materialDesign:PackIcon Kind="Tick" Margin="10,10,0,10" Width="50" Height="35" VerticalAlignment="Center"
                                      Foreground="Green"/>
         </StackPanel>
-        
+
         <StackPanel Grid.Column="2">
             <TextBlock Text="Number of wrong answers" Foreground="Gray" FontSize="17"/>
             <TextBlock></TextBlock>
@@ -45,5 +46,10 @@
             <materialDesign:PackIcon Kind="Clock" Margin="10,10,0,10" Width="50" Height="35" VerticalAlignment="Center"
                                      Foreground="CadetBlue"/>
         </StackPanel>
+
+        <TextBlock Grid.Column="0" Grid.Row="1" Text="{Binding Path=Games}" FontSize="40" Foreground="Gold"/>
+        <TextBlock Grid.Column="1" Grid.Row="1" Text="{Binding Path=RightAnswers}" FontSize="40" Foreground="Gold"/>
+        <TextBlock Grid.Column="2" Grid.Row="1" Text="{Binding Path=WrongAnswers}" FontSize="40" Foreground="Gold"/>
+        <TextBlock Grid.Column="3" Grid.Row="1" Text="{Binding Path=AverageTime}" FontSize="40" Foreground="Gold"/>
     </Grid>
 </UserControl>
