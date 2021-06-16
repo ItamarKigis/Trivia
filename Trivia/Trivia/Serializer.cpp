@@ -198,6 +198,7 @@
      std::vector<unsigned char> pack;
      json j;
      json results = response.results;
+     j["results"] = results;
      j["status"] = response.status;
      pack.push_back((unsigned char)CODES::GAME_RESULTS_REQUEST);
      addToPack(pack, j.size(), j.dump());
