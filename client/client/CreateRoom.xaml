@@ -8,13 +8,16 @@
       d:DesignHeight="700" d:DesignWidth="1300">
     <StackPanel>
         <TextBlock Text="Room Name" Margin="250,100,0,0" FontStyle="Italic" Foreground="Black"/>
-        <TextBox Margin="-650,10,0,0" Width="200" Foreground="Black"/>
+        <TextBox Margin="-650,10,0,0" Width="200" Foreground="Black" Name="Name"/>
 
         <TextBlock Text="Number Of Players" Margin="250,100,0,0" FontStyle="Italic" Foreground="Black"/>
-        <TextBox Margin="-650,10,0,0" Width="200" Foreground="Black"/>
+        <TextBox Margin="-650,10,0,0" Width="200" Foreground="Black" Name="NumOfPlayers"/>
 
+        <TextBlock Text="Number Of Questions" Margin="250,100,0,0" FontStyle="Italic" Foreground="Black"/>
+        <TextBox Margin="-650,10,0,0" Width="200" Foreground="Black" Name="NumOfQuestions"/>
+        
         <TextBlock Text="Time Per Question" Margin="250,100,0,0" FontStyle="Italic" Foreground="Black"/>
-        <TextBox Margin="-650,10,0,0" Width="200" Foreground="Black"/>
+        <TextBox Margin="-650,10,0,0" Width="200" Foreground="Black" Name="TimePerQuestion"/>
 
 
         <Button Name="Send" Content="Send" HorizontalAlignment="Left" Margin="590,0,0,0" VerticalAlignment="Top" Width="150" Height="50"

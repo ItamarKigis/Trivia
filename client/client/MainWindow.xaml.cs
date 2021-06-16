@@ -75,7 +75,7 @@ namespace client
             string status = response.Substring(15, 3);
             if (status == "200")
             {
-                this.Content = new Menu();
+                this.Content = new Menu(sock);
             }
         }
         public static byte[] Combine(byte[] first, byte[] second)

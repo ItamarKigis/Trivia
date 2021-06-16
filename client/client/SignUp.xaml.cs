@@ -69,7 +69,7 @@ namespace client
             string status = response.Substring(15, 3);
             if (status == "210")
             {
-                this.SignUpFrame.Navigate(new Menu());
+                this.SignUpFrame.Navigate(new Menu(sock));
             }
         }
         public static byte[] Combine(byte[] first, byte[] second)

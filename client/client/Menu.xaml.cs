@@ -12,13 +12,17 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Net.Sockets;
 
 namespace client
 {
     public partial class Menu : Page
     {
-        public Menu()
+        NetworkStream sock;
+
+        public Menu(NetworkStream clientStream)
         {
+            sock = clientStream;
             InitializeComponent();
         }
 
@@ -47,7 +51,7 @@ namespace client
 
         private void CreateRoomClick(object sender, MouseButtonEventArgs e)
         {
-            this.Control.Content = new CreateRoom();
+            this.Control.Content = new CreateRoom(sock);
         }
         private void JoinRoomClick(object sender, MouseButtonEventArgs e)
         {

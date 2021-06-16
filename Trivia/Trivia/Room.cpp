@@ -16,9 +16,7 @@ Room::~Room()
 
 Room::Room(LoggedUser user, RoomData data) : m_metadata(data)
 {
-	_usersLocker.lock();
 	m_users.push_back(user);
-	_usersLocker.unlock();
 }
 
 void Room::addUser(LoggedUser user)

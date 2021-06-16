@@ -12,7 +12,7 @@ RoomManager::~RoomManager()
 void RoomManager::createRoom(LoggedUser user, RoomData data)
 {
 	_roomsLocker.lock();
-	m_rooms[data.id] = Room(user, data);
+	m_rooms.insert({ data.id, Room(user,data) });
 	CurrentRoomId++;
 	_roomsLocker.unlock();
 }
