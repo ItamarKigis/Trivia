@@ -12,6 +12,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Net.Sockets;
+using Newtonsoft.Json;
 
 namespace client
 {
@@ -20,8 +22,10 @@ namespace client
     /// </summary>
     public partial class JoinRoom : UserControl
     {
-        public JoinRoom()
+        NetworkStream sock;
+        public JoinRoom(NetworkStream clientStream)
         {
+            sock = clientStream;
             InitializeComponent();
         }
 
@@ -29,6 +33,17 @@ namespace client
         {
             RoomData Room = new RoomData();
             Room.Show();
+        }
+        public void getRooms()
+        {
+            byte[] msg = new byte[1024];
+            msg[0] = BitConverter.GetBytes(102)[0];
+            sock.Write(msg, 0, msg.Length);
+            sock.Flush();
+
+            msg = new byte[4096];
+            int byteRead = sock.Read(msg, 0, 4096);
+            string response = System.Text.Encoding.UTF8.GetString(msg);
         }
     }
 }

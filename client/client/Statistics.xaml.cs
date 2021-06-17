@@ -54,7 +54,7 @@ namespace client
         public void getStatistics()
         {
             byte[] msg = new byte[1024];
-            msg[0] = BitConverter.GetBytes(210)[0];
+            msg[0] = BitConverter.GetBytes(105)[0];
             sock.Write(msg, 0, msg.Length);
             sock.Flush();
 

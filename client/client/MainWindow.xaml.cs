@@ -28,6 +28,7 @@ namespace client
             public string password;
         }
         NetworkStream sock;
+        int recieve = 0;
         public MainWindow()
         {
             TcpClient client = new TcpClient();
@@ -46,7 +47,7 @@ namespace client
 
         private void SignUp_Click(object sender, RoutedEventArgs e)
         {
-            this.Content = new SignUp(sock);
+            this.Content = new SignUp(ref sock, recieve);
         }
         private void Button_Click(object sender, RoutedEventArgs e)
         {
@@ -69,7 +70,9 @@ namespace client
             sock.Flush();
 
             msg = new byte[4096];
-            int byteRead = sock.Read(msg, 0, 4096);
+            int byteRead = sock.Read(msg, recieve, 4096);
+            sock.Flush();
+            recieve += byteRead;
 
             string response = System.Text.Encoding.UTF8.GetString(msg);
             string status = response.Substring(15, 3);

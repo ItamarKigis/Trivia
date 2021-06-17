@@ -55,11 +55,11 @@ namespace client
         }
         private void JoinRoomClick(object sender, MouseButtonEventArgs e)
         {
-            this.Control.Content = new JoinRoom();
+            this.Control.Content = new JoinRoom(sock);
         }
         private void StatisticsClick(object sender, MouseButtonEventArgs e)
         {
-            this.Control.Content = new Statistics();
+            this.Control.Content = new Statistics(sock);
         }
         private void BestScoresClick(object sender, MouseButtonEventArgs e)
         {

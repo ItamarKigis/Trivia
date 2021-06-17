@@ -32,8 +32,10 @@ namespace client
             public string email;
         }
         NetworkStream sock;
-        public SignUp(NetworkStream clientStream)
+        int recieve;
+        public SignUp(ref NetworkStream clientStream, int temp)
         {
+            recieve = temp;
             sock = clientStream;
             InitializeComponent();
         }
@@ -47,6 +49,7 @@ namespace client
         }
         private void LoginToServer()
         {
+            sock.Flush();
             Account account = new Account();
             account.password = PasswordInput.Text;
             account.username = UsernameInput.Text;
@@ -60,10 +63,11 @@ namespace client
             msg = addByteToArray(lenOfJson, CodeByte);
             msg = Combine(msg, Encoding.ASCII.GetBytes(json));
             sock.Write(msg, 0, msg.Length);
-            sock.Flush();
+            sock.Flush(); 
 
             msg = new byte[4096];
-            int byteRead = sock.Read(msg, 0, 4096);
+            int byteRead = sock.Read(msg, 0 , 4096);
+            recieve += byteRead;
 
             string response = System.Text.Encoding.UTF8.GetString(msg);
             string status = response.Substring(15, 3);
