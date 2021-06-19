@@ -71,7 +71,7 @@ namespace client
             {
                 this.SignUpFrame.Navigate(new Menu(sock));
             }
-            //sock.Close();
+
         }
         public static byte[] Combine(byte[] first, byte[] second)
         {

@@ -53,8 +53,8 @@ namespace client
         }
         public void getStatistics()
         {
-            byte[] msg = new byte[1024];
-            msg[0] = BitConverter.GetBytes(210)[0];
+            byte[] msg = new byte[4096];
+            msg[0] = BitConverter.GetBytes(105)[0];
             sock.Write(msg, 0, msg.Length);
             sock.Flush();
 
@@ -62,6 +62,18 @@ namespace client
             int byteRead = sock.Read(msg, 0, 4096);
             string response = System.Text.Encoding.UTF8.GetString(msg);
 
+            string temp = response.Substring(5);
+            Dictionary<string, Object> ans = JsonConvert.DeserializeObject<Dictionary<string, Object>>(temp);
+
+            KeyValuePair<string, Object> kv;
+            object s = ans.ElementAt(0).Value;
+
+            foreach(object stat in ans.Values)
+            {
+            }
+            
+            object a = s.ToString();
+            Console.WriteLine("1");
         }
     }
 }

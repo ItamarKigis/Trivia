@@ -19,7 +19,7 @@ namespace client
     /// <summary>
     /// Interaction logic for temp.xaml
     /// </summary>
-    public partial class temp : UserControl
+    public partial class BestScore : UserControl
     {
         private int first = 150;
         private int second = 100;
@@ -36,7 +36,7 @@ namespace client
         {
             get { return third.ToString(); }
         }
-        public temp()
+        public BestScore()
         {
             InitializeComponent();
             this.DataContext = this;
