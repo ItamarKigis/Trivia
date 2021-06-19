@@ -59,7 +59,7 @@ namespace client
         }
         private void StatisticsClick(object sender, MouseButtonEventArgs e)
         {
-            this.Control.Content = new Statistics();
+            this.Control.Content = new Statistics(sock);
         }
         private void BestScoresClick(object sender, MouseButtonEventArgs e)
         {

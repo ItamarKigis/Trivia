@@ -6,7 +6,7 @@
 #include <map>
 #include <thread>
 #include <mutex>
-#define MAX_LEN 10000
+#define MAX_LEN 4096
 #define PORT 8989
 
 class Communicator
