@@ -63,17 +63,13 @@ namespace client
             string response = System.Text.Encoding.UTF8.GetString(msg);
 
             string temp = response.Substring(5);
-            Dictionary<string, Object> ans = JsonConvert.DeserializeObject<Dictionary<string, Object>>(temp);
 
-            KeyValuePair<string, Object> kv;
-            object s = ans.ElementAt(0).Value;
+            dynamic json = JsonConvert.DeserializeObject(temp);
 
-            foreach(object stat in ans.Values)
-            {
-            }
-            
-            object a = s.ToString();
-            Console.WriteLine("1");
+            games = (int)(json["statistics"][0]);
+            right_answers = (int)(json["statistics"][1]);
+            wrong_answers = (int)(json["statistics"][2]);
+            average_time = (double)(json["statistics"][2]);
         }
     }
 }

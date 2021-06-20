@@ -47,6 +47,8 @@ RequestResult RoomAdminRequestHandler::closeRoom(const RequestInfo request) cons
 		result.newHandler = new MenuRequestHandler(m_user, m_handlerFactory.getRoomManager(),
 			m_handlerFactory.getStatisticsManager(), m_handlerFactory);
 		code = (unsigned char)CODES::LEAVE_ROOM_REQUEST;
+
+		m_roomManager.deleteRoom(m_room.getRoomData().id);
 	}
 	catch (const std::exception&)
 	{

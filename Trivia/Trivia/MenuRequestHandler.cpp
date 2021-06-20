@@ -171,13 +171,14 @@ RequestResult MenuRequestHandler::createRoom(const RequestInfo request)
             requestStruct.questionCount, requestStruct.answerTimeout, true };
         m_roomManager.createRoom(m_user , data);
         response.status = int(CODES::CREATE_ROOM_REQUEST);
+        result.newHandler = this;
     }
     catch(std::exception& e)
     {
         response.status = int(CODES::ERROR_CODE);
     }
     result.response = JsonResponsePacketSerializer::serializeResponse(response);
-    //newHandler is MenuRequestHandler. So there is no need to set this field
+    
     return result;
 }
 

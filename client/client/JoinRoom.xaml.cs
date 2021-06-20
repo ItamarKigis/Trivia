@@ -20,12 +20,17 @@ namespace client
     /// <summary>
     /// Interaction logic for JoinRoom.xaml
     /// </summary>
+    public class Rooms
+    {
+        public string[] rooms { get; set; }
+    }
     public partial class JoinRoom : UserControl
     {
         NetworkStream sock;
         public JoinRoom(NetworkStream clientStream)
         {
             sock = clientStream;
+            getRooms();
             InitializeComponent();
         }
 
@@ -36,7 +41,7 @@ namespace client
         }
         public void getRooms()
         {
-            byte[] msg = new byte[1024];
+            byte[] msg = new byte[4096];
             msg[0] = BitConverter.GetBytes(102)[0];
             sock.Write(msg, 0, msg.Length);
             sock.Flush();
@@ -44,6 +49,13 @@ namespace client
             msg = new byte[4096];
             int byteRead = sock.Read(msg, 0, 4096);
             string response = System.Text.Encoding.UTF8.GetString(msg);
+
+            string temp = response.Substring(5);
+
+            dynamic json = JsonConvert.DeserializeObject(temp);
+
+            int first = json["rooms"][0]["id"];
+
         }
     }
 }

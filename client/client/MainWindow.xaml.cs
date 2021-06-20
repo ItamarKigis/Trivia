@@ -70,7 +70,7 @@ namespace client
             sock.Flush();
 
             msg = new byte[4096];
-            int byteRead = sock.Read(msg, recieve, 4096);
+            int byteRead = sock.Read(msg, 0, msg.Length);
             sock.Flush();
             recieve += byteRead;
 

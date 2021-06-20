@@ -63,7 +63,19 @@ namespace client
             int byteRead = sock.Read(msg, 0, 4096);
             string response = System.Text.Encoding.UTF8.GetString(msg);
 
-            Console.WriteLine("1");
+            string temp = response.Substring(5);
+
+            dynamic json = JsonConvert.DeserializeObject(temp);
+            try
+            {
+                first = (int)json["statistics"][0];
+                second = (int)json["statistics"][1];
+                third = (int)json["statistics"][2];
+            }
+            catch(ArgumentOutOfRangeException e)
+            {
+
+            }
         }
     }
 }
