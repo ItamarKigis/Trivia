@@ -34,3 +34,8 @@ public:
 	unsigned int questionCount;
 	unsigned int answerTimeout;
 }CreateRoomRequest;
+
+struct SumbitAnsweRequest
+{
+	unsigned int answerId;
+};
