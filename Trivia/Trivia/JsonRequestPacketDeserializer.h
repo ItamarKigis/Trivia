@@ -16,6 +16,7 @@ public:
 	static GetPlayersInRoomRequest deserializeGetPlayersRequest(std::vector<unsigned char> Buffer);
 	static JoinRoomRequest deserializeJoinRoomRequest(std::vector<unsigned char> Buffer);
 	static CreateRoomRequest deserializeCreateRoomRequest(std::vector<unsigned char> Buffer);
+	static SumbitAnsweRequest deserializeSumbitAnswerRequest(std::vector<unsigned char> Buffer);
 private:
 	static int GetDataLenght(std::vector<unsigned char>Buffer);
 	static json GetJson(std::vector<unsigned char>Buffer, int dataLengh);
