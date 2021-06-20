@@ -63,7 +63,7 @@ namespace client
         }
         private void BestScoresClick(object sender, MouseButtonEventArgs e)
         {
-            this.Control.Content = new BestScore();
+            this.Control.Content = new BestScore(sock);
         }
     }
 }
