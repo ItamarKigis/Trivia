@@ -12,6 +12,7 @@ bool MenuRequestHandler::isRequestRelevant(const RequestInfo request) const
         request.RequestId == int(CODES::GET_PLAYERS_IN_ROOM_REQUEST) ||
         request.RequestId == int(CODES::JOIN_ROOM_REQUEST) ||
         request.RequestId == int(CODES::GET_STATISTICS_REQUEST) ||
+        request.RequestId == int(CODES::HIGH_SCORE_REQUSET) ||
         request.RequestId == int(CODES::LOG_OUT_REQUEST);
 }
 

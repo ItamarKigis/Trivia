@@ -56,18 +56,17 @@ namespace client
             account.email = EmailInput.Text;
             string json = JsonConvert.SerializeObject(account, Formatting.Indented);
 
-            byte[] msg = new byte[1024];
+            
+            byte[] msg = new byte[4096];
             byte CodeByte = BitConverter.GetBytes(210)[0];
             byte[] lenOfJson = BitConverter.GetBytes(json.Length);
             Array.Reverse(lenOfJson);
             msg = addByteToArray(lenOfJson, CodeByte);
             msg = Combine(msg, Encoding.ASCII.GetBytes(json));
             sock.Write(msg, 0, msg.Length);
-            sock.Flush(); 
-
+            sock.Flush();
             msg = new byte[4096];
-            int byteRead = sock.Read(msg, 0 , 4096);
-            recieve += byteRead;
+            int byteRead = sock.Read(msg, 0, msg.Length);
 
             string response = System.Text.Encoding.UTF8.GetString(msg);
             string status = response.Substring(15, 3);
@@ -75,6 +74,7 @@ namespace client
             {
                 this.SignUpFrame.Navigate(new Menu(sock));
             }
+
         }
         public static byte[] Combine(byte[] first, byte[] second)
         {
