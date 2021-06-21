@@ -68,6 +68,7 @@ RequestResult MenuRequestHandler::getRooms(const RequestInfo request)
     {
         response.rooms = m_roomManager.getRooms();
         code = int(CODES::GET_ROOMS_REQUEST);
+        result.newHandler = this;
     }
     catch (std::exception& e)
     {
@@ -109,6 +110,7 @@ RequestResult MenuRequestHandler::getPersonalStats(const RequestInfo request)
     {
         response.stats = m_statisticsManager.getUserStatistics(m_user.getUsername());
         code = int(CODES::GET_STATISTICS_REQUEST);
+        result.newHandler = this;
     }
     catch (std::exception& e)
     {
@@ -116,7 +118,6 @@ RequestResult MenuRequestHandler::getPersonalStats(const RequestInfo request)
     }
     response.status = code;
     result.response = JsonResponsePacketSerializer::serializeResponse(response);
-    //newHandler is MenuRequestHandler. So there is no need to set this field
     return result;
 }
 
@@ -129,6 +130,7 @@ RequestResult MenuRequestHandler::getHighScore(const RequestInfo request)
     {
         response.stats = m_statisticsManager.getHighScore();
         code = int(CODES::HIGH_SCORE_REQUSET);
+        result.newHandler = this;
     }
     catch(std::exception& e)
     {
@@ -137,7 +139,6 @@ RequestResult MenuRequestHandler::getHighScore(const RequestInfo request)
     response.status = code;
 
     result.response = JsonResponsePacketSerializer::serializeResponse(response);
-    //newHandler is MenuRequestHandler. So there is no need to set this field
     return result;
 }
 

@@ -47,14 +47,12 @@ namespace client
             sock.Flush();
 
             msg = new byte[4096];
-            int byteRead = sock.Read(msg, 0, 4096);
+            int byteRead = sock.Read(msg, 0, msg.Length);
             string response = System.Text.Encoding.UTF8.GetString(msg);
 
             string temp = response.Substring(5);
 
             dynamic json = JsonConvert.DeserializeObject(temp);
-
-            int first = json["rooms"][0]["id"];
 
         }
     }
