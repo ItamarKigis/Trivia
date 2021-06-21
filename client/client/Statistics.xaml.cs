@@ -12,6 +12,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Net.Sockets;
+using Newtonsoft.Json;
 
 namespace client
 {
@@ -25,6 +27,7 @@ namespace client
         private int right_answers = 0;
         private int wrong_answers = 0;
         private double average_time = 0;
+        NetworkStream sock;
         public string Games
         {
             get { return games.ToString(); }
@@ -41,10 +44,32 @@ namespace client
         {
             get { return average_time.ToString(); }
         }
-        public Statistics()
+        public Statistics(NetworkStream clientStream)
         {
+            sock = clientStream;
+            getStatistics();
             InitializeComponent();
             this.DataContext = this;
+        }
+        public void getStatistics()
+        {
+            byte[] msg = new byte[4096];
+            msg[0] = BitConverter.GetBytes(105)[0];
+            sock.Write(msg, 0, msg.Length);
+            sock.Flush();
+
+            msg = new byte[4096];
+            int byteRead = sock.Read(msg, 0, 4096);
+            string response = System.Text.Encoding.UTF8.GetString(msg);
+
+            string temp = response.Substring(5);
+
+            dynamic json = JsonConvert.DeserializeObject(temp);
+
+            games = (int)(json["statistics"][0]);
+            right_answers = (int)(json["statistics"][1]);
+            wrong_answers = (int)(json["statistics"][2]);
+            average_time = (double)(json["statistics"][2]);
         }
     }
 }

@@ -17,11 +17,12 @@
         <TextBlock Text="Password" Margin="370,220"/>
         <TextBlock Text="Email" Margin="370, 273"/>
 
-        <Button Name="SignUp1" Content="SignUp" HorizontalAlignment="Left" Click="SignUpToServer" 
+        <Button Name="SignUp1" Content="SignUp" HorizontalAlignment="Left" Click="SignUp1_Click"
                 Margin="370,410,0,0" VerticalAlignment="Top" Width="150" Height="70" />
         <Button Name="Quit" Content="Quit" HorizontalAlignment="Left" Click="Quit_Click"
                 Margin="745,410,0,0" VerticalAlignment="Top" Width="150" Height="70"/>
 
+        <Frame Name="SignUpFrame"/>
     </Grid>
 </Page>
 

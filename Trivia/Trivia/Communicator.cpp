@@ -92,28 +92,32 @@ void Communicator::handleNewClient(SOCKET clientSocket)
 	try
 	{
 		char clientMsg[MAX_LEN] = { 0 };
-		recv(clientSocket, clientMsg, sizeof(clientMsg), 0);
-		//this vector is only for transforming the message from an array to a vector for handleRequest
-		std::vector<unsigned char> buffer(std::begin(clientMsg), std::end(clientMsg));
-		RequestInfo request = { int(buffer[0]), time(NULL), buffer };
-		RequestResult result = m_clients[clientSocket]->handleRequest(request);
-		_clientsLocker.lock();
-		m_clients[clientSocket] = result.newHandler;
-		_clientsLocker.unlock();
-		std::fill(std::begin(clientMsg),std::end(clientMsg), 0);
-
-		int index = 0;
-		char ch = 'A';
-		std::vector<unsigned char>::iterator it = result.response.begin();
-		while (it != result.response.end())
+		while (m_clients[clientSocket] != NULL)
 		{
-			ch = unsigned char(*it);
-			clientMsg[index] = ch;
-			++it;
-			index++;
-		}
+			recv(clientSocket, clientMsg, sizeof(clientMsg), 0);
+			//this vector is only for transforming the message from an array to a vector for handleRequest
+			std::vector<unsigned char> buffer(std::begin(clientMsg), std::end(clientMsg));
+			RequestInfo request = { int(buffer[0]), time(NULL), buffer };
+			RequestResult result;
+			result = m_clients[clientSocket]->handleRequest(request);
+			_clientsLocker.lock();
+			m_clients[clientSocket] = result.newHandler;
+			_clientsLocker.unlock();
+			std::fill(std::begin(clientMsg), std::end(clientMsg), 0);
 
-		send(clientSocket, clientMsg, MAX_LEN, 0);
+			int index = 0;
+			char ch = 'A';
+			std::vector<unsigned char>::iterator it = result.response.begin();
+			while (it != result.response.end())
+			{
+				ch = unsigned char(*it);
+				clientMsg[index] = ch;
+				++it;
+				index++;
+			}
+
+			send(clientSocket, clientMsg, MAX_LEN, 0);
+		}
 	}
 	catch (...)
 	{

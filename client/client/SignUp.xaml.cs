@@ -22,27 +22,42 @@ namespace client
     /// <summary>
     /// Interaction logic for Page1.xaml
     /// </summary>
+    /// 
     public partial class SignUp : Page
     {
-        NetworkStream sock;
-        public class responseFromServer
+        public class Account
         {
-            int code;
+            public string username;
+            public string password;
+            public string email;
         }
-        public SignUp(NetworkStream clientStream)
+        NetworkStream sock;
+        int recieve;
+        public SignUp(ref NetworkStream clientStream, int temp)
         {
+            recieve = temp;
             sock = clientStream;
             InitializeComponent();
         }
-        private void SignUpToServer(object sender, RoutedEventArgs e)
+        private void Quit_Click(object sender, RoutedEventArgs e)
         {
+            System.Windows.Application.Current.Shutdown();
+        }
+        private void SignUp1_Click(object sender, RoutedEventArgs e)
+        {
+            LoginToServer();
+        }
+        private void LoginToServer()
+        {
+            sock.Flush();
             Account account = new Account();
             account.password = PasswordInput.Text;
             account.username = UsernameInput.Text;
             account.email = EmailInput.Text;
             string json = JsonConvert.SerializeObject(account, Formatting.Indented);
 
-            byte[] msg = new byte[1024];
+            
+            byte[] msg = new byte[4096];
             byte CodeByte = BitConverter.GetBytes(210)[0];
             byte[] lenOfJson = BitConverter.GetBytes(json.Length);
             Array.Reverse(lenOfJson);
@@ -50,16 +65,16 @@ namespace client
             msg = Combine(msg, Encoding.ASCII.GetBytes(json));
             sock.Write(msg, 0, msg.Length);
             sock.Flush();
-
             msg = new byte[4096];
-            int byteRead = sock.Read(msg, 0, 4096);
+            int byteRead = sock.Read(msg, 0, msg.Length);
 
             string response = System.Text.Encoding.UTF8.GetString(msg);
-            string status = response.Substring(15,3);
-            if(status == "210")
+            string status = response.Substring(15, 3);
+            if (status == "210")
             {
-                this.Content = new Menu();
+                this.SignUpFrame.Navigate(new Menu(sock));
             }
+
         }
         public static byte[] Combine(byte[] first, byte[] second)
         {
@@ -74,13 +89,6 @@ namespace client
             bArray.CopyTo(newArray, 1);
             newArray[0] = newByte;
             return newArray;
-        }
-        private void Quit_Click(object sender, RoutedEventArgs e)
-        {
-            System.Windows.Application.Current.Shutdown();
-        }
-        private void CallMenu(object sender, RoutedEventArgs e)
-        {
         }
     }
 }

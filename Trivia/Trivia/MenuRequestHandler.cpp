@@ -12,6 +12,7 @@ bool MenuRequestHandler::isRequestRelevant(const RequestInfo request) const
         request.RequestId == int(CODES::GET_PLAYERS_IN_ROOM_REQUEST) ||
         request.RequestId == int(CODES::JOIN_ROOM_REQUEST) ||
         request.RequestId == int(CODES::GET_STATISTICS_REQUEST) ||
+        request.RequestId == int(CODES::HIGH_SCORE_REQUSET) ||
         request.RequestId == int(CODES::LOG_OUT_REQUEST);
 }
 
@@ -67,6 +68,7 @@ RequestResult MenuRequestHandler::getRooms(const RequestInfo request)
     {
         response.rooms = m_roomManager.getRooms();
         code = int(CODES::GET_ROOMS_REQUEST);
+        result.newHandler = this;
     }
     catch (std::exception& e)
     {
@@ -108,6 +110,7 @@ RequestResult MenuRequestHandler::getPersonalStats(const RequestInfo request)
     {
         response.stats = m_statisticsManager.getUserStatistics(m_user.getUsername());
         code = int(CODES::GET_STATISTICS_REQUEST);
+        result.newHandler = this;
     }
     catch (std::exception& e)
     {
@@ -115,7 +118,6 @@ RequestResult MenuRequestHandler::getPersonalStats(const RequestInfo request)
     }
     response.status = code;
     result.response = JsonResponsePacketSerializer::serializeResponse(response);
-    //newHandler is MenuRequestHandler. So there is no need to set this field
     return result;
 }
 
@@ -128,6 +130,7 @@ RequestResult MenuRequestHandler::getHighScore(const RequestInfo request)
     {
         response.stats = m_statisticsManager.getHighScore();
         code = int(CODES::HIGH_SCORE_REQUSET);
+        result.newHandler = this;
     }
     catch(std::exception& e)
     {
@@ -136,7 +139,6 @@ RequestResult MenuRequestHandler::getHighScore(const RequestInfo request)
     response.status = code;
 
     result.response = JsonResponsePacketSerializer::serializeResponse(response);
-    //newHandler is MenuRequestHandler. So there is no need to set this field
     return result;
 }
 
@@ -170,13 +172,14 @@ RequestResult MenuRequestHandler::createRoom(const RequestInfo request)
             requestStruct.questionCount, requestStruct.answerTimeout, true };
         m_roomManager.createRoom(m_user , data);
         response.status = int(CODES::CREATE_ROOM_REQUEST);
+        result.newHandler = this;
     }
     catch(std::exception& e)
     {
         response.status = int(CODES::ERROR_CODE);
     }
     result.response = JsonResponsePacketSerializer::serializeResponse(response);
-    //newHandler is MenuRequestHandler. So there is no need to set this field
+    
     return result;
 }
 

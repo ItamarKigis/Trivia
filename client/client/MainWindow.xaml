@@ -36,6 +36,7 @@
 
         <Button Name="Quit" Content="Quit" HorizontalAlignment="Left" Margin="374,625,0,0" VerticalAlignment="Top" Width="100" Height="32"
                 Click="Quit_Click"/>
+        <Frame Name="ParentFrame"/>
     </Grid>
 </Window>
 

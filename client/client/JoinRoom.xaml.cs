@@ -12,16 +12,25 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Net.Sockets;
+using Newtonsoft.Json;
 
 namespace client
 {
     /// <summary>
     /// Interaction logic for JoinRoom.xaml
     /// </summary>
+    public class Rooms
+    {
+        public string[] rooms { get; set; }
+    }
     public partial class JoinRoom : UserControl
     {
-        public JoinRoom()
+        NetworkStream sock;
+        public JoinRoom(NetworkStream clientStream)
         {
+            sock = clientStream;
+            getRooms();
             InitializeComponent();
         }
 
@@ -29,6 +38,22 @@ namespace client
         {
             RoomData Room = new RoomData();
             Room.Show();
+        }
+        public void getRooms()
+        {
+            byte[] msg = new byte[4096];
+            msg[0] = BitConverter.GetBytes(102)[0];
+            sock.Write(msg, 0, msg.Length);
+            sock.Flush();
+
+            msg = new byte[4096];
+            int byteRead = sock.Read(msg, 0, msg.Length);
+            string response = System.Text.Encoding.UTF8.GetString(msg);
+
+            string temp = response.Substring(5);
+
+            dynamic json = JsonConvert.DeserializeObject(temp);
+
         }
     }
 }
