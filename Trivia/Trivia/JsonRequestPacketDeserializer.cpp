@@ -77,6 +77,20 @@ CreateRoomRequest JsonRequestPacketDeserializer::deserializeCreateRoomRequest(st
     return request;
 }
 
+SumbitAnsweRequest JsonRequestPacketDeserializer::deserializeSumbitAnswerRequest(std::vector<unsigned char> Buffer)
+{
+    //getting the code
+    int code = int(Buffer[0]);
+    //getting the message lengh
+    int dataLengh = GetDataLenght(Buffer);
+    //put the data into json format
+    json json_data = GetJson(Buffer, dataLengh);
+    //creating new struct with the json data
+    SumbitAnsweRequest request;
+    request.answerId = json_data["answerId"];
+    return request;
+}
+
 int JsonRequestPacketDeserializer::GetDataLenght(std::vector<unsigned char> Buffer)
 {
     return int((unsigned char)(Buffer[1]) << 24 |

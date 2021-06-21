@@ -10,6 +10,12 @@
              {"maxPlayers",room.maxPlayers},{"name",room.name},
              {"numOfQuestions",room.numOfQuestionsInGame}, {"timePerQuestion",room.timePerQuestion} };
  }
+
+ void to_json(json& j, const PlayerResults& results)
+ {
+     j = { {"username",results.username}, {"correctAnswersCount",results.correctAnswersCount},
+             {"wrongAnswersCount",results.wrongAnswersCount},{"avgAnswersTime",results.averageAnswersTime} };
+ }
  
  std::array<unsigned char, 4> JsonResponsePacketSerializer::intToBytes(int paramInt)
  {
@@ -173,6 +179,51 @@
      j["questionCount"] = response.questionCount;
      j["answerTimeOut"] = response.answerTimeOut;
      pack.push_back((unsigned char)CODES::GET_ROOM_STATE_REQUEST);
+     addToPack(pack, j.size(), j.dump());
+     return pack;
+ }
+
+ std::vector<unsigned char> JsonResponsePacketSerializer::serializeResponse(LeaveGameResponse response)
+ {
+     std::vector<unsigned char> pack;
+     json j;
+     j["status"] = response.status;
+     pack.push_back((unsigned char)CODES::LEAVE_GAME_REQUEST);
+     addToPack(pack, j.size(), j.dump());
+     return pack;
+ }
+
+ std::vector<unsigned char> JsonResponsePacketSerializer::serializeResponse(GetGameResultsResponse response)
+ {
+     std::vector<unsigned char> pack;
+     json j;
+     json results = response.results;
+     j["results"] = results;
+     j["status"] = response.status;
+     pack.push_back((unsigned char)CODES::GAME_RESULTS_REQUEST);
+     addToPack(pack, j.size(), j.dump());
+     return pack;
+ }
+
+ std::vector<unsigned char> JsonResponsePacketSerializer::serializeResponse(SumbitAnswerResponse response)
+ {
+     std::vector<unsigned char> pack;
+     json j;
+     j["status"] = response.status;
+     j["correctAnswers"] = response.correctAnswers;
+     pack.push_back((unsigned char)CODES::SUBMIT_ANSWER_REQUEST);
+     addToPack(pack, j.size(), j.dump());
+     return pack;
+ }
+
+ std::vector<unsigned char> JsonResponsePacketSerializer::serializeResponse(GetQuestionsResponse response)
+ {
+     std::vector<unsigned char> pack;
+     json j;
+     j["status"] = response.status;
+     j["answers"] = response.answers;
+     j["question"] = response.question;
+     pack.push_back((unsigned char)CODES::GET_QUESTIONS_REQUEST);
      addToPack(pack, j.size(), j.dump());
      return pack;
  }
