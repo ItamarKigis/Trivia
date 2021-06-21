@@ -64,3 +64,30 @@ typedef struct GetRoomStateResponse {
 	unsigned int questionCount;
 	unsigned int answerTimeOut;
 } GetRoomStateResponse;
+
+typedef struct LeaveGameResponse {
+	unsigned int status;
+} LeaveGameResponse;
+
+typedef struct SumbitAnswerResponse {
+	unsigned int status;
+	unsigned int correctAnswers;
+} SumbitAnswerResponse;
+
+typedef struct GetQuestionsResponse {
+	unsigned int status;
+	std::string question;
+	std::map<unsigned int, std::string> answers;
+} GetQuestionsResponse;
+
+typedef struct GetGameResultsResponse {
+	unsigned int status;
+	std::vector<PlayerResults> results;
+} GetGameResultsResponse;
+
+typedef struct PlayerResults {
+	std::string username;
+	unsigned int correctAnswersCount;
+	unsigned int wrongAnswersCount;
+	float averageAnswersTime;
+} PlayerResults;
