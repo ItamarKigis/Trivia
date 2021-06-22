@@ -1,7 +1,7 @@
 #pragma once
 #include <string>
 #include "RoomData.h"
-
+#include <map>
 typedef struct LoginResponse {
 	unsigned int status;
 } LoginResponse;
@@ -80,14 +80,14 @@ typedef struct GetQuestionsResponse {
 	std::map<unsigned int, std::string> answers;
 } GetQuestionsResponse;
 
-typedef struct GetGameResultsResponse {
-	unsigned int status;
-	std::vector<PlayerResults> results;
-} GetGameResultsResponse;
-
 typedef struct PlayerResults {
 	std::string username;
 	unsigned int correctAnswersCount;
 	unsigned int wrongAnswersCount;
 	float averageAnswersTime;
 } PlayerResults;
+
+typedef struct GetGameResultsResponse {
+	unsigned int status;
+	std::vector<PlayerResults> results;
+} GetGameResultsResponse;

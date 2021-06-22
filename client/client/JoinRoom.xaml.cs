@@ -33,7 +33,6 @@ namespace client
             getRooms();
             InitializeComponent();
         }
-
         private void OpenRoomData_Click(object sender, RoutedEventArgs e)
         {
             RoomData Room = new RoomData();
@@ -52,8 +51,6 @@ namespace client
 
             string temp = response.Substring(5);
 
-            dynamic json = JsonConvert.DeserializeObject(temp);
-
-        }
+            dynamic json = JsonConvert.DeserializeObject(temp);        }
     }
 }
