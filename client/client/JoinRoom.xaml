@@ -12,7 +12,9 @@
         <Grid Height="60" VerticalAlignment="Top" Background="#FF2F58C5">
             <TextBlock Text="AVAILABLE ROOMS" HorizontalAlignment="Center" VerticalAlignment="TOP" FontSize="30" FontWeight="Bold"/>
         </Grid>
-        <ComboBox HorizontalAlignment="Left" Margin="210,160,0,0" VerticalAlignment="Top" Width="860" Height="155" Foreground="{x:Null}" Background="#FF2E2828"/>
-        
+        <ListBox x:Name="RoomList" Margin="100,200,0,0">
+
+        </ListBox>
+
     </Grid>
 </UserControl>

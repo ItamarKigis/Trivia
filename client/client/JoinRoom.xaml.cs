@@ -14,46 +14,66 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Net.Sockets;
 using Newtonsoft.Json;
+using System.Threading;
+using System.IO;
 
 namespace client
 {
     /// <summary>
     /// Interaction logic for JoinRoom.xaml
     /// </summary>
-    public class Rooms
+    /// 
+    public class Room
     {
-        public string[] rooms { get; set; }
+        public string Title { get; set; }
+        public int Completion { get; set; }
     }
     public partial class JoinRoom : UserControl
     {
         NetworkStream sock;
+        dynamic json;
         public JoinRoom(NetworkStream clientStream)
         {
             sock = clientStream;
-            getRooms();
             InitializeComponent();
-        }
 
+            Thread thr = new Thread(changeRooms);
+            thr.Start();
+        }
         private void OpenRoomData_Click(object sender, RoutedEventArgs e)
         {
             RoomData Room = new RoomData();
             Room.Show();
         }
-        public void getRooms()
+        public void changeRooms()
         {
-            byte[] msg = new byte[4096];
-            msg[0] = BitConverter.GetBytes(102)[0];
-            sock.Write(msg, 0, msg.Length);
-            sock.Flush();
+            while (true)
+            {
+                Thread.Sleep(3000);
+                try
+                {
+                    StreamReader rd = new StreamReader("C:\\Users\\משתמש\\Documents\\trivia\\client\\client\\RoomData.txt");
+                    for (int i = 0; i < RoomList.Items.Count; i++)
+                    {
+                        this.Dispatcher.Invoke(() => {
+                            RoomList.Items.RemoveAt(i);
+                        });
+                    }
+                    string line;
+                    while ((line = rd.ReadLine()) != null)
+                    {
+                        this.Dispatcher.Invoke(() =>
+                        {
+                            Button newButton = new Button();
+                            newButton.Content = line;
 
-            msg = new byte[4096];
-            int byteRead = sock.Read(msg, 0, msg.Length);
-            string response = System.Text.Encoding.UTF8.GetString(msg);
-
-            string temp = response.Substring(5);
-
-            dynamic json = JsonConvert.DeserializeObject(temp);
-
-        }
+                            RoomList.Items.Add(newButton);
+                        });
+                    }
+                    rd.Close();
+                }
+                catch { }
+            } 
+        } 
     }
 }
