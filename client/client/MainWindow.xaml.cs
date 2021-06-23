@@ -15,6 +15,8 @@ using System.Windows.Shapes;
 using System.Net;
 using System.Net.Sockets;
 using Newtonsoft.Json;
+using System.IO;
+
 namespace client
 {
     /// <summary>

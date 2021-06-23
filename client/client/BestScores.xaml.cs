@@ -56,11 +56,15 @@ namespace client
         {
             byte[] msg = new byte[4096];
             msg[0] = BitConverter.GetBytes(107)[0];
-            sock.Write(msg, 0, msg.Length);
-            sock.Flush();
+            try
+            {
+                sock.Write(msg, 0, msg.Length);
+                sock.Flush();
 
-            msg = new byte[4096];
-            int byteRead = sock.Read(msg, 0, 4096);
+                msg = new byte[4096];
+                int byteRead = sock.Read(msg, 0, 4096);
+            }
+            catch { }
             string response = System.Text.Encoding.UTF8.GetString(msg);
 
             string temp = response.Substring(5);
@@ -72,7 +76,7 @@ namespace client
                 second = (int)json["statistics"][1];
                 third = (int)json["statistics"][2];
             }
-            catch(ArgumentOutOfRangeException e)
+            catch
             {
 
             }

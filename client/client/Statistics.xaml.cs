@@ -55,21 +55,33 @@ namespace client
         {
             byte[] msg = new byte[4096];
             msg[0] = BitConverter.GetBytes(105)[0];
-            sock.Write(msg, 0, msg.Length);
-            sock.Flush();
+            try
+            {
+                sock.Write(msg, 0, msg.Length);
+                sock.Flush();
 
-            msg = new byte[4096];
-            int byteRead = sock.Read(msg, 0, 4096);
+                msg = new byte[4096];
+                int byteRead = sock.Read(msg, 0, 4096);
+            }
+            catch 
+            { }
+
             string response = System.Text.Encoding.UTF8.GetString(msg);
 
             string temp = response.Substring(5);
 
             dynamic json = JsonConvert.DeserializeObject(temp);
+            try
+            {
+                games = (int)(json["statistics"][0]);
+                right_answers = (int)(json["statistics"][1]);
+                wrong_answers = (int)(json["statistics"][2]);
+                average_time = (double)(json["statistics"][2]);
+            }
+            catch
+            {
 
-            games = (int)(json["statistics"][0]);
-            right_answers = (int)(json["statistics"][1]);
-            wrong_answers = (int)(json["statistics"][2]);
-            average_time = (double)(json["statistics"][2]);
+            }
         }
     }
 }

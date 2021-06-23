@@ -43,17 +43,21 @@ namespace client
             requestData.answerTimeout = int.Parse(TimePerQuestion.Text);
             string json = JsonConvert.SerializeObject(requestData, Formatting.Indented);
 
-            byte[] msg = new byte[1024];
+            byte[] msg = new byte[4096];
             byte CodeByte = BitConverter.GetBytes(101)[0];
             byte[] lenOfJson = BitConverter.GetBytes(json.Length);
             Array.Reverse(lenOfJson);
             msg = addByteToArray(lenOfJson, CodeByte);
             msg = Combine(msg, Encoding.ASCII.GetBytes(json));
-            sock.Write(msg, 0, msg.Length);
-            sock.Flush();
+            try
+            {
+                sock.Write(msg, 0, msg.Length);
+                sock.Flush();
 
-            msg = new byte[4096];
-            int byteRead = sock.Read(msg, 0, 4096);
+                msg = new byte[4096];
+                int byteRead = sock.Read(msg, 0, 4096);
+            }
+            catch { }
 
             string response = System.Text.Encoding.UTF8.GetString(msg);
             Console.WriteLine(response);
@@ -61,6 +65,10 @@ namespace client
             if (status == "101")
             {
                 MessageBox.Show(status);
+            }
+            else
+            {
+                MessageBox.Show("Could not open the room, Please try again.");
             }
         }
         public static byte[] Combine(byte[] first, byte[] second)

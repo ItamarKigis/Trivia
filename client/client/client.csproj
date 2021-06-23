@@ -177,6 +177,12 @@
   <ItemGroup>
     <Resource Include="Resources\cyan.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="RoomData.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\RoomData.txt" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\MaterialDesignThemes.4.1.0\build\MaterialDesignThemes.targets" Condition="Exists('..\packages\MaterialDesignThemes.4.1.0\build\MaterialDesignThemes.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
