@@ -1,0 +1,20 @@
+﻿<UserControl x:Class="client.BestScore" DataContext="{RelativeSource Self}"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:client"
+             mc:Ignorable="d" 
+             xmlns:System="clr-namespace:System;assembly=mscorlib" 
+             d:DesignHeight="700" d:DesignWidth="1300">
+    <Grid>
+        <TextBlock Text="The best score is - " Margin="200,200,0,0" Foreground="DarkKhaki" FontSize="40"/>
+        <TextBlock Text="{Binding Path=First}" Margin="530,200,0,0" Foreground="DarkKhaki" FontSize="40"/>
+
+        <TextBlock Text="The second best score is - " Margin="200,300,0,0" Foreground="Gray" FontSize="40"/>
+        <TextBlock Text="{Binding Path=Second}" Margin="670,300,0,0" Foreground="Gray" FontSize="40"/>
+
+        <TextBlock Text="The third best score is - " Margin="200,400,0,0" Foreground="SaddleBrown" FontSize="40"/>
+        <TextBlock Text="{Binding Path=Third}" Margin="630,400,0,0" Foreground="SaddleBrown" FontSize="40"/>
+    </Grid>
+</UserControl>

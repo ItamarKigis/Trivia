@@ -1,0 +1,42 @@
+﻿<Window x:Class="client.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:navigation="SignUp:System.Windows.Controls;assembly=System.Windows.Controls.Navigation"
+        xmlns:local="clr-namespace:client"
+        mc:Ignorable="d"
+        xmlns:fw="clr-namespace:SourceChord.FluentWPF;assembly=FluentWPF"
+        Title="Login" Height="700" Width="1300">
+    <Grid>
+        <Image Source="{StaticResource welcome}"  Width="400" Height="400" Margin="-800,-350,0,0"/>
+
+        <Image Source="{StaticResource to}" Width="200" Height="200" Margin="-100,300,0,0"/>
+
+        <Image Source="{StaticResource trivia}" Width="400" Height="400" Margin="600,-200,0,0"/>
+
+        <Button Name="Cancel" Content="Cancel" HorizontalAlignment="Left" Margin="324,519,0,0" VerticalAlignment="Top" Width="150" Height="50"/>
+
+        <TextBox AcceptsReturn="True" TextWrapping="Wrap" HorizontalAlignment="Left"
+         MaxHeight="30" Width="250" Margin="150,150,0,0" x:Name="username"
+         ScrollViewer.VerticalScrollBarVisibility="Auto" Style="{StaticResource TextBoxRevealStyle}"/>
+
+        <PasswordBox HorizontalAlignment="Left"
+         MaxHeight="30" Width="250" Margin="150,250,0,0" x:Name="password"
+         ScrollViewer.VerticalScrollBarVisibility="Auto" Style="{StaticResource PasswordBoxRevealStyle}"/>
+        <Button Name="Enter" Content="Enter" HorizontalAlignment="Left" Margin="70,519,0,0" VerticalAlignment="Top" Width="150" Height="50"
+                Click="Button_Click" />
+
+        <TextBlock Text="password" HorizontalAlignment="Left" Margin="20, 450,0,0"/>
+        <TextBlock Text="username" HorizontalAlignment="Left" Margin="20,400,0,0"/>
+
+        <TextBlock Text="Don't have an account? Sign up!" HorizontalAlignment="Left" Margin="20,625,0,0"/>
+        <Button Name="SignUp" Content="SignUp" HorizontalAlignment="Left" Margin="216,625,0,0" VerticalAlignment="Top" Width="82" Height="34"
+                Click="SignUp_Click"/>
+
+        <Button Name="Quit" Content="Quit" HorizontalAlignment="Left" Margin="374,625,0,0" VerticalAlignment="Top" Width="100" Height="32"
+                Click="Quit_Click"/>
+        <Frame Name="ParentFrame"/>
+    </Grid>
+</Window>
+
